@@ -17,7 +17,6 @@ public class PlayerIdleStateBehaviour : StateMachineBehaviour
     {
         if ( _pc.moveVec != Vector2.zero )
         {
-            _rigid.MovePosition( _rigid.position + _pc.moveVec );
             animator.SetTrigger( "isRun" );
         }
     }

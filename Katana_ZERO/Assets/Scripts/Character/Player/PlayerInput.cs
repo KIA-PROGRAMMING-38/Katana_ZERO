@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour
 
     public void OnMove( InputValue value )
     {
-        primitiveVec = value.Get<Vector2>() * 5f * Time.deltaTime;
+        primitiveVec = value.Get<Vector2>();
 
         Debug.Log( primitiveVec );
     }
