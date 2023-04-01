@@ -19,8 +19,6 @@ public class PlayerRunStateBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger( "isReturn" );
         }
-
-        _rigid.MovePosition( _rigid.position + _pc.moveVec );
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
