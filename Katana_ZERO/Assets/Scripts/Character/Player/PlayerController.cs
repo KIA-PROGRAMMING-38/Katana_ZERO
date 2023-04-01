@@ -8,6 +8,7 @@ class PlayerController : Character
     [SerializeField][Range(1f, 100f)] private float _moveSpeed;
 
     public Vector2 moveVec;
+    public Vector2 jumpVec;
 
     private void Awake()
     {
@@ -17,10 +18,9 @@ class PlayerController : Character
 
     private void Update()
     {
-        moveVec = _input.primitiveVec * _moveSpeed * Time.deltaTime;
+        moveVec = _input.primitiveMoveVec * ( _moveSpeed );
 
-        _rigid.MovePosition( _rigid.position + moveVec );
-
+        _rigid.velocity = moveVec;
     }
 }
 

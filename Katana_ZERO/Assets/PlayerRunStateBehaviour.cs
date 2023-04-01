@@ -19,6 +19,11 @@ public class PlayerRunStateBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger( "isReturn" );
         }
+
+        if ( _pc.jumpVec != Vector2.zero )
+        {
+            animator.SetTrigger( "isJump" );
+        }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

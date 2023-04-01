@@ -3,12 +3,16 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : MonoBehaviour
 {
-    public Vector2 primitiveVec;
+    public Vector2 primitiveMoveVec;
+    public Vector2 primitiveJumpPower;
 
     public void OnMove( InputValue value )
     {
-        primitiveVec = value.Get<Vector2>();
+        primitiveMoveVec = value.Get<Vector2>();
+    }
 
-        Debug.Log( primitiveVec );
+    public void OnJump( InputValue value )
+    {
+        primitiveJumpPower = value.Get<Vector2>();
     }
 }
