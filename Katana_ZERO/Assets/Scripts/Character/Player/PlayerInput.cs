@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     public Vector2 primitiveMoveVec;
-    public Vector2 primitiveJumpPower;
+    public Vector2 primitiveJumpVec;
 
     public void OnMove( InputValue value )
     {
@@ -13,6 +13,6 @@ public class PlayerInput : MonoBehaviour
 
     public void OnJump( InputValue value )
     {
-        primitiveJumpPower = value.Get<Vector2>();
+        primitiveJumpVec = value.Get<Vector2>();
     }
 }

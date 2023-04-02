@@ -20,7 +20,7 @@ public class PlayerIdleStateBehaviour : StateMachineBehaviour
             animator.SetTrigger( "isRun" );
         }
 
-        if ( _pc.jumpVec != Vector2.zero )
+        if ( _pi.primitiveJumpVec != Vector2.zero )
         {
             animator.SetTrigger( "isJump" );
         }

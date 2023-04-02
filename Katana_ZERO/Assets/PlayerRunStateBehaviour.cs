@@ -15,6 +15,8 @@ public class PlayerRunStateBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _rigid.velocity = _pc.moveVec;
+
         if ( _pc.moveVec == Vector2.zero )
         {
             animator.SetTrigger( "isReturn" );

@@ -337,7 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ec154fad8e6564fa3feb3f27a67d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  primitiveVec: {x: 0, y: 0}
+  primitiveMoveVec: {x: 0, y: 0}
+  primitiveJumpVec: {x: 0, y: 0}
 --- !u!212 &287890650
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -434,7 +435,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -455,7 +456,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 5
+  _jumpPower: 5
   moveVec: {x: 0, y: 0}
+  jumpVec: {x: 0, y: 0}
 --- !u!95 &287890655
 Animator:
   serializedVersion: 5
