@@ -4,15 +4,16 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
     public Vector2 primitiveMoveVec;
-    public Vector2 primitiveJumpVec;
+
+    private PlayerData _data;
+
+    private void Awake()
+    {
+        _data = GetComponent<PlayerData>();
+    }
 
     public void OnMove( InputValue value )
     {
         primitiveMoveVec = value.Get<Vector2>();
-    }
-
-    public void OnJump( InputValue value )
-    {
-        primitiveJumpVec = value.Get<Vector2>();
     }
 }

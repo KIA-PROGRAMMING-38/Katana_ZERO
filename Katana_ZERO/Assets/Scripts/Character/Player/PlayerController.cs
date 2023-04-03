@@ -1,42 +1,63 @@
 using UnityEngine;
 
-class PlayerController : Character
+public class PlayerController : Character
 {
     private PlayerInput _input;
+    private PlayerData _data;
     private Rigidbody2D _rigid;
-    private Animator _animator;
-
-    [SerializeField][Range(1f, 100f)] private float _moveSpeed;
-    [SerializeField][Range(1f, 100f)] private float _jumpPower;
-
-    public Vector2 moveVec;
-    public Vector2 jumpVec;
-
-    public bool onGround;
 
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
+        _data = GetComponent<PlayerData>();
         _rigid = GetComponent<Rigidbody2D>();
-        _animator = GetComponent<Animator>();
+    }
+
+    private void FixedUpdate()
+    {
+        CheckedGround();
     }
 
     private void Update()
     {
-        jumpVec = _input.primitiveJumpVec * _jumpPower;
-
-        moveVec = new Vector2(_input.primitiveMoveVec.x * _moveSpeed, _rigid.velocity.y );
+        CheckedFlip();
     }
 
-    private void OnCollisionEnter2D( Collision2D collision )
+    public void HorizontalMovement()
     {
-        if ( collision.gameObject.CompareTag( "Floor" ) )
+        _rigid.velocity = _data.moveVec;
+    }
+
+    private float _jumpHorizontalHelperPower = 1.35f;
+    public void Jump()
+    {
+        _rigid.velocity = new Vector2( _rigid.velocity.x * _jumpHorizontalHelperPower, _data.jumpPower );
+    }
+
+    private void CheckedFlip()
+    {
+        if (_data.FlipIsRight && _input.primitiveMoveVec.x < 0 )
         {
-            onGround = true;
-            _animator.SetTrigger( "isReturn" );
+            Flip();
+        }
+        else if ( _data.FlipIsRight == false && _input.primitiveMoveVec.x > 0 )
+        {
+            Flip();
         }
     }
 
+    private void Flip()
+    {
+        _data.FlipIsRight = !_data.FlipIsRight;
+        transform.Rotate( 0f, 180f, 0f );
+    }
+
+    private void CheckedGround()
+    {
+        _data.isGrounded = Physics2D.OverlapCircle( _data.groundCheck.position, _data.groundCheckRadius, LayerMask.GetMask( "Ground" ) );
+    }
+
+ 
 }
 
  

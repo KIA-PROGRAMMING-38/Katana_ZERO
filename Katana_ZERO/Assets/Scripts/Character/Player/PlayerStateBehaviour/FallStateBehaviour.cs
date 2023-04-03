@@ -2,29 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRunStateBehaviour : StateMachineBehaviour
+public class FallStateBehaviour : StateMachineBehaviour
 {
-    private PlayerController _pc;
-    private Rigidbody2D _rigid;
+    private PlayerData _data;
+    private PlayerController _controller;
+
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _pc = animator.GetComponent<PlayerController>();
-        _rigid = animator.GetComponent<Rigidbody2D>();
+        _data = animator.GetComponent<PlayerData>();
+        _controller = animator.GetComponent<PlayerController>();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _rigid.velocity = _pc.moveVec;
+        _controller.HorizontalMovement();
 
-        if ( _pc.moveVec == Vector2.zero )
+        if ( _data.isGrounded )
         {
             animator.SetTrigger( "isReturn" );
-        }
-
-        if ( _pc.jumpVec != Vector2.zero )
-        {
-            animator.SetTrigger( "isJump" );
         }
     }
 

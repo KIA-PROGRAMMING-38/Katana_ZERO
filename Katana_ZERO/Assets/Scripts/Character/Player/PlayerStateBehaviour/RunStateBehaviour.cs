@@ -1,26 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
-public class PlayerIdleStateBehaviour : StateMachineBehaviour
+public class RunStateBehaviour : StateMachineBehaviour
 {
-    private PlayerController _pc;
-    private PlayerInput _pi;
+    private PlayerData _data;
+    private PlayerController _controller;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _pc = animator.GetComponent<PlayerController>();
-        _pi = animator.GetComponent<PlayerInput>();
+        _data = animator.GetComponent<PlayerData>();
+        _controller = animator.GetComponent<PlayerController>();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if ( _pi.primitiveMoveVec != Vector2.zero )
+        _controller.HorizontalMovement();
+
+        if ( _data.moveVec == Vector2.zero ) 
         {
-            animator.SetTrigger( "isRun" );
+            animator.SetTrigger( "isReturn" );
         }
 
-        if ( _pi.primitiveJumpVec != Vector2.zero )
+        if ( Input.GetKeyDown( KeyCode.UpArrow ) )
         {
             animator.SetTrigger( "isJump" );
         }
