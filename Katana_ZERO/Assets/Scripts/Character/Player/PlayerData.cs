@@ -6,6 +6,7 @@ using UnityEngine.Windows;
 public class PlayerData : MonoBehaviour
 {
     public Transform groundCheck;
+    public Transform wallCheck;
 
     private PlayerInput _input;
     private Rigidbody2D _rigid;
@@ -16,8 +17,12 @@ public class PlayerData : MonoBehaviour
     public Vector2 moveVec;
 
     public float groundCheckRadius;
+    public float wallCheckDistance;
+    public float wallSlideSpeed;
 
     public bool isGrounded;
+    public bool isTouchingWall;
+    public bool isWallSliding;
     public bool FlipIsRight = true;
 
     private void Awake()
@@ -34,6 +39,9 @@ public class PlayerData : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere( groundCheck.position, groundCheckRadius );
+
+        Gizmos.DrawLine( wallCheck.position,
+            new Vector3( wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z ) );
     }
 }
 

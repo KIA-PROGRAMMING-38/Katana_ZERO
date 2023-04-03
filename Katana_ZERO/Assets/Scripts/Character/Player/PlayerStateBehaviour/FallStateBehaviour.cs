@@ -22,6 +22,11 @@ public class FallStateBehaviour : StateMachineBehaviour
         {
             animator.SetTrigger( "isReturn" );
         }
+
+        if ( _data.isWallSliding )
+        {
+            animator.SetTrigger( "isWallgrab" );
+        }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
