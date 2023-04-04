@@ -23,6 +23,7 @@ public class PlayerData : MonoBehaviour
     public float wallSlideSpeed;
     public float wallFlipHorizontalForce;
     public float wallFlipVerticalForce;
+    public float RollHorizontalForce;
 
     public bool isGrounded;
     public bool isTouchingWall;

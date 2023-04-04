@@ -31,7 +31,7 @@ public class PlayerController : Character
     private float _jumpHorizontalHelperPower = 1.35f;
     public void Jump()
     {
-        _rigid.velocity = new Vector2( _rigid.velocity.x * _jumpHorizontalHelperPower, _data.jumpPower );
+        _rigid.velocity = new Vector2( _data.moveVec.x, _data.jumpPower );
     }
 
    

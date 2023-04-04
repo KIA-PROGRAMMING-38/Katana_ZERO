@@ -15,15 +15,7 @@ public class WallFlipStateBehaviour : StateMachineBehaviour
         _data = animator.GetComponent<PlayerData>();
         _controller = animator.GetComponent<PlayerController>();
 
-        if ( _data.FlipIsRight )
-        {
-            _rigid.velocity = new Vector2( _data.wallFlipHorizontalForce, _data.wallFlipVerticalForce );
-        }
-        else
-        {
-            _rigid.velocity = new Vector2( -_data.wallFlipHorizontalForce, _data.wallFlipVerticalForce );
-        }
-
+        _rigid.velocity = new Vector2( _data.wallFlipHorizontalForce * _data.facingDirection, _data.wallFlipVerticalForce );
 
     }
 
