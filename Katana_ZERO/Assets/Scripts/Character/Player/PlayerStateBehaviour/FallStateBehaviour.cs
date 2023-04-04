@@ -20,6 +20,11 @@ public class FallStateBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if ( Input.GetKey( KeyCode.DownArrow ) )
+        {
+            _data.moveVec.y += _data.FallingBoostForce;
+        }
+
         _controller.HorizontalMovement();
         _controller.CheckedIfWallSliding();
 
@@ -42,6 +47,8 @@ public class FallStateBehaviour : StateMachineBehaviour
                 _data.onLeftWall = true;
             }
         }
+
+        
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

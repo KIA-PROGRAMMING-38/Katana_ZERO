@@ -2,33 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IdleStateBehaviour : StateMachineBehaviour
+public class CrouchStateBehaviour : StateMachineBehaviour
 {
-    private PlayerData _data;
-    private PlayerController _controller;
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _data = animator.GetComponent<PlayerData>();
-        _controller = animator.GetComponent<PlayerController>();
+        
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if ( _data.moveVec.x != 0f )
+        if ( Input.GetKeyUp( KeyCode.DownArrow ) )
         {
-            animator.SetTrigger( "isRun" );
+            animator.SetTrigger( "isReturn" );
         }
 
         if ( Input.GetKeyDown( KeyCode.UpArrow ) )
         {
             animator.SetTrigger( "isJump" );
         }
-
-        if ( Input.GetKey( KeyCode.DownArrow ) )
-        {
-            animator.SetTrigger( "isCrouch" );
-        }
+        
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -16,6 +16,7 @@ public class PlayerData : MonoBehaviour
 
     public Vector2 moveVec;
 
+    public float FallingBoostForce;
     public float facingDirection = 1f;
     public float groundCheckRadius;
     public float wallCheckDistance;
