@@ -21,7 +21,6 @@ public class PlayerController : Character
     private void Update()
     {
         CheckedFlip();
-        CheckedIfWallSliding();
     }
 
     public void HorizontalMovement()
@@ -49,8 +48,9 @@ public class PlayerController : Character
         }
     }
 
-    private void Flip()
+    public void Flip()
     {
+        _data.facingDirection *= -1;
         _data.FlipIsRight = !_data.FlipIsRight;
         transform.Rotate( 0f, 180f, 0f );
     }
@@ -71,7 +71,7 @@ public class PlayerController : Character
         _data.isTouchingWall = Physics2D.Raycast( _data.wallCheck.position, transform.right, _data.wallCheckDistance, LayerMask.GetMask( "Ground" ) );
     }
 
-    private void CheckedIfWallSliding()
+    public void CheckedIfWallSliding()
     {
         if ( _data.isTouchingWall && !_data.isGrounded && _rigid.velocity.y < 0 )
         {

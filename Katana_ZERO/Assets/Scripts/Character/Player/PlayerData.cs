@@ -16,14 +16,18 @@ public class PlayerData : MonoBehaviour
 
     public Vector2 moveVec;
 
+    public float facingDirection = 1f;
     public float groundCheckRadius;
     public float wallCheckDistance;
     public float wallSlideSpeed;
+    public float wallFlipHorizontalForce;
+    public float wallFlipVerticalForce;
 
     public bool isGrounded;
     public bool isTouchingWall;
     public bool isWallSliding;
     public bool FlipIsRight = true;
+    public bool onLeftWall;
 
     private void Awake()
     {
@@ -41,7 +45,7 @@ public class PlayerData : MonoBehaviour
         Gizmos.DrawWireSphere( groundCheck.position, groundCheckRadius );
 
         Gizmos.DrawLine( wallCheck.position,
-            new Vector3( wallCheck.position.x + wallCheckDistance, wallCheck.position.y, wallCheck.position.z ) );
+            new Vector3( wallCheck.position.x + wallCheckDistance * facingDirection, wallCheck.position.y, wallCheck.position.z ) );
     }
 }
 

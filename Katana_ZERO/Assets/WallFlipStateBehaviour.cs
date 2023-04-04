@@ -1,38 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class FallStateBehaviour : StateMachineBehaviour
+public class WallFlipStateBehaviour : StateMachineBehaviour
 {
+    private Rigidbody2D _rigid;
     private PlayerData _data;
     private PlayerController _controller;
-    private Rigidbody2D _rigid;
-
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _rigid = animator.GetComponent<Rigidbody2D>();
         _data = animator.GetComponent<PlayerData>();
         _controller = animator.GetComponent<PlayerController>();
-        _rigid = animator.GetComponent<Rigidbody2D>();
 
-        _data.moveVec = new Vector2( _rigid.velocity.x, -2f );
+        if ( _data.FlipIsRight )
+        {
+            _rigid.velocity = new Vector2( _data.wallFlipHorizontalForce, _data.wallFlipVerticalForce );
+        }
+        else
+        {
+            _rigid.velocity = new Vector2( -_data.wallFlipHorizontalForce, _data.wallFlipVerticalForce );
+        }
+
+
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _controller.HorizontalMovement();
-        _controller.CheckedIfWallSliding();
-
-
-        if ( _data.isGrounded )
+        if (_rigid.velocity.y < 1f )
         {
-            animator.SetTrigger( "isReturn" );
+            _rigid.velocity = new Vector2( _rigid.velocity.x, 1f );
         }
+
 
         if ( _data.isTouchingWall )
         {
             animator.SetTrigger( "isWallgrab" );
-
+        
             if ( _data.FlipIsRight )
             {
                 _data.onLeftWall = false;
@@ -46,6 +52,14 @@ public class FallStateBehaviour : StateMachineBehaviour
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if ( !_data.FlipIsRight )
+        {
+            _rigid.velocity = new Vector2( _rigid.velocity.x + 2f, -1f );
+        }
+        else
+        {
+            _rigid.velocity = new Vector2( _rigid.velocity.x - 2f, -1f );
+        }
         
     }
 }

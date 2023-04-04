@@ -17,7 +17,7 @@ public class WallSlideStateBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if ( _data.isGrounded )
+        if ( _data.isGrounded || !_data.isTouchingWall )
         {
             animator.SetTrigger( "isReturn" );
         }
@@ -25,6 +25,35 @@ public class WallSlideStateBehaviour : StateMachineBehaviour
         if ( _rigid.velocity.y < -_data.wallSlideSpeed )
         {
             _rigid.velocity = new Vector2( _rigid.velocity.x, -_data.wallSlideSpeed );
+        }
+
+
+        if ( Input.GetKeyDown( KeyCode.UpArrow ) )
+        {
+            _controller.Flip();
+
+            animator.SetTrigger( "isWallFlip" );
+        }
+
+        if ( Input.GetKeyDown( KeyCode.RightArrow ) )
+        {
+            if ( _data.onLeftWall )
+            {
+                _rigid.AddForce( Vector2.right * 2f, ForceMode2D.Impulse );
+                _data.isTouchingWall = false;
+                animator.SetTrigger( "isFall" );
+            }
+
+        }
+
+        if ( Input.GetKeyDown( KeyCode.LeftArrow ) )
+        {
+            if ( !_data.onLeftWall )
+            {
+                _rigid.AddForce( -Vector2.right * 2f, ForceMode2D.Impulse );
+                _data.isTouchingWall = false;
+                animator.SetTrigger( "isFall" );
+            }
         }
     }
 

@@ -19,12 +19,14 @@ public class JumpStateBehaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        _controller.CheckedIfWallSliding();
+
         if ( _rigid.velocity.y < 0 )
         {
             animator.SetTrigger( "isFall" );
         }
 
-        if ( _data.isWallSliding )
+        if ( _data.isTouchingWall )
         {
             animator.SetTrigger( "isWallgrab" );
         }
