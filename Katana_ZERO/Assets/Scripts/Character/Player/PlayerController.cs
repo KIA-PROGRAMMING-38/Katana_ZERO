@@ -6,6 +6,8 @@ public class PlayerController : Character
     private PlayerData _data;
     private Rigidbody2D _rigid;
 
+    public Transform CursorPosition;
+
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
@@ -21,6 +23,7 @@ public class PlayerController : Character
     private void Update()
     {
         CheckedFlip();
+        CursorSpritePosition();
     }
 
     public void HorizontalMovement()
@@ -34,6 +37,10 @@ public class PlayerController : Character
         _rigid.velocity = new Vector2( _data.moveVec.x, _data.jumpPower );
     }
 
+    private void CursorSpritePosition()
+    {
+        CursorPosition.position = _input.MouseWorldPos;
+    }
    
 
     private void CheckedFlip()
