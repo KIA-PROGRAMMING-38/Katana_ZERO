@@ -1,50 +1,49 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
+using StringLiteral;
 
-public class WallgrabStateBehaviour : StateMachineBehaviour
+public class WallgrabStateBehaviour : PlayerState
 {
-    private Rigidbody2D _rigid;
-    private PlayerData _data;
-    private PlayerController _controller;
-
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
-        _rigid = animator.GetComponent<Rigidbody2D>();
-        _data = animator.GetComponent<PlayerData>();
-        _controller = animator.GetComponent<PlayerController>();
+        base.OnStateEnter( animator, stateInfo, layerIndex );
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
-        _rigid.velocity = new Vector2( 0f, 0.7f );
+        base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        if ( Input.GetKeyDown( KeyCode.UpArrow ) )
+        rigid.velocity = new Vector2( rigid.velocity.x, data.HoldAWallForce );
+
+        if ( stateInfo.normalizedTime >= data.HoldAWallTime )
         {
-            animator.SetTrigger( "isWallFlip" );
-            _controller.Flip();
+            ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.WALL_SLIDE );
+        }
 
+        if ( Input.GetButtonDown( InputAxisString.UP_KEY ))
+        {
+            ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.WALL_FLIP );
+            controller.Flip();
         }
 
         if ( Input.GetKeyDown( KeyCode.RightArrow ) )
         {
-            if ( _data.onLeftWall )
+            if ( data.onLeftWall )
             {
-                _rigid.AddForce( Vector2.right * 2f, ForceMode2D.Impulse );
-                _data.isWallSliding = false;
-                animator.SetTrigger( "isFall" );
-            }
+                rigid.AddForce( Vector2.right * 2f, ForceMode2D.Impulse );
+                data.isWallSliding = false;
 
+                ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.FALL );
+            }
         }
 
         if ( Input.GetKeyDown( KeyCode.LeftArrow ) )
         {
-            if ( !_data.onLeftWall )
+            if ( !data.onLeftWall )
             {
-                _rigid.AddForce( -Vector2.right * 2f, ForceMode2D.Impulse );
-                _data.isWallSliding = false;
-                animator.SetTrigger( "isFall" );
+                rigid.AddForce( -Vector2.right * 2f, ForceMode2D.Impulse );
+                data.isWallSliding = false;
+
+                ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.FALL );
             }
         }
     }
@@ -52,6 +51,6 @@ public class WallgrabStateBehaviour : StateMachineBehaviour
 
     override public void OnStateExit( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
-
+        base.OnStateExit( animator, stateInfo, layerIndex );
     }
 }

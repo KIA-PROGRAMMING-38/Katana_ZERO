@@ -1,36 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using StringLiteral;
 using UnityEngine;
 
-public class CrouchStateBehaviour : StateMachineBehaviour
+public class CrouchStateBehaviour : PlayerState
 {
-    private PlayerData _data;
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _data = animator.GetComponent<PlayerData>();
+        base.OnStateEnter(animator, stateInfo, layerIndex);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if ( !Input.GetKey(KeyCode.DownArrow) )
+        base.OnStateUpdate(animator, stateInfo, layerIndex);
+
+        if ( !Input.GetButton(InputAxisString.DOWN_KEY) )
         {
-            animator.SetTrigger( "isReturn" );
+            ChangeState( animator, PlayerAnimationLiteral.CROUCH, PlayerAnimationLiteral.POST_CROUCH );
         }
 
-        if ( Input.GetKeyDown( KeyCode.UpArrow ) )
+        if ( Input.GetButton(InputAxisString.UP_KEY) )
         {
-            animator.SetTrigger( "isJump" );
+            ChangeState( animator, PlayerAnimationLiteral.CROUCH, PlayerAnimationLiteral.JUMP );
         }
 
-        if ( _data.moveVec.x != 0f )
+        if ( data.moveVec.x != 0f )
         {
-            animator.SetTrigger( "isRoll" );
+            ChangeState( animator, PlayerAnimationLiteral.CROUCH, PlayerAnimationLiteral.ROLL );
         }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        base.OnStateExit(animator, stateInfo, layerIndex);
     }
 }

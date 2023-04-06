@@ -1,7 +1,9 @@
-using UnityEngine;
 using StringLiteral;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class IdletoRunStateBehaviour : PlayerState
+public class RunToIdleStateBehaviour : PlayerState
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -12,17 +14,15 @@ public class IdletoRunStateBehaviour : PlayerState
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        data.moveVec /= 2f;
-        controller.HorizontalMovement();
-
-        if (stateInfo.normalizedTime >= 1f )
+        if ( stateInfo.normalizedTime >= 1f )
         {
-            ChangeState( animator, PlayerAnimationLiteral.IDLE_TO_RUN, PlayerAnimationLiteral.RUN );
+            ChangeState( animator, PlayerAnimationLiteral.RUN_TO_IDLE, PlayerAnimationLiteral.IDLE );
         }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit(animator, stateInfo, layerIndex);
+
     }
 }

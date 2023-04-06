@@ -1,36 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
+using StringLiteral;
 
-public class RunStateBehaviour : StateMachineBehaviour
+public class RunStateBehaviour : PlayerState
 {
-    private PlayerData _data;
-    private PlayerController _controller;
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _data = animator.GetComponent<PlayerData>();
-        _controller = animator.GetComponent<PlayerController>();
+        base.OnStateEnter(animator, stateInfo, layerIndex);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _controller.HorizontalMovement();
+        base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        if ( _data.moveVec == Vector2.zero ) 
+        controller.HorizontalMovement();
+
+        if ( data.moveVec.x == 0f ) 
         {
-            animator.SetTrigger( "isReturn" );
+            ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.RUN_TO_IDLE );
         }
 
-        if ( Input.GetKeyDown( KeyCode.UpArrow ) )
+        if ( Input.GetButtonDown( InputAxisString.UP_KEY ) )
         {
-            animator.SetTrigger( "isJump" );
+            ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.JUMP );
+        }
+
+        if ( rigid.velocity.y < 0 )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.FALL );
         }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        base.OnStateExit( animator, stateInfo, layerIndex );
     }
 }

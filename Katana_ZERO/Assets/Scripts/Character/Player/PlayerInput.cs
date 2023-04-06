@@ -7,8 +7,8 @@ public class PlayerInput : MonoBehaviour
     private Camera _camera;
 
     public Vector2 primitiveMoveVec;
-    private Vector2 MouseScreenPos;
-    public Vector2 MouseWorldPos;
+    public Vector2 PrimitiveMouseScreenPos;
+    public Vector2 PrimitiveMouseWorldPos;
 
     private void Awake()
     {
@@ -18,8 +18,8 @@ public class PlayerInput : MonoBehaviour
 
     private void Update()
     {
-        MouseScreenPos = Input.mousePosition;
-        MouseWorldPos = _camera.ScreenToWorldPoint( MouseScreenPos );
+        PrimitiveMouseScreenPos = Input.mousePosition;
+        PrimitiveMouseWorldPos = _camera.ScreenToWorldPoint( PrimitiveMouseScreenPos );
     }
 
     public void OnMove( InputValue value )

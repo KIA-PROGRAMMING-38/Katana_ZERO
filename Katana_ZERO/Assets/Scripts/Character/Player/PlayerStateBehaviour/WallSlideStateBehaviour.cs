@@ -1,64 +1,70 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using StringLiteral;
 
-public class WallSlideStateBehaviour : StateMachineBehaviour
+public class WallSlideStateBehaviour : PlayerState
 {
-    private PlayerData _data;
-    private PlayerController _controller;
-    private Rigidbody2D _rigid;
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _data = animator.GetComponent<PlayerData>();
-        _controller = animator.GetComponent<PlayerController>();
-        _rigid = animator.GetComponent<Rigidbody2D>();
+        base.OnStateEnter( animator, stateInfo, layerIndex );
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if ( _data.isGrounded || !_data.isTouchingWall )
+        base.OnStateUpdate( animator, stateInfo, layerIndex );
+
+        if ( data.isGrounded )
         {
-            animator.SetTrigger( "isReturn" );
+            ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.IDLE );
         }
 
-        if ( _rigid.velocity.y < -_data.wallSlideSpeed )
+        if ( !data.isTouchingWall )
         {
-            _rigid.velocity = new Vector2( _rigid.velocity.x, -_data.wallSlideSpeed );
+            if ( rigid.velocity.y < 0f ) 
+            {
+                ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.FALL );
+
+                return;
+            }
         }
 
-
-        if ( Input.GetKeyDown( KeyCode.UpArrow ) )
+        if ( rigid.velocity.y < -data.wallSlideSpeed )
         {
-            _controller.Flip();
+            rigid.velocity = new Vector2( rigid.velocity.x, -data.wallSlideSpeed );
+        }
 
-            animator.SetTrigger( "isWallFlip" );
+        if ( Input.GetButtonDown(InputAxisString.UP_KEY) )
+        {
+            controller.Flip();
+
+            ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.WALL_FLIP );
         }
 
         if ( Input.GetKeyDown( KeyCode.RightArrow ) )
         {
-            if ( _data.onLeftWall )
+            if ( data.onLeftWall )
             {
-                _rigid.AddForce( Vector2.right * 2f, ForceMode2D.Impulse );
-                _data.isTouchingWall = false;
-                animator.SetTrigger( "isFall" );
+                rigid.AddForce( Vector2.right * 2f, ForceMode2D.Impulse );
+                data.isTouchingWall = false;
+
+                ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.FALL );
             }
 
         }
 
         if ( Input.GetKeyDown( KeyCode.LeftArrow ) )
         {
-            if ( !_data.onLeftWall )
+            if ( !data.onLeftWall )
             {
-                _rigid.AddForce( -Vector2.right * 2f, ForceMode2D.Impulse );
-                _data.isTouchingWall = false;
-                animator.SetTrigger( "isFall" );
+                rigid.AddForce( -Vector2.right * 2f, ForceMode2D.Impulse );
+                data.isTouchingWall = false;
+
+                ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.FALL );
             }
         }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        base.OnStateExit( animator, stateInfo, layerIndex );
     }
 }

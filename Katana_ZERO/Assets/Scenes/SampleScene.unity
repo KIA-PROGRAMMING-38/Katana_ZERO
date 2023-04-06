@@ -477,7 +477,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 1.535
+  orthographic size: 1.415
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -791,7 +791,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1126418830
 Transform:
   m_ObjectHideFlags: 0
@@ -1063,7 +1063,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primitiveMoveVec: {x: 0, y: 0}
-  MouseWorldPos: {x: 0, y: 0}
+  PrimitiveMouseScreenPos: {x: 0, y: 0}
+  PrimitiveMouseWorldPos: {x: 0, y: 0}
 --- !u!114 &1474641846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,6 +1082,7 @@ MonoBehaviour:
   _moveSpeed: 4
   jumpPower: 9
   moveVec: {x: 0, y: 0}
+  cursorDirection: {x: 0, y: 0}
   FallingBoostForce: -1.5
   facingDirection: 1
   groundCheckRadius: 0.05
@@ -1088,6 +1090,8 @@ MonoBehaviour:
   wallSlideSpeed: 0
   wallFlipHorizontalForce: 4.5
   wallFlipVerticalForce: 7
+  HoldAWallTime: 2.5
+  HoldAWallForce: 0.95
   RollHorizontalForce: 5.3
   isGrounded: 0
   isTouchingWall: 0

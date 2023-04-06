@@ -1,7 +1,9 @@
-using UnityEngine;
 using StringLiteral;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class IdleStateBehaviour : PlayerState
+public class PostCrouchStateBehaviour : PlayerState
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -12,19 +14,9 @@ public class IdleStateBehaviour : PlayerState
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        if ( data.moveVec.x != 0f )
+        if ( stateInfo.normalizedTime >= 1f )
         {
-            ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.IDLE_TO_RUN );
-        }
-
-        if ( Input.GetButtonUp(InputAxisString.UP_KEY) )
-        {
-            ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.JUMP );
-        }
-
-        if ( Input.GetButton(InputAxisString.DOWN_KEY) )
-        {
-            ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.PRE_CROUCH );
+            ChangeState( animator, PlayerAnimationLiteral.POST_CROUCH, PlayerAnimationLiteral.IDLE );
         }
     }
 

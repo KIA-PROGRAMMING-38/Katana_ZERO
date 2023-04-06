@@ -1,57 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
+using StringLiteral;
 
-public class WallFlipStateBehaviour : StateMachineBehaviour
+public class WallFlipStateBehaviour : PlayerState
 {
-    private Rigidbody2D _rigid;
-    private PlayerData _data;
-    private PlayerController _controller;
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _rigid = animator.GetComponent<Rigidbody2D>();
-        _data = animator.GetComponent<PlayerData>();
-        _controller = animator.GetComponent<PlayerController>();
+        base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        _rigid.velocity = new Vector2( _data.wallFlipHorizontalForce * _data.facingDirection, _data.wallFlipVerticalForce );
-
+        rigid.velocity = new Vector2( data.wallFlipHorizontalForce * data.facingDirection, data.wallFlipVerticalForce );
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (_rigid.velocity.y < 1f )
+        base.OnStateUpdate( animator, stateInfo, layerIndex );
+
+        if ( rigid.velocity.y < 1f )
         {
-            _rigid.velocity = new Vector2( _rigid.velocity.x, 1f );
+            rigid.velocity = new Vector2( rigid.velocity.x, 1f );
         }
 
-
-        if ( _data.isTouchingWall )
+        if ( stateInfo.normalizedTime >= 1f )
         {
-            animator.SetTrigger( "isWallgrab" );
-        
-            if ( _data.FlipIsRight )
+            ChangeState( animator, PlayerAnimationLiteral.WALL_FLIP, PlayerAnimationLiteral.FALL );
+        }
+
+        if ( data.isTouchingWall )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.WALL_FLIP, PlayerAnimationLiteral.WALL_GRAB );
+
+            if ( data.FlipIsRight )
             {
-                _data.onLeftWall = false;
+                data.onLeftWall = false;
             }
             else
             {
-                _data.onLeftWall = true;
+                data.onLeftWall = true;
             }
         }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if ( !_data.FlipIsRight )
-        {
-            _rigid.velocity = new Vector2( _rigid.velocity.x + 2f, -1f );
-        }
-        else
-        {
-            _rigid.velocity = new Vector2( _rigid.velocity.x - 2f, -1f );
-        }
-        
+        base.OnStateExit( animator, stateInfo, layerIndex );
+
+        rigid.velocity = Vector2.zero;
     }
 }

@@ -31,7 +31,6 @@ public class PlayerController : Character
         _rigid.velocity = _data.moveVec;
     }
 
-    private float _jumpHorizontalHelperPower = 1.35f;
     public void Jump()
     {
         _rigid.velocity = new Vector2( _data.moveVec.x, _data.jumpPower );
@@ -39,7 +38,7 @@ public class PlayerController : Character
 
     private void CursorSpritePosition()
     {
-        CursorPosition.position = _input.MouseWorldPos;
+        CursorPosition.position = _input.PrimitiveMouseWorldPos;
     }
    
 

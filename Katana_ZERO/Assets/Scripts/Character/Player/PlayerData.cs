@@ -15,6 +15,7 @@ public class PlayerData : MonoBehaviour
     [SerializeField][Range( 1f, 100f )] public float jumpPower;
 
     public Vector2 moveVec;
+    public Vector2 cursorDirection;
 
     public float FallingBoostForce;
     public float facingDirection = 1f;
@@ -23,6 +24,8 @@ public class PlayerData : MonoBehaviour
     public float wallSlideSpeed;
     public float wallFlipHorizontalForce;
     public float wallFlipVerticalForce;
+    public float HoldAWallTime;
+    public float HoldAWallForce;
     public float RollHorizontalForce;
 
     public bool isGrounded;
@@ -40,6 +43,11 @@ public class PlayerData : MonoBehaviour
     private void FixedUpdate()
     {
         moveVec = new Vector2( _input.primitiveMoveVec.x * _moveSpeed, _rigid.velocity.y );
+    }
+
+    private void Update()
+    {
+        cursorDirection = _input.PrimitiveMouseWorldPos - (Vector2)transform.position;
     }
 
     private void OnDrawGizmos()
