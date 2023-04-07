@@ -9,7 +9,9 @@ public class FallStateBehaviour : PlayerState
 
         if ( data.PrevStateisGrab )
         {
-            rigid.AddForce( input.PrimitiveMoveVec * 4f, ForceMode2D.Impulse );
+            data.MoveVec.x *= 1.2f;
+            data.MoveVec.y = -1f;
+            rigid.AddForce( data.MoveVec , ForceMode2D.Impulse );
             data.PrevStateisGrab = false;
             data.FlipIsRight = !data.FlipIsRight;
         }

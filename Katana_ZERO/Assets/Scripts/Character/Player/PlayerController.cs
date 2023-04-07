@@ -57,11 +57,11 @@ public class PlayerController : Character
 
     public void CheckedJumpFlip()
     {
-        if ( _rigid.velocity.x < 0f && _data.OnGround )
+        if ( _data.FlipIsRight && _rigid.velocity.x < 0f  )
         {
             Flip();
         }
-        else if ( _rigid.velocity.x > 0f && _data.OnGround )
+        else if ( _data.FlipIsRight == false && _rigid.velocity.x > 0f  )
         {
             Flip();
         }

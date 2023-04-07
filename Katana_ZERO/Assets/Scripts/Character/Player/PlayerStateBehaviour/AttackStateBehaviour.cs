@@ -37,7 +37,6 @@ public class AttackStateBehaviour : PlayerState
             {
                 ChangeState( animator, PlayerAnimationLiteral.ATTACK, PlayerAnimationLiteral.FALL );
             }
-
         }
     }
 
