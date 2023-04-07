@@ -1,5 +1,6 @@
 using UnityEngine;
 using StringLiteral;
+using Mono.Cecil.Cil;
 
 public class RollStateBehaviour : PlayerState
 {
@@ -7,7 +8,8 @@ public class RollStateBehaviour : PlayerState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        rigid.velocity = new Vector2( data.RollHorizontalForce * data.facingDirection, rigid.velocity.y );
+        rigid.velocity = new Vector2
+            ( data.RollHorizontalForce * input.PrimitiveMoveVec.x, rigid.velocity.y );
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,6 +22,11 @@ public class RollStateBehaviour : PlayerState
         if ( Input.GetButtonDown(InputAxisString.UP_KEY) )
         {
             ChangeState( animator, PlayerAnimationLiteral.ROLL, PlayerAnimationLiteral.JUMP );
+        }
+
+        if ( Input.GetMouseButtonDown( 0 ) )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.ROLL, PlayerAnimationLiteral.ATTACK );
         }
     }
 

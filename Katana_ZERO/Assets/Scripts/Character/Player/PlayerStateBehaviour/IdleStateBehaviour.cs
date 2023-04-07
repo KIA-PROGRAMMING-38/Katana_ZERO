@@ -12,7 +12,7 @@ public class IdleStateBehaviour : PlayerState
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        if ( data.moveVec.x != 0f )
+        if ( data.MoveVec.x != 0f )
         {
             ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.IDLE_TO_RUN );
         }
@@ -22,7 +22,7 @@ public class IdleStateBehaviour : PlayerState
             ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.ATTACK );
         }
 
-        if ( Input.GetButtonUp(InputAxisString.UP_KEY) )
+        if ( Input.GetButtonDown(InputAxisString.UP_KEY) )
         {
             ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.JUMP );
         }

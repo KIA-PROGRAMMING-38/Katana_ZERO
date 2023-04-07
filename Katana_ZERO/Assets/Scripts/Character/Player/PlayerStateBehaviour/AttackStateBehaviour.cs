@@ -17,9 +17,10 @@ public class AttackStateBehaviour : PlayerState
         data.CapturedCatchDirection = 
             input.PrimitiveMouseWorldPos - (Vector2)animator.transform.position;
 
-        _attackDirection = data.cursorDirection.normalized;
+        _attackDirection = data.CursorDirection.normalized;
 
         rigid.AddForce( _attackDirection * data.AttackForce, ForceMode2D.Impulse );
+        controller.CheckedJumpFlip();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -28,7 +29,7 @@ public class AttackStateBehaviour : PlayerState
 
         if ( stateInfo.normalizedTime >= data.AttackAnimElapsedTime )
         {
-            if ( data.isGrounded )
+            if ( data.OnGround )
             {
                 ChangeState( animator, PlayerAnimationLiteral.ATTACK, PlayerAnimationLiteral.IDLE );
             }
