@@ -30,13 +30,16 @@ public class AttackEffect : MonoBehaviour
 
     private void OnEnable()
     {
+        _data.AttackAngle = Mathf.Atan2
+            ( _data.cursorDirection.y, _data.cursorDirection.x ) * Mathf.Rad2Deg;
+
         if ( _data.cursorDirection.x > 0f )
         {
-            transform.rotation = Quaternion.Euler( 0f, 0f, _data.AttackAngle );
+            transform.localRotation = Quaternion.Euler( 0f, 0f, _data.AttackAngle );
         }
         else
         {
-            transform.rotation = Quaternion.Euler( 180f, 0f, -_data.AttackAngle );
+            transform.localRotation = Quaternion.Euler( 180f, 180f, -_data.AttackAngle );
         }
     }
 }
