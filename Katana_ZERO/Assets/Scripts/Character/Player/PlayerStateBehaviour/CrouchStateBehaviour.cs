@@ -12,17 +12,17 @@ public class CrouchStateBehaviour : PlayerState
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        if ( !Input.GetButton(InputAxisString.DOWN_KEY) )
+        if ( !Input.GetButton( InputAxisString.DOWN_KEY ) )
         {
             ChangeState( animator, PlayerAnimationLiteral.CROUCH, PlayerAnimationLiteral.POST_CROUCH );
         }
 
-        if ( Input.GetButton(InputAxisString.UP_KEY) )
+        if ( Input.GetButton( InputAxisString.UP_KEY ) )
         {
             ChangeState( animator, PlayerAnimationLiteral.CROUCH, PlayerAnimationLiteral.JUMP );
         }
 
-        if ( data.moveVec.x != 0f )
+        if ( Input.GetButtonDown( InputAxisString.HORIZONTAL_KEY ) )
         {
             ChangeState( animator, PlayerAnimationLiteral.CROUCH, PlayerAnimationLiteral.ROLL );
         }

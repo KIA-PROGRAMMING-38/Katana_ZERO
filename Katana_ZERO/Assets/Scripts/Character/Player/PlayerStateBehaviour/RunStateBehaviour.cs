@@ -14,7 +14,7 @@ public class RunStateBehaviour : PlayerState
 
         controller.HorizontalMovement();
 
-        if ( data.moveVec.x == 0f ) 
+        if ( input.primitiveMoveVec.x == 0f ) 
         {
             ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.RUN_TO_IDLE );
         }
@@ -33,5 +33,7 @@ public class RunStateBehaviour : PlayerState
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
+
+        rigid.velocity = Vector2.zero;
     }
 }

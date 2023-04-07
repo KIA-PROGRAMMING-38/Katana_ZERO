@@ -27,3 +27,4 @@ public class PlayerInput : MonoBehaviour
         primitiveMoveVec = value.Get<Vector2>();
     }
 }
+

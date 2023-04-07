@@ -22,6 +22,7 @@ public class WallgrabStateBehaviour : PlayerState
         if ( Input.GetButtonDown( InputAxisString.UP_KEY ))
         {
             ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.WALL_FLIP );
+
             controller.Flip();
         }
 
@@ -29,7 +30,7 @@ public class WallgrabStateBehaviour : PlayerState
         {
             if ( data.onLeftWall )
             {
-                rigid.AddForce( Vector2.right * 2f, ForceMode2D.Impulse );
+                rigid.AddForce( Vector2.right * 4f, ForceMode2D.Impulse );
                 data.isWallSliding = false;
 
                 ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.FALL );
@@ -40,7 +41,7 @@ public class WallgrabStateBehaviour : PlayerState
         {
             if ( !data.onLeftWall )
             {
-                rigid.AddForce( -Vector2.right * 2f, ForceMode2D.Impulse );
+                rigid.AddForce( -Vector2.right * 4f, ForceMode2D.Impulse );
                 data.isWallSliding = false;
 
                 ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.FALL );

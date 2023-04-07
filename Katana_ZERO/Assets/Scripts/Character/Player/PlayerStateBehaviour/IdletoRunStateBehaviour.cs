@@ -15,7 +15,7 @@ public class IdletoRunStateBehaviour : PlayerState
         data.moveVec /= 2f;
         controller.HorizontalMovement();
 
-        if (stateInfo.normalizedTime >= 1f )
+        if (stateInfo.normalizedTime >= 0.8f )
         {
             ChangeState( animator, PlayerAnimationLiteral.IDLE_TO_RUN, PlayerAnimationLiteral.RUN );
         }

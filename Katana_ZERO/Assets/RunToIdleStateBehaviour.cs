@@ -14,7 +14,7 @@ public class RunToIdleStateBehaviour : PlayerState
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        if ( stateInfo.normalizedTime >= 1f )
+        if ( stateInfo.normalizedTime >= 0.8f )
         {
             ChangeState( animator, PlayerAnimationLiteral.RUN_TO_IDLE, PlayerAnimationLiteral.IDLE );
         }

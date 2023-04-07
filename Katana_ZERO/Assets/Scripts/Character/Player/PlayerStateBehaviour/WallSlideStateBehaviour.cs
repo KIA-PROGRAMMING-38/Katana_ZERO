@@ -43,19 +43,18 @@ public class WallSlideStateBehaviour : PlayerState
         {
             if ( data.onLeftWall )
             {
-                rigid.AddForce( Vector2.right * 2f, ForceMode2D.Impulse );
+                rigid.AddForce( Vector2.right * 4f, ForceMode2D.Impulse );
                 data.isTouchingWall = false;
 
                 ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.FALL );
             }
-
         }
 
         if ( Input.GetKeyDown( KeyCode.LeftArrow ) )
         {
             if ( !data.onLeftWall )
             {
-                rigid.AddForce( -Vector2.right * 2f, ForceMode2D.Impulse );
+                rigid.AddForce( -Vector2.right * 4f, ForceMode2D.Impulse );
                 data.isTouchingWall = false;
 
                 ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.FALL );

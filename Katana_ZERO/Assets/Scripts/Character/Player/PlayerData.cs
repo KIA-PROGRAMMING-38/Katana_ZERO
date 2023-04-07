@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class PlayerData : MonoBehaviour
 {
     public Transform groundCheck;
     public Transform wallCheck;
+    public GameObject AttackEffect;
 
     private PlayerInput _input;
     private Rigidbody2D _rigid;
@@ -14,25 +13,44 @@ public class PlayerData : MonoBehaviour
     [SerializeField][Range( 1f, 100f )] private float _moveSpeed;
     [SerializeField][Range( 1f, 100f )] public float jumpPower;
 
+    [Header("Vector")]
     public Vector2 moveVec;
     public Vector2 cursorDirection;
+    public Vector2 CapturedCatchDirection;
 
+    [Header("Global Data")]
+    public float DefaultGravityScale;
     public float FallingBoostForce;
     public float facingDirection = 1f;
     public float groundCheckRadius;
+
+    [Header("Wall States")]
     public float wallCheckDistance;
     public float wallSlideSpeed;
-    public float wallFlipHorizontalForce;
-    public float wallFlipVerticalForce;
     public float HoldAWallTime;
     public float HoldAWallForce;
+    public float wallFlipHorizontalForce;
+    public float wallFlipVerticalForce;
+
+    [Header("Roll State")]
     public float RollHorizontalForce;
 
+    [Header("Attack State")]
+    public float AttackForce;
+    public float AttackAnimElapsedTime;
+    public float AfterAttackVelocity;
+    public float AttackAngle;
+    public float AttackRadius;
+
+    [Header("Boolean Data")]
     public bool isGrounded;
     public bool isTouchingWall;
     public bool isWallSliding;
     public bool FlipIsRight = true;
     public bool onLeftWall;
+
+
+    public float tmpValue;
 
     private void Awake()
     {
@@ -43,11 +61,8 @@ public class PlayerData : MonoBehaviour
     private void FixedUpdate()
     {
         moveVec = new Vector2( _input.primitiveMoveVec.x * _moveSpeed, _rigid.velocity.y );
-    }
-
-    private void Update()
-    {
         cursorDirection = _input.PrimitiveMouseWorldPos - (Vector2)transform.position;
+        AttackAngle = Mathf.Atan2( cursorDirection.y, cursorDirection.x ) * Mathf.Rad2Deg;
     }
 
     private void OnDrawGizmos()

@@ -17,6 +17,11 @@ public class IdleStateBehaviour : PlayerState
             ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.IDLE_TO_RUN );
         }
 
+        if ( Input.GetMouseButtonDown( 0 ) )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.ATTACK );
+        }
+
         if ( Input.GetButtonUp(InputAxisString.UP_KEY) )
         {
             ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.JUMP );

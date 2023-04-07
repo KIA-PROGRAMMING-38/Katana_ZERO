@@ -5,6 +5,7 @@ public class PlayerController : Character
     private PlayerInput _input;
     private PlayerData _data;
     private Rigidbody2D _rigid;
+    private SpriteRenderer _spriteRenderer;
 
     public Transform CursorPosition;
 
@@ -13,16 +14,17 @@ public class PlayerController : Character
         _input = GetComponent<PlayerInput>();
         _data = GetComponent<PlayerData>();
         _rigid = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
+    
     private void FixedUpdate()
     {
         CheckedSurroundings();
+        CheckedFlip();
     }
 
     private void Update()
     {
-        CheckedFlip();
         CursorSpritePosition();
     }
 
@@ -40,15 +42,26 @@ public class PlayerController : Character
     {
         CursorPosition.position = _input.PrimitiveMouseWorldPos;
     }
-   
 
     private void CheckedFlip()
     {
-        if (_data.FlipIsRight && _input.primitiveMoveVec.x < 0 )
+        if ( _data.FlipIsRight && _rigid.velocity.x < 0f && _data.isGrounded )
         {
             Flip();
         }
-        else if ( _data.FlipIsRight == false && _input.primitiveMoveVec.x > 0 )
+        else if ( _data.FlipIsRight == false && _rigid.velocity.x > 0f && _data.isGrounded )
+        {
+            Flip();
+        }
+    }
+
+    public void CheckedFlip(float checkedDirection)
+    {
+        if ( checkedDirection > 0f )
+        {
+            Flip();
+        }
+        else
         {
             Flip();
         }
@@ -59,6 +72,7 @@ public class PlayerController : Character
         _data.facingDirection *= -1;
         _data.FlipIsRight = !_data.FlipIsRight;
         transform.Rotate( 0f, 180f, 0f );
+        // _spriteRenderer.flipX = !_spriteRenderer.flipX;
     }
 
     private void CheckedSurroundings()

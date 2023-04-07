@@ -15,12 +15,14 @@ namespace StringLiteral
         public const string CROUCH = "isCrouch";
         public const string POST_CROUCH = "isPostCrouch";
         public const string ROLL = "isRoll";
+        public const string ATTACK = "isAttack";
     }
 
     public static class InputAxisString
     {
         public const string UP_KEY = "UpKey";
         public const string DOWN_KEY = "DownKey";
+        public const string HORIZONTAL_KEY = "Horizontal";
     }
 }
 
