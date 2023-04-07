@@ -26,26 +26,31 @@ public class WallgrabStateBehaviour : PlayerState
             controller.Flip();
         }
 
-        if ( Input.GetKeyDown( KeyCode.RightArrow ) )
-        {
-            if ( data.onLeftWall )
-            {
-                rigid.AddForce( Vector2.right * 4f, ForceMode2D.Impulse );
-                data.isWallSliding = false;
 
+
+        if ( Input.GetKey( KeyCode.RightArrow ) )
+        {
+            if ( data.OnLeftWall )
+            {
+                data.FlipIsRight = !data.FlipIsRight;
+                data.PrevStateisGrab = true;
                 ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.FALL );
             }
         }
 
-        if ( Input.GetKeyDown( KeyCode.LeftArrow ) )
+        if ( Input.GetKey( KeyCode.LeftArrow ) )
         {
-            if ( !data.onLeftWall )
+            if ( data.OnLeftWall == false )
             {
-                rigid.AddForce( -Vector2.right * 4f, ForceMode2D.Impulse );
-                data.isWallSliding = false;
-
+                data.FlipIsRight = !data.FlipIsRight;
+                data.PrevStateisGrab = true;
                 ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.FALL );
             }
+        }
+
+        if ( Input.GetMouseButtonDown( 0 ) )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.WALL_GRAB, PlayerAnimationLiteral.ATTACK );
         }
     }
 

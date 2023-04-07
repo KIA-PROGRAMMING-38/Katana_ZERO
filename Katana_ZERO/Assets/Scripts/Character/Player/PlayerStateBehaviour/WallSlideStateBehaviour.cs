@@ -12,12 +12,12 @@ public class WallSlideStateBehaviour : PlayerState
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        if ( data.isGrounded )
+        if ( data.OnGround )
         {
             ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.IDLE );
         }
 
-        if ( !data.isTouchingWall )
+        if ( !data.IsTouchingWall )
         {
             if ( rigid.velocity.y < 0f ) 
             {
@@ -27,9 +27,9 @@ public class WallSlideStateBehaviour : PlayerState
             }
         }
 
-        if ( rigid.velocity.y < -data.wallSlideSpeed )
+        if ( rigid.velocity.y < -data.WallSlideSpeed )
         {
-            rigid.velocity = new Vector2( rigid.velocity.x, -data.wallSlideSpeed );
+            rigid.velocity = new Vector2( rigid.velocity.x, -data.WallSlideSpeed );
         }
 
         if ( Input.GetButtonDown(InputAxisString.UP_KEY) )
@@ -39,26 +39,31 @@ public class WallSlideStateBehaviour : PlayerState
             ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.WALL_FLIP );
         }
 
-        if ( Input.GetKeyDown( KeyCode.RightArrow ) )
+        if ( Input.GetKey( KeyCode.RightArrow ) )
         {
-            if ( data.onLeftWall )
+            if ( data.OnLeftWall )
             {
                 rigid.AddForce( Vector2.right * 4f, ForceMode2D.Impulse );
-                data.isTouchingWall = false;
+                data.IsTouchingWall = false;
 
                 ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.FALL );
             }
         }
 
-        if ( Input.GetKeyDown( KeyCode.LeftArrow ) )
+        if ( Input.GetKey( KeyCode.LeftArrow ) )
         {
-            if ( !data.onLeftWall )
+            if ( !data.OnLeftWall )
             {
                 rigid.AddForce( -Vector2.right * 4f, ForceMode2D.Impulse );
-                data.isTouchingWall = false;
+                data.IsTouchingWall = false;
 
                 ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.FALL );
             }
+        }
+
+        if ( Input.GetMouseButtonDown( 0 ) )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.WALL_SLIDE, PlayerAnimationLiteral.ATTACK );
         }
     }
 

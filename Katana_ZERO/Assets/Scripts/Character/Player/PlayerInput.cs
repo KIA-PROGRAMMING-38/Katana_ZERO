@@ -6,7 +6,7 @@ public class PlayerInput : MonoBehaviour
     private PlayerData _data;
     private Camera _camera;
 
-    public Vector2 primitiveMoveVec;
+    public Vector2 PrimitiveMoveVec;
     public Vector2 PrimitiveMouseScreenPos;
     public Vector2 PrimitiveMouseWorldPos;
 
@@ -24,7 +24,7 @@ public class PlayerInput : MonoBehaviour
 
     public void OnMove( InputValue value )
     {
-        primitiveMoveVec = value.Get<Vector2>();
+        PrimitiveMoveVec = value.Get<Vector2>();
     }
 }
 

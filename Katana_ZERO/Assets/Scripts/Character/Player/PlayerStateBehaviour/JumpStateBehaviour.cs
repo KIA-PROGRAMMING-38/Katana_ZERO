@@ -15,15 +15,21 @@ public class JumpStateBehaviour : PlayerState
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
         controller.CheckedIfWallSliding();
+        // controller.CheckedJumpFlip();
 
         if ( rigid.velocity.y < 0 )
         {
             ChangeState( animator, PlayerAnimationLiteral.JUMP, PlayerAnimationLiteral.FALL );
         }
 
-        if ( data.isTouchingWall )
+        if ( data.IsTouchingWall )
         {
             ChangeState( animator, PlayerAnimationLiteral.JUMP, PlayerAnimationLiteral.WALL_GRAB );
+        }
+
+        if ( Input.GetMouseButtonDown( 0 ) )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.JUMP, PlayerAnimationLiteral.ATTACK );
         }
     }
 

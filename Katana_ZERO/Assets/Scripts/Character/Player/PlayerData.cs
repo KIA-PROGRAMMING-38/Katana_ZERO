@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
-    public Transform groundCheck;
-    public Transform wallCheck;
+    public Transform GroundCheck;
+    public Transform WallCheck;
     public GameObject AttackEffect;
 
     private PlayerInput _input;
@@ -14,23 +14,23 @@ public class PlayerData : MonoBehaviour
     [SerializeField][Range( 1f, 100f )] public float jumpPower;
 
     [Header("Vector")]
-    public Vector2 moveVec;
-    public Vector2 cursorDirection;
+    public Vector2 MoveVec;
+    public Vector2 CursorDirection;
     public Vector2 CapturedCatchDirection;
 
     [Header("Global Data")]
     public float DefaultGravityScale;
     public float FallingBoostForce;
-    public float facingDirection = 1f;
-    public float groundCheckRadius;
+    public float FacingDirection = 1f;
+    public float GroundCheckRadius;
 
     [Header("Wall States")]
-    public float wallCheckDistance;
-    public float wallSlideSpeed;
+    public float WallCheckDistance;
+    public float WallSlideSpeed;
     public float HoldAWallTime;
     public float HoldAWallForce;
-    public float wallFlipHorizontalForce;
-    public float wallFlipVerticalForce;
+    public float WallFlipHorizontalForce;
+    public float WallFlipVerticalForce;
 
     [Header("Roll State")]
     public float RollHorizontalForce;
@@ -43,11 +43,12 @@ public class PlayerData : MonoBehaviour
     public float AttackRadius;
 
     [Header("Boolean Data")]
-    public bool isGrounded;
-    public bool isTouchingWall;
-    public bool isWallSliding;
+    public bool OnGround;
+    public bool IsTouchingWall;
+    public bool IsWallSliding;
     public bool FlipIsRight = true;
-    public bool onLeftWall;
+    public bool OnLeftWall;
+    public bool PrevStateisGrab;
 
 
     public float tmpValue;
@@ -60,17 +61,17 @@ public class PlayerData : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveVec = new Vector2( _input.primitiveMoveVec.x * _moveSpeed, _rigid.velocity.y );
-        cursorDirection = _input.PrimitiveMouseWorldPos - (Vector2)transform.position;
-        AttackAngle = Mathf.Atan2( cursorDirection.y, cursorDirection.x ) * Mathf.Rad2Deg;
+        MoveVec = new Vector2( _input.PrimitiveMoveVec.x * _moveSpeed, _rigid.velocity.y );
+        CursorDirection = _input.PrimitiveMouseWorldPos - (Vector2)transform.position;
+        
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere( groundCheck.position, groundCheckRadius );
+        Gizmos.DrawWireSphere( GroundCheck.position, GroundCheckRadius );
 
-        Gizmos.DrawLine( wallCheck.position,
-            new Vector3( wallCheck.position.x + wallCheckDistance * facingDirection, wallCheck.position.y, wallCheck.position.z ) );
+        Gizmos.DrawLine( WallCheck.position,
+            new Vector3( WallCheck.position.x + WallCheckDistance * FacingDirection, WallCheck.position.y, WallCheck.position.z ) );
     }
 }
 

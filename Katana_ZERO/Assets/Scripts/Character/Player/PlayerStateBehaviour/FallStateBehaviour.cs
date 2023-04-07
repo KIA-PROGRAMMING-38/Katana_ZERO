@@ -7,7 +7,16 @@ public class FallStateBehaviour : PlayerState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        data.moveVec = new Vector2( rigid.velocity.x, -2f );
+        if ( data.PrevStateisGrab )
+        {
+            rigid.AddForce( input.PrimitiveMoveVec * 4f, ForceMode2D.Impulse );
+            data.PrevStateisGrab = false;
+            data.FlipIsRight = !data.FlipIsRight;
+        }
+        else
+        {
+            data.MoveVec = new Vector2( rigid.velocity.x, -2f );
+        }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -16,32 +25,35 @@ public class FallStateBehaviour : PlayerState
 
         if ( Input.GetButton(InputAxisString.DOWN_KEY) )
         {
-            data.moveVec.y += data.FallingBoostForce;
+            data.MoveVec.y += data.FallingBoostForce;
         }
 
         controller.HorizontalMovement();
         controller.CheckedIfWallSliding();
 
-        if ( data.isGrounded )
+        if ( data.OnGround )
         {
             ChangeState( animator, PlayerAnimationLiteral.FALL, PlayerAnimationLiteral.IDLE );
         }
 
-        if ( data.isTouchingWall )
+        if ( data.IsTouchingWall )
         {
             ChangeState( animator, PlayerAnimationLiteral.FALL, PlayerAnimationLiteral.WALL_GRAB );
 
             if ( data.FlipIsRight )
             {
-                data.onLeftWall = false;
+                data.OnLeftWall = false;
             }
             else
             {
-                data.onLeftWall = true;
+                data.OnLeftWall = true;
             }
         }
 
-        
+        if ( Input.GetMouseButtonDown( 0 ) )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.FALL, PlayerAnimationLiteral.ATTACK );
+        }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

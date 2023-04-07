@@ -14,7 +14,7 @@ public class RunStateBehaviour : PlayerState
 
         controller.HorizontalMovement();
 
-        if ( input.primitiveMoveVec.x == 0f ) 
+        if ( input.PrimitiveMoveVec.x == 0f ) 
         {
             ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.RUN_TO_IDLE );
         }
@@ -27,6 +27,11 @@ public class RunStateBehaviour : PlayerState
         if ( rigid.velocity.y < 0 )
         {
             ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.FALL );
+        }
+
+        if ( Input.GetMouseButtonDown( 0 ) )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.ATTACK );
         }
     }
 

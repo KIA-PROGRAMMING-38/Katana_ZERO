@@ -7,7 +7,7 @@ public class WallFlipStateBehaviour : PlayerState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        rigid.velocity = new Vector2( data.wallFlipHorizontalForce * data.facingDirection, data.wallFlipVerticalForce );
+        rigid.velocity = new Vector2( data.WallFlipHorizontalForce * data.FacingDirection, data.WallFlipVerticalForce );
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,18 +24,23 @@ public class WallFlipStateBehaviour : PlayerState
             ChangeState( animator, PlayerAnimationLiteral.WALL_FLIP, PlayerAnimationLiteral.FALL );
         }
 
-        if ( data.isTouchingWall )
+        if ( data.IsTouchingWall )
         {
             ChangeState( animator, PlayerAnimationLiteral.WALL_FLIP, PlayerAnimationLiteral.WALL_GRAB );
 
             if ( data.FlipIsRight )
             {
-                data.onLeftWall = false;
+                data.OnLeftWall = false;
             }
             else
             {
-                data.onLeftWall = true;
+                data.OnLeftWall = true;
             }
+        }
+
+        if ( Input.GetMouseButtonDown( 0 ) )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.WALL_FLIP, PlayerAnimationLiteral.ATTACK );
         }
     }
 
