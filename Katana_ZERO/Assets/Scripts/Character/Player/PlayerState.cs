@@ -7,8 +7,6 @@ public class PlayerState : StateMachineBehaviour
     protected PlayerController controller;
     protected Rigidbody2D rigid;
 
-    protected float elapsedTime;
-
     public override void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         input = animator.GetComponent<PlayerInput>();

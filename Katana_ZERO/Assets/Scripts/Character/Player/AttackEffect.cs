@@ -18,21 +18,8 @@ public class AttackEffect : MonoBehaviour
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
-    {
-        
-    }
-
-    private void OnCollisionStay( Collision collision )
-    {
-        
-    }
-
     private void OnEnable()
     {
-        _data.AttackAngle = Mathf.Atan2
-            ( _data.CursorDirection.y, _data.CursorDirection.x ) * Mathf.Rad2Deg;
-
         if ( _data.CursorDirection.x > 0f )
         {
             transform.localRotation = Quaternion.Euler( 0f, 0f, _data.AttackAngle );

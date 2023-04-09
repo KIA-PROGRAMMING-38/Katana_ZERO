@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    public GameObject Item;
+    public Transform ThrowPoint;
+
     public Transform GroundCheck;
     public Transform WallCheck;
     public GameObject AttackEffect;
@@ -49,9 +52,7 @@ public class PlayerData : MonoBehaviour
     public bool FlipIsRight = true;
     public bool OnLeftWall;
     public bool PrevStateisGrab;
-
-
-    public float tmpValue;
+    public bool HasItem;
 
     private void Awake()
     {
@@ -63,7 +64,17 @@ public class PlayerData : MonoBehaviour
     {
         MoveVec = new Vector2( _input.PrimitiveMoveVec.x * _moveSpeed, _rigid.velocity.y );
         CursorDirection = _input.PrimitiveMouseWorldPos - (Vector2)transform.position;
-        
+        AttackAngle = Mathf.Atan2
+            ( CursorDirection.y, CursorDirection.x ) * Mathf.Rad2Deg;
+
+        if ( CursorDirection.x > 0f )
+        {
+            ThrowPoint.localRotation = Quaternion.Euler( 0f, 0f, AttackAngle );
+        }
+        else
+        {
+            ThrowPoint.localRotation = Quaternion.Euler( 180f, 180f, -AttackAngle );
+        }
     }
 
     private void OnDrawGizmos()

@@ -18,11 +18,25 @@ namespace StringLiteral
         public const string ATTACK = "isAttack";
     }
 
+    public static class ItemAnimationLiteral
+    {
+        public const string IDLE = "isIdle";
+        public const string INTERACTION = "isInteraction";
+    }
+
     public static class InputAxisString
     {
         public const string UP_KEY = "UpKey";
         public const string DOWN_KEY = "DownKey";
         public const string HORIZONTAL_KEY = "Horizontal";
+    }
+
+    public static class TagLiteral
+    {
+        public const string PLAYER = "Player";
+        public const string ENEMY = "Enemy";
+        public const string FRONTIER = "Frontier";
+        public const string ITEM = "Item";
     }
 }
 

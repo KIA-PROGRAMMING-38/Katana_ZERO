@@ -1,3 +1,6 @@
+using StringLiteral;
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : Character
@@ -8,6 +11,8 @@ public class PlayerController : Character
     private SpriteRenderer _spriteRenderer;
 
     public Transform CursorPosition;
+    public event Action<bool> ExistAroundItem;
+    public event Action AlreadyHaveItem;
 
     private void Awake()
     {
@@ -16,11 +21,13 @@ public class PlayerController : Character
         _rigid = GetComponent<Rigidbody2D>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-    
+
     private void FixedUpdate()
     {
         CheckedSurroundings();
         CheckedFlip();
+
+        UseItem();
     }
 
     private void Update()
@@ -57,11 +64,11 @@ public class PlayerController : Character
 
     public void CheckedJumpFlip()
     {
-        if ( _data.FlipIsRight && _rigid.velocity.x < 0f  )
+        if ( _data.FlipIsRight && _rigid.velocity.x < 0f )
         {
             Flip();
         }
-        else if ( _data.FlipIsRight == false && _rigid.velocity.x > 0f  )
+        else if ( _data.FlipIsRight == false && _rigid.velocity.x > 0f )
         {
             Flip();
         }
@@ -101,6 +108,60 @@ public class PlayerController : Character
             _data.IsWallSliding = false;
         }
     }
+
+    private void OnTriggerStay2D( Collider2D collision )
+    {
+        if ( collision.CompareTag( TagLiteral.ITEM ) )
+        {
+            ExistAroundItem?.Invoke( true );
+            GameObject arounditem = collision.gameObject;
+            Item item = arounditem.GetComponent<Item>();
+
+            if ( Input.GetMouseButtonDown( 1 ) )
+            {
+                if ( _data.HasItem )
+                {
+                    ThrowItem();
+                }
+
+                AlreadyHaveItem?.Invoke();
+                _data.HasItem = true;
+                _data.Item = collision.gameObject;
+                collision.gameObject.SetActive( false );
+            }
+        }
+    }
+
+    private void OnTriggerExit2D( Collider2D collision )
+    {
+        if ( collision.CompareTag( TagLiteral.ITEM ) )
+        {
+            ExistAroundItem?.Invoke( false );
+        }
+    }
+
+    public void UseItem()
+    {
+        if ( _data.HasItem )
+        {
+            if ( Input.GetMouseButtonDown( 1 ) )
+            {
+                ThrowItem();
+            }
+        }
+    }
+
+    private void ThrowItem()
+    {
+        GameObject throwItem = _data.Item;
+        Rigidbody2D itemRigid = throwItem.GetComponent<Rigidbody2D>();
+        Item Item = throwItem.GetComponent<Item>();
+        throwItem.SetActive( true );
+        throwItem.transform.position = _data.ThrowPoint.position;
+        throwItem.transform.rotation = _data.ThrowPoint.rotation;
+        Item.flyingAway = true;
+        _data.HasItem = false;
+    }
+
 }
 
- 
