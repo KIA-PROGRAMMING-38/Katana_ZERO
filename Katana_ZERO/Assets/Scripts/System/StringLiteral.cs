@@ -24,6 +24,16 @@ namespace StringLiteral
         public const string INTERACTION = "isInteraction";
     }
 
+    public static class EnemyAnimationLiteral
+    {
+        public const string IDLE = "isIdle";
+        public const string RETURN = "isReturn";
+        public const string WALK = "isWalk";
+        public const string RUN = "isRun";
+        public const string ATTACK = "isAttack";
+        public const string KNOCKDOWN = "isKnockDown";
+    }
+
     public static class InputAxisString
     {
         public const string UP_KEY = "UpKey";
