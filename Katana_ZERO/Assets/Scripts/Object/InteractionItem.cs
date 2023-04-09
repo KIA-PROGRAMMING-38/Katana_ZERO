@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractionItem : MonoBehaviour
 {
     [SerializeField]
-    protected Transform body;
+    protected GameObject body;
 
     protected Rigidbody2D rigid;
     protected Animator animator;
