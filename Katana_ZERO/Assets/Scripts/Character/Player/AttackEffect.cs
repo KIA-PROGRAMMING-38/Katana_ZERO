@@ -34,10 +34,7 @@ public class AttackEffect : MonoBehaviour
     {
         if ( collision.gameObject.layer == 8 )
         {
-            Debug.Log( collision.gameObject.layer );
-
-            collision.transform.parent.SendMessage( "OnDamaged" );
+            collision.transform.root.SendMessage( "OnDamaged" );
         }
-
     }
 }

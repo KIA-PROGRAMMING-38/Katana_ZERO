@@ -1,13 +1,15 @@
-using UnityEngine;
 using StringLiteral;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Knife_IdleStateBehaviour : KnifeState
+public class CommonEnemyIdleState : CommonEnemyState
 {
     private float _waitSec;
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
-        base.OnStateEnter(animator, stateInfo, layerIndex);
+        base.OnStateEnter( animator, stateInfo, layerIndex );
 
         controller.PrevState = EnemyAnimationLiteral.IDLE;
         _waitSec = Random.Range
@@ -24,12 +26,12 @@ public class Knife_IdleStateBehaviour : KnifeState
 
         if ( elapsedTime > _waitSec )
         {
-            ChangeState( animator, EnemyAnimationLiteral.IDLE, EnemyAnimationLiteral.WALK );
+            ChangeState( animator, EnemyAnimationHash.s_IDLE, EnemyAnimationHash.s_WALK );
         }
 
         if ( controller.TrackActive )
         {
-            ChangeState( animator, EnemyAnimationLiteral.IDLE, EnemyAnimationLiteral.RUN );
+            ChangeState( animator, EnemyAnimationHash.s_IDLE, EnemyAnimationHash.s_WALK );
         }
     }
 

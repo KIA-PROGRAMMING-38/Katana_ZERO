@@ -6,11 +6,11 @@ public class KnifeTrackRange : MonoBehaviour
 {
     public Transform TargetObject { get; private set; }
 
-    private KnifeController _controller;
+    private CommonEnemyController _controller;
 
     private void Awake()
     {
-        _controller = transform.root.GetComponent<KnifeController>();
+        _controller = transform.root.GetComponent<CommonEnemyController>();
     }
 
     private void OnTriggerStay2D( Collider2D collision )

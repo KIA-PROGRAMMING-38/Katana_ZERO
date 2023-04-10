@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Enemy : NonPlayableChacter
 {
-    protected Rigidbody2D rigid;
+    public Rigidbody2D rigid;
     protected SpriteRenderer spriteRender;
 
     public virtual void Awake()

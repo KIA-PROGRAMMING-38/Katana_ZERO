@@ -1,8 +1,9 @@
-using UnityEngine;
 using StringLiteral;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-// State == Patrol
-public class Knife_WalkStateBehaviour : KnifeState
+public class CommonEnemyWalkState : CommonEnemyState
 {
     private float _patrolSec;
 
@@ -10,7 +11,6 @@ public class Knife_WalkStateBehaviour : KnifeState
 
     private Vector3 _nextPoint;
     private Vector2 _moveVec;
-
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -32,7 +32,7 @@ public class Knife_WalkStateBehaviour : KnifeState
 
         if ( elapsedTime >= _patrolSec )
         {
-            ChangeState( animator, EnemyAnimationLiteral.WALK, EnemyAnimationLiteral.IDLE );
+            ChangeState( animator, EnemyAnimationHash.s_WALK, EnemyAnimationHash.s_IDLE );
         }
 
         if ( Vector2.Distance( controller.transform.position, _nextPoint ) <= 0.1f )
@@ -45,7 +45,7 @@ public class Knife_WalkStateBehaviour : KnifeState
 
         if ( controller.TrackActive )
         {
-            ChangeState( animator, EnemyAnimationLiteral.WALK, EnemyAnimationLiteral.RUN );
+            ChangeState( animator, EnemyAnimationHash.s_WALK, EnemyAnimationHash.s_RUN );
         }
     }
 
@@ -56,7 +56,7 @@ public class Knife_WalkStateBehaviour : KnifeState
         controller.Flip();
     }
 
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    override public void OnStateExit( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
     }
