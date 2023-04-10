@@ -1,3 +1,4 @@
+using StringLiteral;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,17 @@ public class KnifeAttackRange : MonoBehaviour
 
     private void OnTriggerStay2D( Collider2D collision )
     {
-        // 플레이어가 AttackRange 내에 들어올 경우 Attack
+        if ( collision.CompareTag( TagLiteral.PLAYER ) )
+        {
+            _controller.AttackActive = true;
+        }
     }
 
     private void OnTriggerExit2D( Collider2D collision )
     {
-        // 플레이어가 AttackRange 에서 벗어날 경우 다시 Track
+        if ( collision.CompareTag( TagLiteral.PLAYER ) )
+        {
+            _controller.AttackActive = false;
+        }
     }
 }

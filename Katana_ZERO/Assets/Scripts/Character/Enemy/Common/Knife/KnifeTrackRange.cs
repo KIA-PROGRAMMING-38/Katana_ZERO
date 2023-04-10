@@ -1,5 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
+using StringLiteral;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class KnifeTrackRange : MonoBehaviour
@@ -15,11 +15,17 @@ public class KnifeTrackRange : MonoBehaviour
 
     private void OnTriggerStay2D( Collider2D collision )
     {
-        // Patrol 도중 플레이어를 만날 경우 Track
+        if (TargetTransform == null && collision.CompareTag( TagLiteral.PLAYER ) )
+        {
+            Debug.Log( "hi trigger" );
+            TargetTransform = collision.transform.root;
+            _controller.TrackActive = true;
+            Debug.Log( _controller.TrackActive );
+        }
     }
 
     private void OnTriggerExit2D( Collider2D collision )
     {
-        // 감지 범위에서 플레이어가 벗어날 경우 Return 활성화
+        _controller.TrackActive = false;
     }
 }
