@@ -19,6 +19,8 @@ public class Knife_WalkStateBehaviour : KnifeState
         _patrolSec = Random.Range
             ( controller.patrolMinSec, controller.patrolMaxSec );
         _nextPoint = controller.PatrolPoints[_currentPointIndex].position;
+
+        controller.PrevState = EnemyAnimationLiteral.WALK;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

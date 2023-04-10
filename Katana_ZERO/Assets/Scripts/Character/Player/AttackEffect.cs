@@ -29,4 +29,15 @@ public class AttackEffect : MonoBehaviour
             transform.localRotation = Quaternion.Euler( 180f, 180f, -_data.AttackAngle );
         }
     }
+
+    private void OnTriggerEnter2D( Collider2D collision )
+    {
+        if ( collision.gameObject.layer == 8 )
+        {
+            Debug.Log( collision.gameObject.layer );
+
+            collision.transform.parent.SendMessage( "OnDamaged" );
+        }
+
+    }
 }

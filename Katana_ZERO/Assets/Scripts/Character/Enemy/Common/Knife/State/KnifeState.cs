@@ -15,6 +15,7 @@ public class KnifeState : StateMachineBehaviour
         rigid = animator.gameObject.transform.root.GetComponent<Rigidbody2D>();
 
         elapsedTime = 0f;
+        controller.OnDamageable = true;
     }
 
     protected void ChangeState( Animator animator, string currentState, string nextState )

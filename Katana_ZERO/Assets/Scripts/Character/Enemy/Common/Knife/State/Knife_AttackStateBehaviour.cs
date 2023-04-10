@@ -8,6 +8,8 @@ public class Knife_AttackStateBehaviour : KnifeState
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         rigid.velocity = Vector2.zero;
+        controller.PrevState = EnemyAnimationLiteral.ATTACK;
+        controller.OnDamageable = false;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -9,6 +9,7 @@ public class Knife_IdleStateBehaviour : KnifeState
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
+        controller.PrevState = EnemyAnimationLiteral.IDLE;
         _waitSec = Random.Range
             ( controller.idleMinSec, controller.idleMaxSec );
     }

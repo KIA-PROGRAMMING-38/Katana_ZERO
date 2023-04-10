@@ -1,6 +1,4 @@
 using StringLiteral;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KnifeAttackRange : MonoBehaviour

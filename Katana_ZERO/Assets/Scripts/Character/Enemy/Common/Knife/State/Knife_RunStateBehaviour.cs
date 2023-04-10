@@ -7,6 +7,8 @@ public class Knife_RunStateBehaviour : KnifeState
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
+
+        controller.PrevState = EnemyAnimationLiteral.RUN;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
