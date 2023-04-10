@@ -1,8 +1,7 @@
 using StringLiteral;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
-public class KnifeTrackRange : MonoBehaviour
+public class CommonEnemyTrackRange : MonoBehaviour
 {
     public Transform TargetObject { get; private set; }
 

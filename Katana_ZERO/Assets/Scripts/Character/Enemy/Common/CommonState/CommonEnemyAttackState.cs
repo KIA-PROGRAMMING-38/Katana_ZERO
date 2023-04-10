@@ -7,9 +7,7 @@ public class CommonEnemyAttackState : CommonEnemyState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        rigid.velocity = Vector2.zero;
         controller.PrevState = EnemyAnimationLiteral.ATTACK;
-        controller.OnDamageable = false;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -19,6 +17,11 @@ public class CommonEnemyAttackState : CommonEnemyState
         if ( controller.AttackActive == false )
         {
             ChangeState( animator, EnemyAnimationHash.s_ATTACK, EnemyAnimationHash.s_RUN );
+        }
+
+        if ( stateInfo.normalizedTime >= 1f )
+        {
+            ChangeState( animator, EnemyAnimationHash.s_ATTACK, EnemyAnimationHash.s_AIM );
         }
     }
 

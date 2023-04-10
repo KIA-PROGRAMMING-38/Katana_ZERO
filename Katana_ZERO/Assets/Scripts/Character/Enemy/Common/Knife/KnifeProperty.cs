@@ -12,6 +12,18 @@ public class KnifeProperty : MonoBehaviour
         _controller = GetComponent<CommonEnemyController>();
     }
 
+    private void Update()
+    {
+        if ( _controller.PrevState == EnemyAnimationLiteral.ATTACK )
+        {
+            _controller.OnDamageable = false;
+        }
+        else
+        {
+            _controller.OnDamageable = true;
+        }
+    }
+
     private void OnDamaged()
     {
         if ( _controller.OnDamageable )

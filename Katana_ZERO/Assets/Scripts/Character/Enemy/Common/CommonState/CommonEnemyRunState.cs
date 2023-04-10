@@ -23,7 +23,7 @@ public class CommonEnemyRunState : CommonEnemyState
 
         if ( controller.AttackActive )
         {
-            ChangeState( animator, EnemyAnimationHash.s_RUN, EnemyAnimationHash.s_ATTACK );
+            ChangeState( animator, EnemyAnimationHash.s_RUN, EnemyAnimationHash.s_AIM );
         }
     }
 
