@@ -114,7 +114,6 @@ public class PlayerController : Character
         if ( collision.CompareTag( TagLiteral.ITEM ) )
         {
             ExistAroundItem?.Invoke( true );
-            Debug.Log( "Player Trigger" );
             GameObject arounditem = collision.gameObject;
             Item item = arounditem.GetComponent<Item>();
 

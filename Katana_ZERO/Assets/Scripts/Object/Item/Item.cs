@@ -33,14 +33,10 @@ public class Item : InteractionItem
 
     private void EnableAnimation( bool isActive )
     {
-        Debug.Log( "EnableAnimation" );
         if ( alreadyUsed == false )
         {
-            Debug.Log( "alreadyUsed" );
-
             if ( isActive )
             {
-                Debug.Log( "isActive" );
                 ChangeState( animator, ItemAnimationLiteral.IDLE, ItemAnimationLiteral.INTERACTION );
             }
             else

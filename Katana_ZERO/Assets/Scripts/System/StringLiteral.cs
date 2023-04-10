@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace StringLiteral
 {
     public static class PlayerAnimationLiteral
@@ -22,6 +24,26 @@ namespace StringLiteral
     {
         public const string IDLE = "isIdle";
         public const string INTERACTION = "isInteraction";
+    }
+
+    public static class EnemyAnimationLiteral
+    {
+        public const string IDLE = "isIdle";
+        public const string WALK = "isWalk";
+        public const string RUN = "isRun";
+        public const string ATTACK = "isAttack";
+        public const string KNOCKDOWN = "isKnockDown";
+        public const string DIE = "isDie";
+    }
+
+    public class EnemyAnimationHash
+    {
+        public static int s_IDLE = Animator.StringToHash( EnemyAnimationLiteral.IDLE );
+        public static int s_WALK = Animator.StringToHash( EnemyAnimationLiteral.WALK );
+        public static int s_RUN = Animator.StringToHash( EnemyAnimationLiteral.RUN );
+        public static int s_ATTACK = Animator.StringToHash( EnemyAnimationLiteral.ATTACK );
+        public static int s_KNOCKDOWN = Animator.StringToHash( EnemyAnimationLiteral.KNOCKDOWN );
+        public static int s_DIE = Animator.StringToHash( EnemyAnimationLiteral.DIE );
     }
 
     public static class InputAxisString
