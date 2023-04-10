@@ -7,19 +7,12 @@ public class Knife_AttackStateBehaviour : KnifeState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.ShotCooltime = 0f;
-
-        Debug.Log( "공격 진입" );
+        rigid.velocity = Vector2.zero;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
-
-        if ( controller.TrackActive == false )
-        {
-            ChangeState( animator, EnemyAnimationLiteral.ATTACK, EnemyAnimationLiteral.RETURN );
-        }
 
         if ( controller.AttackActive == false )
         {

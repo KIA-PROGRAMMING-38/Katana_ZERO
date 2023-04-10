@@ -19,8 +19,6 @@ public class Knife_WalkStateBehaviour : KnifeState
         _patrolSec = Random.Range
             ( controller.patrolMinSec, controller.patrolMaxSec );
         _nextPoint = controller.PatrolPoints[_currentPointIndex].position;
-
-        Debug.Log( "walk ¡¯¿‘" );
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -35,7 +33,7 @@ public class Knife_WalkStateBehaviour : KnifeState
             ChangeState( animator, EnemyAnimationLiteral.WALK, EnemyAnimationLiteral.IDLE );
         }
 
-        if ( Vector3.Distance( controller.transform.position, _nextPoint ) < 0.001f )
+        if ( Vector2.Distance( controller.transform.position, _nextPoint ) <= 0.1f )
         {
             SetNextPoint();
         }

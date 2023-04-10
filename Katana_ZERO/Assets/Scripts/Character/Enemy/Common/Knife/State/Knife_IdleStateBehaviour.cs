@@ -11,8 +11,6 @@ public class Knife_IdleStateBehaviour : KnifeState
 
         _waitSec = Random.Range
             ( controller.idleMinSec, controller.idleMaxSec );
-
-        Debug.Log( "대기 진입" );
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

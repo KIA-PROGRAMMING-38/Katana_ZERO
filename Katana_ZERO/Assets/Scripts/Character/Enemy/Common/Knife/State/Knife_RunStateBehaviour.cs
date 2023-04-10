@@ -4,52 +4,23 @@ using StringLiteral;
 // State == Track
 public class Knife_RunStateBehaviour : KnifeState
 {
-    private float _trackMaxSec;
-    private Vector2 _trackVec;
-
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
-
-        _trackMaxSec = controller.trackMaxSec;
-
-        Debug.Log( "run ÁøÀÔ" );
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        float deltaTime = Time.deltaTime;
+        _trackVec = (controller.TargetTransform.position - (Vector3)rigid.position).normalized;
 
-        _trackVec = new Vector2( controller.runSpeed * controller.FacingDirection, rigid.velocity.y );
-        rigid.velocity = _trackVec;
+        rigid.velocity = _trackVec * controller.runSpeed;
 
-        elapsedTime += deltaTime;
-        Debug.Log( controller.TrackActive );
-
-        if ( IsTrackEnd() )
+        if ( controller.AttackActive )
         {
-            ChangeState( animator, EnemyAnimationLiteral.RUN, EnemyAnimationLiteral.RETURN );
+            ChangeState( animator, EnemyAnimationLiteral.RUN, EnemyAnimationLiteral.ATTACK );
         }
-
-        if ( controller.TrackActive == false )
-        {
-            ChangeState( animator, EnemyAnimationLiteral.RUN, EnemyAnimationLiteral.RETURN );
-        }
-    }
-
-    private bool IsTrackEnd()
-    {
-        if ( elapsedTime >= _trackMaxSec )
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-        
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

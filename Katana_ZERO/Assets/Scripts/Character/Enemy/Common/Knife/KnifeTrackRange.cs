@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class KnifeTrackRange : MonoBehaviour
 {
-    public Transform TargetTransform { get; private set; }
+    public Transform TargetObject { get; private set; }
 
     private KnifeController _controller;
 
@@ -15,17 +15,11 @@ public class KnifeTrackRange : MonoBehaviour
 
     private void OnTriggerStay2D( Collider2D collision )
     {
-        if (TargetTransform == null && collision.CompareTag( TagLiteral.PLAYER ) )
+        if ( TargetObject == null && collision.CompareTag( TagLiteral.PLAYER ) )
         {
-            Debug.Log( "hi trigger" );
-            TargetTransform = collision.transform.root;
+            TargetObject = collision.transform.root;
             _controller.TrackActive = true;
-            Debug.Log( _controller.TrackActive );
+            _controller.TargetTransform = TargetObject;
         }
-    }
-
-    private void OnTriggerExit2D( Collider2D collision )
-    {
-        _controller.TrackActive = false;
     }
 }

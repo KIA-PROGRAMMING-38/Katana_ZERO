@@ -6,6 +6,8 @@ public class KnifeState : StateMachineBehaviour
     protected Rigidbody2D rigid;
 
     protected float elapsedTime;
+    
+    protected Vector2 _trackVec;
 
     public override void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
