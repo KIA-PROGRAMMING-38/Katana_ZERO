@@ -7,7 +7,7 @@ public class KnifeKnockDownState : CommonEnemyState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = EnemyAnimationLiteral.KNOCKDOWN;
+        controller.PrevState = EnemyAnimationHash.s_KNOCKDOWN;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

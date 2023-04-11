@@ -33,8 +33,8 @@ public class GunProperty : MonoBehaviour
                 ( _controller.TargetTransform.position - (Vector3)_controller.rigid.position ).normalized;
         }
 
-        if ( _controller.PrevState == EnemyAnimationLiteral.AIM || 
-            _controller.PrevState == EnemyAnimationLiteral.ATTACK )
+        if ( _controller.PrevState == EnemyAnimationHash.s_AIM || 
+            _controller.PrevState == EnemyAnimationHash.s_AIM )
         {
             _arms.gameObject.SetActive( true );
             _gun.gameObject.SetActive( true );

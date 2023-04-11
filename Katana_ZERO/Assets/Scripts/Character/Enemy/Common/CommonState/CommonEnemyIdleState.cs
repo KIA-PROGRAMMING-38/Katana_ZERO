@@ -11,7 +11,7 @@ public class CommonEnemyIdleState : CommonEnemyState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = EnemyAnimationLiteral.IDLE;
+        controller.PrevState = EnemyAnimationHash.s_IDLE;
         _waitSec = Random.Range
             ( controller.idleMinSec, controller.idleMaxSec );
     }

@@ -8,7 +8,7 @@ public class CommonEnemyAttackState : CommonEnemyState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = EnemyAnimationLiteral.ATTACK;
+        controller.PrevState = EnemyAnimationHash.s_ATTACK;
         controller.isShot = true;
     }
 

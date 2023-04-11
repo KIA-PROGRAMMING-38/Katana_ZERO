@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossEnemyController : MonoBehaviour
+public class BossEnemyController : Enemy
 {
-    // Start is called before the first frame update
-    void Start()
+    public Transform TargetTransform;
+
+    [Header( "Speed" )]
+    public float attackSpeed;
+    public float runSpeed;
+
+    public override void Awake()
     {
-        
+        base.Awake();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+        base.Update();
     }
 }

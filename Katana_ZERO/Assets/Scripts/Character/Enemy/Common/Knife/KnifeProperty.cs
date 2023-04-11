@@ -7,6 +7,7 @@ public class KnifeProperty : MonoBehaviour
     private Animator _animator;
     private CommonEnemyController _controller;
 
+
     private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
@@ -15,7 +16,7 @@ public class KnifeProperty : MonoBehaviour
 
     private void Update()
     {
-        if ( _controller.PrevState == EnemyAnimationLiteral.ATTACK )
+        if ( _controller.PrevState == EnemyAnimationHash.s_ATTACK )
         {
             _controller.OnDamageable = false;
         }

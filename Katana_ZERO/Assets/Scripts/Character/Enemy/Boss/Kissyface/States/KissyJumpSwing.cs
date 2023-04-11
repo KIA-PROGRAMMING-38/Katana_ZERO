@@ -1,27 +1,24 @@
 using StringLiteral;
 using UnityEngine;
 
-// Run State == Track
-public class CommonEnemyRunState : CommonEnemyState
+public class KissyJumpSwing : BossStateMachine
 {
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = EnemyAnimationHash.s_RUN;
+        controller.PrevState = KissyfaceAnimeHash.s_JUMPSWING;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        _trackVec = (controller.TargetTransform.position - (Vector3)rigid.position).normalized;
+        elapsedTime += Time.deltaTime;
 
-        rigid.velocity = new Vector2 ((_trackVec * controller.runSpeed).x, 0f);
-
-        if ( controller.AttackActive )
+        if ( elapsedTime >= 3f )
         {
-            ChangeState( animator, EnemyAnimationHash.s_RUN, EnemyAnimationHash.s_AIM );
+            ChangeState( animator, KissyfaceAnimeHash.s_JUMPSWING, KissyfaceAnimeHash.s_LANDATTACK );
         }
     }
 

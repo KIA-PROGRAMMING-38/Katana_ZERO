@@ -8,7 +8,7 @@ public class CommonEnemyAimState : CommonEnemyState
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         rigid.velocity = Vector2.zero;
-        controller.PrevState = EnemyAnimationLiteral.AIM;
+        controller.PrevState = EnemyAnimationHash.s_AIM;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

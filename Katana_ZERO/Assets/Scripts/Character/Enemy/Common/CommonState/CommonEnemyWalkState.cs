@@ -20,7 +20,7 @@ public class CommonEnemyWalkState : CommonEnemyState
             ( controller.patrolMinSec, controller.patrolMaxSec );
         _nextPoint = controller.PatrolPoints[_currentPointIndex].position;
 
-        controller.PrevState = EnemyAnimationLiteral.WALK;
+        controller.PrevState = EnemyAnimationHash.s_WALK;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

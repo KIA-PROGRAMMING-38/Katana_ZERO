@@ -24,40 +24,17 @@ public class CommonEnemyController : Enemy
     public float attackCooltime;
     public bool isShot;
 
-    [Header( "Controller" )]
-    public float FacingDirection;
-    public bool FlipIsRight;
+    [Header( "Common Controller" )]
     public bool TrackActive;
     public bool AttackActive;
-    public bool OnDamageable;
-    public string PrevState;
 
     public override void Awake()
     {
         base.Awake();
     }
 
-    private void Update()
+    public override void Update()
     {
-        CheckedFlip();
-    }
-
-    private void CheckedFlip()
-    {
-        if ( FlipIsRight && rigid.velocity.x < 0f )
-        {
-            Flip();
-        }
-        else if ( FlipIsRight == false && rigid.velocity.x > 0f )
-        {
-            Flip();
-        }
-    }
-
-    public void Flip()
-    {
-        FacingDirection *= -1f;
-        FlipIsRight = !FlipIsRight;
-        transform.Rotate( 0f, 180f, 0f );
+        base.Update();
     }
 }
