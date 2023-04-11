@@ -1,3 +1,4 @@
+using StringLiteral;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,14 +8,12 @@ public class AttackEffect : MonoBehaviour
     [SerializeField] private Transform _targetPos;
     [SerializeField] private Transform _collisionPos;
     private PlayerData _data;
-    private PlayerController _controller;
 
     public SpriteRenderer SpriteRenderer;
 
     private void Awake()
     {
         _data = GetComponentInParent<PlayerData>();
-        _controller = GetComponentInParent<PlayerController>();
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 

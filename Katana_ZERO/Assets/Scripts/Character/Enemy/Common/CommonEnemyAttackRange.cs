@@ -1,7 +1,7 @@
 using StringLiteral;
 using UnityEngine;
 
-public class KnifeAttackRange : MonoBehaviour
+public class CommonEnemyAttackRange : MonoBehaviour
 {
     private CommonEnemyController _controller;
 

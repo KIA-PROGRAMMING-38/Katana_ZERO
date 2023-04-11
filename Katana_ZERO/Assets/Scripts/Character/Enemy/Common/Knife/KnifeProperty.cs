@@ -1,5 +1,6 @@
 using StringLiteral;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class KnifeProperty : MonoBehaviour
 {
@@ -10,6 +11,18 @@ public class KnifeProperty : MonoBehaviour
     {
         _animator = GetComponentInChildren<Animator>();
         _controller = GetComponent<CommonEnemyController>();
+    }
+
+    private void Update()
+    {
+        if ( _controller.PrevState == EnemyAnimationLiteral.ATTACK )
+        {
+            _controller.OnDamageable = false;
+        }
+        else
+        {
+            _controller.OnDamageable = true;
+        }
     }
 
     private void OnDamaged()

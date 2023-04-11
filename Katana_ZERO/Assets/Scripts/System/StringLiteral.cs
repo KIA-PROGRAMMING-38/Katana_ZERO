@@ -31,6 +31,7 @@ namespace StringLiteral
         public const string IDLE = "isIdle";
         public const string WALK = "isWalk";
         public const string RUN = "isRun";
+        public const string AIM = "isAim";
         public const string ATTACK = "isAttack";
         public const string KNOCKDOWN = "isKnockDown";
         public const string DIE = "isDie";
@@ -41,6 +42,7 @@ namespace StringLiteral
         public static int s_IDLE = Animator.StringToHash( EnemyAnimationLiteral.IDLE );
         public static int s_WALK = Animator.StringToHash( EnemyAnimationLiteral.WALK );
         public static int s_RUN = Animator.StringToHash( EnemyAnimationLiteral.RUN );
+        public static int s_AIM = Animator.StringToHash( EnemyAnimationLiteral.AIM );
         public static int s_ATTACK = Animator.StringToHash( EnemyAnimationLiteral.ATTACK );
         public static int s_KNOCKDOWN = Animator.StringToHash( EnemyAnimationLiteral.KNOCKDOWN );
         public static int s_DIE = Animator.StringToHash( EnemyAnimationLiteral.DIE );
@@ -57,8 +59,10 @@ namespace StringLiteral
     {
         public const string PLAYER = "Player";
         public const string ENEMY = "Enemy";
-        public const string FRONTIER = "Frontier";
+        public const string FLOOR = "Floor";
         public const string ITEM = "Item";
+        public const string BULLET = "Bullet";
+        public const string PLAYER_KATANA_EFFECT = "PlayerKatanaEffect";
     }
 }
 
