@@ -17,11 +17,8 @@ public class CommonEnemyAimState : CommonEnemyState
 
         elapsedTime += Time.deltaTime;
 
-        Debug.Log( elapsedTime );
-
         if ( elapsedTime >= controller.attackCooltime )
         {
-            Debug.Log( "hihi" );
             ChangeState( animator, EnemyAnimationHash.s_AIM, EnemyAnimationHash.s_ATTACK );
         }
 

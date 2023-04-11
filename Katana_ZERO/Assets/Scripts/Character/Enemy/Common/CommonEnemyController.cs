@@ -22,6 +22,7 @@ public class CommonEnemyController : Enemy
 
     [Header( "Attack" )]
     public float attackCooltime;
+    public bool isShot;
 
     [Header( "Controller" )]
     public float FacingDirection;

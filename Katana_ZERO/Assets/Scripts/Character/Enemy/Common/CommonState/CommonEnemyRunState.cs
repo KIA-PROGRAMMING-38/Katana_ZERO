@@ -1,6 +1,4 @@
 using StringLiteral;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // Run State == Track
@@ -19,7 +17,7 @@ public class CommonEnemyRunState : CommonEnemyState
 
         _trackVec = (controller.TargetTransform.position - (Vector3)rigid.position).normalized;
 
-        rigid.velocity = _trackVec * controller.runSpeed;
+        rigid.velocity = new Vector2 ((_trackVec * controller.runSpeed).x, 0f);
 
         if ( controller.AttackActive )
         {

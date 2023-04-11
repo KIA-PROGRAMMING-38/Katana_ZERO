@@ -293,7 +293,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 6
+  m_Constraints: 4
 --- !u!114 &6772837828536875305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   - {fileID: 0}
   idleMaxSec: 5
   idleMinSec: 3
-  attackCooltime: 1.5
+  attackCooltime: 1.1
   FacingDirection: 1
   FlipIsRight: 1
   TrackActive: 0
