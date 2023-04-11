@@ -458,6 +458,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -587,6 +588,21 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37455dd5a771a644f8465e27820fe10b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetTransform: {fileID: 1721604750}
+  _offsetY: 0.5
+  _offsetZ: -10
 --- !u!1 &528428945
 GameObject:
   m_ObjectHideFlags: 0
@@ -968,6 +984,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c88126a6aab37f4e8dad43d8b484139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1721604750 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8434017543976709980, guid: c01562db8eb488c43a06172f65ca6570, type: 3}
+  m_PrefabInstance: {fileID: 8434017542695145708}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1812574658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1143,6 +1164,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Gun
       objectReference: {fileID: 0}
+    - target: {fileID: 6583524171885452725, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583524171885452726, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
+      propertyPath: m_Size.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583524171885452726, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6583524171885452727, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
       propertyPath: PatrolPoints.Array.data[0]
       value: 
@@ -1157,11 +1190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6583524171885452729, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.891
+      value: 3.673
       objectReference: {fileID: 0}
     - target: {fileID: 6583524171885452729, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.179
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6583524171885452729, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1304,6 +1337,10 @@ PrefabInstance:
     - target: {fileID: 8434017543963519269, guid: c01562db8eb488c43a06172f65ca6570, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8434017543963519269, guid: c01562db8eb488c43a06172f65ca6570, type: 3}
+      propertyPath: m_TagString
+      value: PlayerKatanaEffect
       objectReference: {fileID: 0}
     - target: {fileID: 8434017543976709955, guid: c01562db8eb488c43a06172f65ca6570, type: 3}
       propertyPath: m_Name

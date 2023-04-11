@@ -25,7 +25,7 @@ public class Item : InteractionItem
 
     private void OnTriggerEnter( Collider other )
     {
-        if ( other.gameObject.CompareTag( TagLiteral.FRONTIER ) )
+        if ( other.gameObject.CompareTag( TagLiteral.FLOOR ) )
         {
             Destroy( gameObject );
         }

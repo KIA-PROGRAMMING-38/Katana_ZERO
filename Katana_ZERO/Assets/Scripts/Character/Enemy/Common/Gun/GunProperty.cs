@@ -8,9 +8,6 @@ public class GunProperty : MonoBehaviour
     private Animator _animator;
     private CommonEnemyController _controller;
 
-    private IEnumerator ShotBehaviour;
-    private WaitForSeconds _shotCooltime;
-
     [SerializeField]
     private GameObject _arms;
     [SerializeField]
@@ -26,9 +23,6 @@ public class GunProperty : MonoBehaviour
     {
         _animator = GetComponentInChildren<Animator>();
         _controller = GetComponent<CommonEnemyController>();
-
-        ShotBehaviour = Shot();
-        _shotCooltime = new WaitForSeconds(_controller.attackCooltime);
     }
 
     private void Update()
@@ -67,20 +61,19 @@ public class GunProperty : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D( Collider2D collision )
+    {
+        if ( collision.gameObject.layer == 11 )
+        {
+            OnDamaged();
+        }
+    }
+
     private void OnDamaged()
     {
         _controller.rigid.velocity = Vector2.zero;
         _animator.SetBool( _controller.PrevState, false );
         _animator.SetTrigger( EnemyAnimationHash.s_DIE );
         _controller.ChangeLayer( gameObject.transform, 9 );
-    }
-
-    
-
-    IEnumerator Shot()
-    {
-        yield return _shotCooltime;
-
- 
     }
 }

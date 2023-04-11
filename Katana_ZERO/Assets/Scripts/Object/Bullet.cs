@@ -29,16 +29,37 @@ public class Bullet : MonoBehaviour
         _velocity = transform.right * _bulletSpeed;
     }
 
-    private void OnTriggerEnter( Collider other )
+    private void OnTriggerEnter2D( Collider2D collision )
     {
-        if ( other.gameObject.CompareTag( TagLiteral.FRONTIER ) )
+        if ( collision.CompareTag( TagLiteral.FLOOR ) )
         {
             Destroy( gameObject );
         }
 
-        if ( other.gameObject.CompareTag( TagLiteral.PLAYER ) )
+        if ( collision.CompareTag( TagLiteral.PLAYER ) )
         {
             Destroy( gameObject );
+        }
+
+        if ( gameObject.layer == 11 )
+        {
+            if ( collision.CompareTag( TagLiteral.ENEMY ) )
+            {
+                Destroy( gameObject );
+            }
+        }
+
+        if ( collision.CompareTag( TagLiteral.PLAYER_KATANA_EFFECT ) )
+        {
+            Vector2 normal = collision.transform.right * -1f;
+            Vector2 reflectedDirection = Vector2.Reflect( _rigid.velocity.normalized, normal );
+            _rigid.velocity = reflectedDirection * _bulletSpeed;
+
+            gameObject.layer = 11;
+
+            float reflectAngle = Mathf.Atan2
+            ( reflectedDirection.y, reflectedDirection.x ) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler( 0f, 0f, reflectAngle );
         }
     }
 }

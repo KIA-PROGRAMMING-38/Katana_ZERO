@@ -59,8 +59,10 @@ namespace StringLiteral
     {
         public const string PLAYER = "Player";
         public const string ENEMY = "Enemy";
-        public const string FRONTIER = "Frontier";
+        public const string FLOOR = "Floor";
         public const string ITEM = "Item";
+        public const string BULLET = "Bullet";
+        public const string PLAYER_KATANA_EFFECT = "PlayerKatanaEffect";
     }
 }
 
