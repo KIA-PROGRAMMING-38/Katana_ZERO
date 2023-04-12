@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using UnityEngine;
 
 public class KissyThrow : BossStateMachine
@@ -8,6 +8,7 @@ public class KissyThrow : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         controller.PrevState = KissyfaceAnimeHash.s_THROW;
+        CheckedDirection();
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

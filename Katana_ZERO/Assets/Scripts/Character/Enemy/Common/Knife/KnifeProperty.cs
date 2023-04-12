@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 
@@ -6,7 +6,6 @@ public class KnifeProperty : MonoBehaviour
 {
     private Animator _animator;
     private CommonEnemyController _controller;
-
 
     private void Awake()
     {

@@ -1,11 +1,19 @@
 using UnityEngine;
-using StringLiteral;
+using LiteralRepository;
 
 public class KissyfaceProperty : MonoBehaviour
 {
     private Animator _animator;
     private BossEnemyController _controller;
-    private InvokeAnimation _invokeAnim;
+    private KissyfaceAnimInvoker _invokeAnim;
+
+    public GameObject Weapon;
+
+    public bool IsJumping;
+    public bool IsThrow;
+
+    // Throw Animation에서 도끼가 사출된 상태
+    public bool IsEjection;
 
     // 신 시작할 때 객체 초기화
     private int _compareToState = int.MaxValue;
@@ -14,7 +22,7 @@ public class KissyfaceProperty : MonoBehaviour
     {
         _animator = GetComponentInChildren<Animator>();
         _controller = GetComponent<BossEnemyController>();
-        _invokeAnim = GetComponent<InvokeAnimation>();
+        _invokeAnim = GetComponent<KissyfaceAnimInvoker>();
     }
 
     public int NextBehaviour()
@@ -49,5 +57,10 @@ public class KissyfaceProperty : MonoBehaviour
         }
 
         return 0;
+    }
+
+    private void OnDamaged()
+    {
+        Debug.Log( "키시페이스 공격받음!" );
     }
 }

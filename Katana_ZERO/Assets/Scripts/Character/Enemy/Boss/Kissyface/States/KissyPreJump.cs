@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using UnityEngine;
 
 public class KissyPreJump : BossStateMachine
@@ -7,7 +7,9 @@ public class KissyPreJump : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
+        rigid.velocity = Vector2.up * 4.5f;
         controller.PrevState = KissyfaceAnimeHash.s_PREJUMP;
+        CheckedDirection();
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

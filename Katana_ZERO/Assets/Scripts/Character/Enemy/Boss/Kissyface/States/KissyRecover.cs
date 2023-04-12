@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using UnityEngine;
 
 public class KissyRecover : BossStateMachine
@@ -8,6 +8,7 @@ public class KissyRecover : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         controller.PrevState = KissyfaceAnimeHash.s_RECOVER;
+        CheckedDirection();
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

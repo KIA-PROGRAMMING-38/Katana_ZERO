@@ -1,8 +1,5 @@
-using StringLiteral;
-using System.Collections;
-using System.Collections.Generic;
+using LiteralRepository;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class KissyIdle : BossStateMachine
 {
@@ -16,6 +13,7 @@ public class KissyIdle : BossStateMachine
 
         controller.PrevState = KissyfaceAnimeHash.s_IDLE;
         getNextStateHash = _property.NextBehaviour();
+        CheckedDirection();
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

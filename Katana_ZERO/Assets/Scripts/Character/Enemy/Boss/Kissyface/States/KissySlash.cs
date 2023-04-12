@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using UnityEngine;
 
 public class KissySlash : BossStateMachine
@@ -8,6 +8,7 @@ public class KissySlash : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         controller.PrevState = KissyfaceAnimeHash.s_SLASH;
+        CheckedDirection();
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

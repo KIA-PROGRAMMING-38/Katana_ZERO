@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Enemy : NonPlayableChacter
@@ -18,29 +16,5 @@ public abstract class Enemy : NonPlayableChacter
     {
         rigid = GetComponent<Rigidbody2D>();
         spriteRender = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    public virtual void Update()
-    {
-        CheckedFlip();
-    }
-
-    private void CheckedFlip()
-    {
-        if ( FlipIsRight && rigid.velocity.x < 0f )
-        {
-            Flip();
-        }
-        else if ( FlipIsRight == false && rigid.velocity.x > 0f )
-        {
-            Flip();
-        }
-    }
-
-    public void Flip()
-    {
-        FacingDirection *= -1f;
-        FlipIsRight = !FlipIsRight;
-        transform.Rotate( 0f, 180f, 0f );
     }
 }

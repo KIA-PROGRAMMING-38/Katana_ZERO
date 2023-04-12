@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace StringLiteral
+namespace LiteralRepository
 {
     public static class PlayerAnimationLiteral
     {

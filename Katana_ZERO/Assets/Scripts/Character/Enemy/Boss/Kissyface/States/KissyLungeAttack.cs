@@ -1,12 +1,15 @@
 using UnityEngine;
-using StringLiteral;
+using LiteralRepository;
 
 public class KissyLungeAttack : BossStateMachine
 {
+    private KissyfaceAnimInvoker _invokeAnimation;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
+        _invokeAnimation = animator.GetComponent<KissyfaceAnimInvoker>();
         controller.PrevState = KissyfaceAnimeHash.s_LUNGEATTACK;
     }
 
@@ -19,5 +22,7 @@ public class KissyLungeAttack : BossStateMachine
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit(animator, stateInfo, layerIndex);
+
+        _invokeAnimation.InActiveAttack();
     }
 }

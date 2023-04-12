@@ -1,5 +1,5 @@
 using UnityEngine;
-using StringLiteral;
+using LiteralRepository;
 
 public static class KissyState
 {
@@ -9,11 +9,10 @@ public static class KissyState
     public const int StateSlash = 3;
 }
 
-public class InvokeAnimation : MonoBehaviour
+public class KissyfaceAnimInvoker : AnimationManager
 {
     private BossEnemyController _controller;
     private KissyfaceProperty _property;
-    private Animator _animator;
 
     private const int _toBattle = 0;
     private const int _idle = 1;
@@ -33,19 +32,20 @@ public class InvokeAnimation : MonoBehaviour
     private const int _recover = 15;
     private const int _die = 16;
 
-    private void Awake()
+    public override void Awake()
     {
+        base.Awake();
+
         _controller = transform.root.GetComponent<BossEnemyController>();
         _property = transform.root.GetComponent<KissyfaceProperty>();
-        _animator = GetComponent<Animator>();
     }
 
     public void SetNextAnimation( int state )
     {
         int nextStateHashCode = GetAnimationStateHash( state );
 
-        _animator.SetBool( _controller.PrevState, false );
-        _animator.SetBool( nextStateHashCode, true );
+        animator.SetBool( _controller.PrevState, false );
+        animator.SetBool( nextStateHashCode, true );
     }
 
     private int GetAnimationStateHash( int state )
@@ -105,5 +105,43 @@ public class InvokeAnimation : MonoBehaviour
         }
 
         return 0;
+    }
+
+    private void OnTriggerEnter2D( Collider2D collision )
+    {
+        if ( collision.CompareTag( TagLiteral.PLAYER_KATANA_EFFECT ) )
+        {
+            Debug.Log( "키시페이스 가드!" );
+
+            return;
+        }
+
+        if ( collision.CompareTag( TagLiteral.PLAYER ) )
+        {
+            Debug.Log( "플레이어 die" );
+        }
+    }
+
+    public void ActiveAttack()
+    {
+        _setActiveAttack.SetActive(true);
+    }
+
+    public void InActiveAttack()
+    {
+        _setActiveAttack.SetActive(false);
+    }
+
+    public void InvokeThrow()
+    {
+        _property.IsThrow = true;
+        _property.IsEjection = true;
+        _property.Weapon.SetActive( true );
+    }
+
+    public void InvokeSwing()
+    {
+        _property.IsJumping = true;
+        _property.Weapon.SetActive( true );
     }
 }

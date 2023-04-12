@@ -1,4 +1,3 @@
-using StringLiteral;
 using UnityEngine;
 
 public class CommonEnemyController : Enemy
@@ -33,8 +32,27 @@ public class CommonEnemyController : Enemy
         base.Awake();
     }
 
-    public override void Update()
+    public virtual void Update()
     {
-        base.Update();
+        CheckedFlip();
+    }
+
+    private void CheckedFlip()
+    {
+        if ( FlipIsRight && rigid.velocity.x < 0f )
+        {
+            Flip();
+        }
+        else if ( FlipIsRight == false && rigid.velocity.x > 0f )
+        {
+            Flip();
+        }
+    }
+
+    public void Flip()
+    {
+        FacingDirection *= -1f;
+        FlipIsRight = !FlipIsRight;
+        transform.Rotate( 0f, 180f, 0f );
     }
 }

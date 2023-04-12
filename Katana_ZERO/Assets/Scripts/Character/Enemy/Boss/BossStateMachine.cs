@@ -1,17 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static KissyfaceProperty;
 
 public class BossStateMachine : StateMachineBehaviour
 {
     protected Rigidbody2D rigid;
     protected BossEnemyController controller;
-    protected InvokeAnimation invokeAnimation;
+    protected KissyfaceAnimInvoker KissyfaceAnimInvoker;
 
     protected float elapsedTime;
+    protected float direction;
 
-    protected Vector2 trackVec;
+    protected Vector2 moveVec;
+    protected Vector2 startPos;
+    protected Vector2 playerPos;
 
     protected int getNextStateHash;
 
@@ -19,7 +19,14 @@ public class BossStateMachine : StateMachineBehaviour
     {
         rigid = animator.gameObject.transform.root.GetComponent<Rigidbody2D>();
         controller = animator.gameObject.transform.root.GetComponent<BossEnemyController>();
-        invokeAnimation = animator.GetComponent<InvokeAnimation>();
+        KissyfaceAnimInvoker = animator.GetComponent<KissyfaceAnimInvoker>();
+
+        startPos = animator.transform.position;
+        playerPos = controller.TargetTransform.position;
+
+        direction = Mathf.Sign( playerPos.x - startPos.x );
+
+        moveVec = Vector3.zero;
 
         getNextStateHash = 0;
         elapsedTime = 0f;
@@ -35,5 +42,17 @@ public class BossStateMachine : StateMachineBehaviour
     {
         animator.SetBool( currentHash, false );
         animator.SetBool( nextHash, true );
+    }
+
+    protected void CheckedDirection()
+    {
+        if ( direction > 0f )
+        {
+            controller.gameObject.transform.rotation = Quaternion.Euler( 0f, 0f, 0f );
+        }
+        else if ( direction < 0f )
+        {
+            controller.gameObject.transform.rotation = Quaternion.Euler( 0f, 180f, 0f );
+        }
     }
 }

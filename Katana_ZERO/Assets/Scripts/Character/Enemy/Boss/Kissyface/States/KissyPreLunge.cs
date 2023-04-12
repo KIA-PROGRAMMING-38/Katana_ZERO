@@ -1,5 +1,5 @@
 using UnityEngine;
-using StringLiteral;
+using LiteralRepository;
 
 public class KissyPreLunge : BossStateMachine
 {
@@ -8,6 +8,7 @@ public class KissyPreLunge : BossStateMachine
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
         controller.PrevState = KissyfaceAnimeHash.s_PRELUNGE;
+        CheckedDirection();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

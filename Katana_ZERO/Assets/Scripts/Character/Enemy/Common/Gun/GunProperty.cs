@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;

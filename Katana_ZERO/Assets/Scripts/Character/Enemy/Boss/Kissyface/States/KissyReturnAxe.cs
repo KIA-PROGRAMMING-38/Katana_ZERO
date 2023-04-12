@@ -1,8 +1,5 @@
-using StringLiteral;
-using System.Collections;
-using System.Collections.Generic;
+using LiteralRepository;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class KissyReturnAxe : BossStateMachine
 {

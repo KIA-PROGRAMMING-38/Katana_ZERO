@@ -5,18 +5,10 @@ using UnityEngine;
 public class BossEnemyController : Enemy
 {
     public Transform TargetTransform;
-
-    [Header( "Speed" )]
-    public float attackSpeed;
-    public float runSpeed;
+    public float BossDirection;
 
     public override void Awake()
     {
         base.Awake();
-    }
-
-    public override void Update()
-    {
-        base.Update();
     }
 }
