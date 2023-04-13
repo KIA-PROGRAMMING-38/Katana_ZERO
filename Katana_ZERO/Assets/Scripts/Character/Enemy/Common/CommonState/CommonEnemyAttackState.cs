@@ -1,6 +1,5 @@
 using LiteralRepository;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class CommonEnemyAttackState : CommonEnemyState
 {
@@ -8,8 +7,13 @@ public class CommonEnemyAttackState : CommonEnemyState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = EnemyAnimationHash.s_Attack;
         controller.isShot = true;
+        controller.PrevState = EnemyAnimationHash.s_Attack;
+
+        if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
+        {
+            controller.GunReadyToAttack();
+        }
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -23,7 +27,7 @@ public class CommonEnemyAttackState : CommonEnemyState
             ChangeState( animator, EnemyAnimationHash.s_Attack, EnemyAnimationHash.s_Run );
         }
 
-        if ( elapsedTime >= 1f )
+        if ( elapsedTime >= controller.attackCooltime )
         {
             ChangeState( animator, EnemyAnimationHash.s_Attack, EnemyAnimationHash.s_Aim );
         }
@@ -34,5 +38,10 @@ public class CommonEnemyAttackState : CommonEnemyState
         base.OnStateExit( animator, stateInfo, layerIndex );
 
         controller.isShot = false;
+
+        if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
+        {
+            controller.GunRestoreCondition();
+        }
     }
 }

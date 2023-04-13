@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
             Destroy( gameObject );
         }
 
-        if ( gameObject.layer == 11 )
+        if ( gameObject.layer == LayerMaskNumber.s_ReflectedBullet )
         {
             if ( collision.CompareTag( TagLiteral.ENEMY ) )
             {
@@ -55,7 +55,7 @@ public class Bullet : MonoBehaviour
             Vector2 reflectedDirection = Vector2.Reflect( _rigid.velocity.normalized, normal );
             _rigid.velocity = reflectedDirection * _bulletSpeed;
 
-            gameObject.layer = 11;
+            gameObject.layer = LayerMaskNumber.s_ReflectedBullet;
 
             float reflectAngle = Mathf.Atan2
             ( reflectedDirection.y, reflectedDirection.x ) * Mathf.Rad2Deg;

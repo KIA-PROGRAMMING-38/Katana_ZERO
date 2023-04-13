@@ -9,6 +9,11 @@ public class CommonEnemyAimState : CommonEnemyState
 
         rigid.velocity = Vector2.zero;
         controller.PrevState = EnemyAnimationHash.s_Aim;
+
+        if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
+        {
+            controller.GunReadyToAttack();
+        }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -31,5 +36,10 @@ public class CommonEnemyAimState : CommonEnemyState
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
+
+        if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
+        {
+            controller.GunRestoreCondition();
+        }
     }
 }

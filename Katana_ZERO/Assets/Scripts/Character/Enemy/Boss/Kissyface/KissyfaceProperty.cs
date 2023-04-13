@@ -6,7 +6,7 @@ using System.Collections;
 public class KissyfaceProperty : MonoBehaviour
 {
     private Animator _animator;
-    private BossEnemyController _controller;
+    private KissyfaceController _controller;
     private KissyfaceAnimInvoker _invokeAnim;
 
     public GameObject Weapon;
@@ -23,7 +23,7 @@ public class KissyfaceProperty : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
-        _controller = GetComponent<BossEnemyController>();
+        _controller = GetComponent<KissyfaceController>();
         _invokeAnim = GetComponentInChildren<KissyfaceAnimInvoker>();
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 public class BossStateMachine : StateMachineBehaviour
 {
     protected Rigidbody2D rigid;
-    protected BossEnemyController controller;
+    protected KissyfaceController controller;
     protected KissyfaceAnimInvoker KissyfaceAnimInvoker;
 
     protected float elapsedTime;
@@ -18,7 +18,7 @@ public class BossStateMachine : StateMachineBehaviour
     public override void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         rigid = animator.gameObject.transform.root.GetComponent<Rigidbody2D>();
-        controller = animator.gameObject.transform.root.GetComponent<BossEnemyController>();
+        controller = animator.gameObject.transform.root.GetComponent<KissyfaceController>();
         KissyfaceAnimInvoker = animator.GetComponent<KissyfaceAnimInvoker>();
 
         startPos = animator.transform.position;

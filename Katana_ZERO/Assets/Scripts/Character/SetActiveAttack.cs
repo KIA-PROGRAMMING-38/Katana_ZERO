@@ -22,7 +22,7 @@ public class SetActiveAttack : MonoBehaviour
             {
                 if ( elem.gameObject.layer == LayerMaskNumber.s_Player )
                 {
-                    elem.transform.root.SendMessage( FuncLiteral.ONDAMAGED );
+                    elem.transform.root.SendMessage( FuncLiteral.OnDamaged );
                 }
             }
         }

@@ -14,7 +14,7 @@ public class KissyfaceAnimInvoker : AnimationManager
     [SerializeField]
     private GameObject _setActiveAttack;
     private Animator _animator;
-    private BossEnemyController _controller;
+    private KissyfaceController _controller;
     private KissyfaceProperty _property;
 
     public enum KissyState
@@ -42,7 +42,7 @@ public class KissyfaceAnimInvoker : AnimationManager
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _controller = transform.root.GetComponent<BossEnemyController>();
+        _controller = transform.root.GetComponent<KissyfaceController>();
         _property = transform.root.GetComponent<KissyfaceProperty>();
     }
 

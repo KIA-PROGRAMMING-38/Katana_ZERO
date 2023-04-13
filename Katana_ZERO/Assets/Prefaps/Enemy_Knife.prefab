@@ -1,5 +1,66 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1066504249
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1066504250}
+  - component: {fileID: 1066504252}
+  - component: {fileID: 1066504251}
+  m_Layer: 13
+  m_Name: DamagedSensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1066504250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066504249}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6772837827576453860}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1066504252
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066504249}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.25, y: 0.47}
+  m_Direction: 0
+--- !u!114 &1066504251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066504249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ed968b62d604014ba3803b771c35e20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6772837827112696083
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +72,7 @@ GameObject:
   - component: {fileID: 6772837827112696082}
   - component: {fileID: 6772837827112696084}
   - component: {fileID: 814796586518679860}
-  m_Layer: 8
+  m_Layer: 13
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,7 +142,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6772837827292171816}
   - component: {fileID: 6772837827292171819}
-  m_Layer: 8
+  - component: {fileID: 1687210318}
+  m_Layer: 13
   m_Name: TrackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +191,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &1687210318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6772837827292171817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c88126a6aab37f4e8dad43d8b484139, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6772837827576453859
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +232,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1066504250}
   m_Father: {fileID: 6772837828536875298}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -246,8 +321,7 @@ GameObject:
   - component: {fileID: 6772837828536875298}
   - component: {fileID: 6772837828536875303}
   - component: {fileID: 6772837828536875305}
-  - component: {fileID: 6772837828536875304}
-  - component: {fileID: 6772837828536875302}
+  - component: {fileID: 2574800598092879590}
   m_Layer: 8
   m_Name: Enemy_Knife
   m_TagString: Enemy
@@ -306,8 +380,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fa04991b5883d549a26ef0ca07669d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigid: {fileID: 0}
+  rigid: {fileID: 6772837828536875303}
   TargetTransform: {fileID: 0}
+  BodyAnimator: {fileID: 6772837827576453858}
+  FacingDirection: 1
+  FlipIsRight: 1
+  OnDamageable: 0
+  PrevState: 0
+  NextState: 0
   walkSpeed: 1
   runSpeed: 2
   patrolMaxSec: 7
@@ -318,13 +398,10 @@ MonoBehaviour:
   idleMaxSec: 5
   idleMinSec: 3
   attackCooltime: 1.1
-  FacingDirection: 1
-  FlipIsRight: 1
+  isShot: 0
   TrackActive: 0
   AttackActive: 0
-  OnDamageable: 0
-  PrevState: 
---- !u!114 &6772837828536875304
+--- !u!114 &2574800598092879590
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -336,19 +413,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02f5cfa6fe4ede41aea1abdcf9e8d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!70 &6772837828536875302
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6772837828536875299}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.25, y: 0.47}
-  m_Direction: 0

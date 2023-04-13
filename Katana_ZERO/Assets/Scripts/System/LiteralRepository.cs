@@ -109,6 +109,7 @@ namespace LiteralRepository
         public static int s_Bullet = 10;
         public static int s_ReflectedBullet = 11;
         public static int s_EnemyWeapon = 12;
+        public static int s_ColliderSensor = 13;
     }
 
     public static class InputAxisString
@@ -130,7 +131,7 @@ namespace LiteralRepository
 
     public static class FuncLiteral
     {
-        public const string ONDAMAGED = "OnDamaged";
+        public const string OnDamaged = "OnDamaged";
     }
 }
 

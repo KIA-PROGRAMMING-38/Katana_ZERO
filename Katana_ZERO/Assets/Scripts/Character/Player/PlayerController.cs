@@ -163,10 +163,9 @@ public class PlayerController : Character
         _data.HasItem = false;
     }
 
-
-    private void OnDamaged()
+    public override void OnDamaged()
     {
-        Debug.Log( "플레이어 공격받음!" );
+
     }
 }
 

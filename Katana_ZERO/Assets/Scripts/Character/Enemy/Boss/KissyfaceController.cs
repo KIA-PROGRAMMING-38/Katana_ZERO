@@ -1,8 +1,9 @@
+using LiteralRepository;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
-public class BossEnemyController : Enemy
+public class KissyfaceController : Enemy
 {
-    public Transform TargetTransform;
     public GameObject TargetGameObject;
     public float BossDirection;
     public bool OnStruggle;
@@ -10,5 +11,10 @@ public class BossEnemyController : Enemy
     public override void Awake()
     {
         base.Awake();
+    }
+
+    public override void OnDamaged()
+    {
+
     }
 }

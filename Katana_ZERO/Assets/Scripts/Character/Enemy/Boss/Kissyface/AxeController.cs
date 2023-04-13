@@ -6,7 +6,7 @@ public class AxeController : MonoBehaviour
     private GameObject _axeBody;
 
     private KissyfaceProperty _property;
-    private BossEnemyController _controller;
+    private KissyfaceController _controller;
     private Vector3 _targetPos;
     private Vector3 _captureKissyPos;
 
@@ -28,7 +28,7 @@ public class AxeController : MonoBehaviour
 
     private void Awake()
     {
-        _controller = gameObject.transform.root.GetComponent<BossEnemyController>();
+        _controller = gameObject.transform.root.GetComponent<KissyfaceController>();
         _property = gameObject.transform.root.GetComponent<KissyfaceProperty>();
     }
 
