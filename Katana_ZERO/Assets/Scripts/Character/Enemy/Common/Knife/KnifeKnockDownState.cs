@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using UnityEngine;
 
 public class KnifeKnockDownState : CommonEnemyState
@@ -7,7 +7,7 @@ public class KnifeKnockDownState : CommonEnemyState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = EnemyAnimationLiteral.KNOCKDOWN;
+        controller.PrevState = EnemyAnimationHash.s_KnockDown;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -18,7 +18,7 @@ public class KnifeKnockDownState : CommonEnemyState
 
         if ( stateInfo.normalizedTime >= 1f )
         {
-            ChangeState( animator, EnemyAnimationHash.s_KNOCKDOWN, EnemyAnimationHash.s_RUN );
+            ChangeState( animator, EnemyAnimationHash.s_KnockDown, EnemyAnimationHash.s_Run );
         }
     }
 

@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -144,7 +144,7 @@ public class PlayerController : Character
     {
         if ( _data.HasItem )
         {
-            if ( Input.GetMouseButtonDown( 1 ) )
+            if ( Input.GetMouseButton( 1 ) )
             {
                 ThrowItem();
             }
@@ -163,5 +163,10 @@ public class PlayerController : Character
         _data.HasItem = false;
     }
 
+
+    private void OnDamaged()
+    {
+        Debug.Log( "플레이어 공격받음!" );
+    }
 }
 

@@ -1,5 +1,5 @@
 using UnityEngine;
-using StringLiteral;
+using LiteralRepository;
 
 public class IdleStateBehaviour : PlayerState
 {

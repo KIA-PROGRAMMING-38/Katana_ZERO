@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3499259907267407003}
   - component: {fileID: 3499259907267407002}
   - component: {fileID: 3499259907267407001}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BeerBottle
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 3499259908041164615}
-  player: {fileID: 8434017543976709955, guid: c01562db8eb488c43a06172f65ca6570, type: 3}
+  player: {fileID: 0}
   alreadyUsed: 0
   flyingAway: 0
   flyingSpeed: 5
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 3499259908041164612}
   - component: {fileID: 3499259908041164634}
   - component: {fileID: 3499259908041164613}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

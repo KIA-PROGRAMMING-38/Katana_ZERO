@@ -1,4 +1,3 @@
-using StringLiteral;
 using UnityEngine;
 
 public class CommonEnemyController : Enemy
@@ -24,20 +23,16 @@ public class CommonEnemyController : Enemy
     public float attackCooltime;
     public bool isShot;
 
-    [Header( "Controller" )]
-    public float FacingDirection;
-    public bool FlipIsRight;
+    [Header( "Common Controller" )]
     public bool TrackActive;
     public bool AttackActive;
-    public bool OnDamageable;
-    public string PrevState;
 
     public override void Awake()
     {
         base.Awake();
     }
 
-    private void Update()
+    public virtual void Update()
     {
         CheckedFlip();
     }

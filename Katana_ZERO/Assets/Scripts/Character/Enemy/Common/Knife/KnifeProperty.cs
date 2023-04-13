@@ -1,6 +1,5 @@
-using StringLiteral;
+using LiteralRepository;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class KnifeProperty : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class KnifeProperty : MonoBehaviour
 
     private void Update()
     {
-        if ( _controller.PrevState == EnemyAnimationLiteral.ATTACK )
+        if ( _controller.PrevState == EnemyAnimationHash.s_Attack )
         {
             _controller.OnDamageable = false;
         }
@@ -31,13 +30,13 @@ public class KnifeProperty : MonoBehaviour
         {
             _controller.rigid.velocity = Vector2.zero;
             _animator.SetBool( _controller.PrevState, false );
-            _animator.SetTrigger( EnemyAnimationHash.s_DIE );
+            _animator.SetTrigger( EnemyAnimationHash.s_Die );
             _controller.ChangeLayer( gameObject.transform, 9 );
         }
         else
         {
-            _animator.SetBool( EnemyAnimationHash.s_ATTACK, false );
-            _animator.SetBool( EnemyAnimationHash.s_KNOCKDOWN, true );
+            _animator.SetBool( EnemyAnimationHash.s_Attack, false );
+            _animator.SetBool( EnemyAnimationHash.s_KnockDown, true );
         }
     }
 }

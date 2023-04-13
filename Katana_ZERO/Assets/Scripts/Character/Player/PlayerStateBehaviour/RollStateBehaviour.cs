@@ -1,5 +1,5 @@
 using UnityEngine;
-using StringLiteral;
+using LiteralRepository;
 using Mono.Cecil.Cil;
 
 public class RollStateBehaviour : PlayerState

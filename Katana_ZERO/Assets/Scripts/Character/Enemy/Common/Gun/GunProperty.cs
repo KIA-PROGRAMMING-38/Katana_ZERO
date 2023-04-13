@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -33,8 +33,8 @@ public class GunProperty : MonoBehaviour
                 ( _controller.TargetTransform.position - (Vector3)_controller.rigid.position ).normalized;
         }
 
-        if ( _controller.PrevState == EnemyAnimationLiteral.AIM || 
-            _controller.PrevState == EnemyAnimationLiteral.ATTACK )
+        if ( _controller.PrevState == EnemyAnimationHash.s_Aim || 
+            _controller.PrevState == EnemyAnimationHash.s_Aim )
         {
             _arms.gameObject.SetActive( true );
             _gun.gameObject.SetActive( true );
@@ -73,7 +73,7 @@ public class GunProperty : MonoBehaviour
     {
         _controller.rigid.velocity = Vector2.zero;
         _animator.SetBool( _controller.PrevState, false );
-        _animator.SetTrigger( EnemyAnimationHash.s_DIE );
+        _animator.SetTrigger( EnemyAnimationHash.s_Die );
         _controller.ChangeLayer( gameObject.transform, 9 );
     }
 }

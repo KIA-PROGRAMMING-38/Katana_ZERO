@@ -1,6 +1,4 @@
-using StringLiteral;
-using System.Collections;
-using System.Collections.Generic;
+using LiteralRepository;
 using UnityEngine;
 
 public class AttackEffect : MonoBehaviour
@@ -17,6 +15,23 @@ public class AttackEffect : MonoBehaviour
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void FixedUpdate()
+    {
+        Collider2D[] collision  = Physics2D.OverlapCircleAll
+            ( _collisionPos.position, _data.AttackRadius, 1 << LayerMaskNumber.s_Enemy );
+
+        foreach ( Collider2D elem in collision )
+        {
+            if ( elem != null ) 
+            {
+                if ( elem.gameObject.layer == 8 )
+                {
+                    elem.transform.root.SendMessage( FuncLiteral.ONDAMAGED );
+                }
+            }
+        }
+    }
+
     private void OnEnable()
     {
         if ( _data.CursorDirection.x > 0f )
@@ -26,14 +41,6 @@ public class AttackEffect : MonoBehaviour
         else
         {
             transform.localRotation = Quaternion.Euler( 180f, 180f, -_data.AttackAngle );
-        }
-    }
-
-    private void OnTriggerEnter2D( Collider2D collision )
-    {
-        if ( collision.gameObject.layer == 8 )
-        {
-            collision.transform.root.SendMessage( "OnDamaged" );
         }
     }
 }

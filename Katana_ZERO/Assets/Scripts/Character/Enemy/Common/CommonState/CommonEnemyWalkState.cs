@@ -1,4 +1,4 @@
-using StringLiteral;
+using LiteralRepository;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +20,7 @@ public class CommonEnemyWalkState : CommonEnemyState
             ( controller.patrolMinSec, controller.patrolMaxSec );
         _nextPoint = controller.PatrolPoints[_currentPointIndex].position;
 
-        controller.PrevState = EnemyAnimationLiteral.WALK;
+        controller.PrevState = EnemyAnimationHash.s_Walk;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -32,7 +32,7 @@ public class CommonEnemyWalkState : CommonEnemyState
 
         if ( elapsedTime >= _patrolSec )
         {
-            ChangeState( animator, EnemyAnimationHash.s_WALK, EnemyAnimationHash.s_IDLE );
+            ChangeState( animator, EnemyAnimationHash.s_Walk, EnemyAnimationHash.s_Idle );
         }
 
         if ( Vector2.Distance( controller.transform.position, _nextPoint ) <= 0.1f )
@@ -45,7 +45,7 @@ public class CommonEnemyWalkState : CommonEnemyState
 
         if ( controller.TrackActive )
         {
-            ChangeState( animator, EnemyAnimationHash.s_WALK, EnemyAnimationHash.s_RUN );
+            ChangeState( animator, EnemyAnimationHash.s_Walk, EnemyAnimationHash.s_Run );
         }
     }
 
