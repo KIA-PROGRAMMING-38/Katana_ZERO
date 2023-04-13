@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class PlayerController : Character
 {
+    public GameObject DustParticle;
+
     private PlayerInput _input;
     private PlayerData _data;
     private Rigidbody2D _rigid;
-    private SpriteRenderer _spriteRenderer;
 
     public Transform CursorPosition;
     public event Action<bool> ExistAroundItem;
@@ -19,7 +20,6 @@ public class PlayerController : Character
         _input = GetComponent<PlayerInput>();
         _data = GetComponent<PlayerData>();
         _rigid = GetComponent<Rigidbody2D>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
