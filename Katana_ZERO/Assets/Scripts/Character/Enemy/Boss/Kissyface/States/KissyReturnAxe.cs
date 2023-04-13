@@ -7,7 +7,7 @@ public class KissyReturnAxe : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_RETURNAXE;
+        controller.PrevState = KissyfaceAnimeHash.s_ReturnAxe;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

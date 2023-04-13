@@ -44,6 +44,12 @@ public class BossStateMachine : StateMachineBehaviour
         animator.SetBool( nextHash, true );
     }
 
+    protected void SetTrigger( Animator animator, int currentHash , int setTriggerHash )
+    {
+        animator.SetBool( currentHash, false );
+        animator.SetTrigger( setTriggerHash );
+    }
+
     protected void CheckedDirection()
     {
         if ( direction > 0f )

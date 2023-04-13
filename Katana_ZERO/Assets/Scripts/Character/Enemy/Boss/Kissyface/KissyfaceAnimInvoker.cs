@@ -1,145 +1,145 @@
 using UnityEngine;
 using LiteralRepository;
 
-public static class KissyState
+public static class KissyDefaultAttackState
 {
     public const int StateThrowAxe = 0;
     public const int StateJumpAttack = 1;
     public const int StateJumpSwing = 2;
-    public const int StateSlash = 3;
+    public const int StateSlash = 3; 
 }
 
 public class KissyfaceAnimInvoker : AnimationManager
 {
+    [SerializeField]
+    private GameObject _setActiveAttack;
+    private Animator _animator;
     private BossEnemyController _controller;
     private KissyfaceProperty _property;
 
-    private const int _toBattle = 0;
-    private const int _idle = 1;
-    private const int _preLunge = 2;
-    private const int _lunge = 3;
-    private const int _lungeAttack = 4;
-    private const int _throw = 5;
-    private const int _tug = 6;
-    private const int _returnAxe = 7;
-    private const int _slash = 8;
-    private const int _preJump = 9;
-    private const int _jump = 10;
-    private const int _jumpSwing = 11;
-    private const int _landAttack = 12;
-    private const int _hurt = 13;
-    private const int _struggle = 14;
-    private const int _recover = 15;
-    private const int _die = 16;
-
-    public override void Awake()
+    public enum KissyState
     {
-        base.Awake();
+        ToBattle = 0,
+        Idle = 1,
+        PreLunge = 2,
+        Lunge = 3,
+        LungeAttack = 4,
+        Throw = 5,
+        Tug = 6,
+        ReturnAxe = 7,
+        Slash = 8,
+        PreJump = 9,
+        Jump = 10,
+        JumpSwing = 11,
+        LandAttack = 12,
+        Hurt = 13,
+        Struggle = 14,
+        Recover = 15,
+        Die = 16,
+        Block = 17
+    }
 
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
         _controller = transform.root.GetComponent<BossEnemyController>();
         _property = transform.root.GetComponent<KissyfaceProperty>();
     }
 
-    public void SetNextAnimation( int state )
+    public override void SetNextAnimation( int state )
     {
         int nextStateHashCode = GetAnimationStateHash( state );
 
-        animator.SetBool( _controller.PrevState, false );
-        animator.SetBool( nextStateHashCode, true );
+        _animator.SetBool( _controller.PrevState, false );
+        _animator.SetBool( nextStateHashCode, true );
     }
 
-    private int GetAnimationStateHash( int state )
+    public override void SetNextAnimation()
+    {
+        _animator.SetBool( _controller.PrevState, false );
+        _animator.SetTrigger( KissyfaceAnimeHash.s_Block );
+    }
+
+    public override int GetAnimationStateHash( int state )
     {
         switch ( state )
         {
-            case _toBattle:
-                return KissyfaceAnimeHash.s_TOBATTLE;
+            case (int)KissyState.ToBattle:
+                return KissyfaceAnimeHash.s_ToBattle;
 
-            case _idle:
-                return KissyfaceAnimeHash.s_IDLE;
+            case (int)KissyState.Idle:
+                return KissyfaceAnimeHash.s_Idle;
 
-            case _preLunge:
-                return KissyfaceAnimeHash.s_PRELUNGE;
+            case (int)KissyState.PreLunge:
+                return KissyfaceAnimeHash.s_PreLunge;
 
-            case _lunge:
-                return KissyfaceAnimeHash.s_LUNGE ;
+            case (int)KissyState.Lunge:
+                return KissyfaceAnimeHash.s_Lunge ;
 
-            case _lungeAttack:
-                return KissyfaceAnimeHash.s_LUNGEATTACK;
+            case (int)KissyState.LungeAttack:
+                return KissyfaceAnimeHash.s_LungeAttack;
 
-            case _throw:
-                return KissyfaceAnimeHash.s_THROW;
+            case (int)KissyState.Throw:
+                return KissyfaceAnimeHash.s_Throw;
 
-            case _tug:
-                return KissyfaceAnimeHash.s_TUG;
+            case (int)KissyState.Tug:
+                return KissyfaceAnimeHash.s_Tug;
 
-            case _returnAxe:
-                return KissyfaceAnimeHash.s_RETURNAXE;
+            case (int)KissyState.ReturnAxe:
+                return KissyfaceAnimeHash.s_ReturnAxe;
 
-            case _slash:
-                return KissyfaceAnimeHash.s_SLASH;
+            case (int)KissyState.Slash:
+                return KissyfaceAnimeHash.s_Slash;
 
-            case _preJump:
-                return KissyfaceAnimeHash.s_PREJUMP;
+            case (int)KissyState.PreJump:
+                return KissyfaceAnimeHash.s_PreJump;
 
-            case _jump:
-                return KissyfaceAnimeHash.s_JUMP;
+            case (int)KissyState.Jump:
+                return KissyfaceAnimeHash.s_Jump;
 
-            case _jumpSwing:
-                return KissyfaceAnimeHash.s_JUMPSWING;
+            case (int)KissyState.JumpSwing:
+                return KissyfaceAnimeHash.s_JumpSwing;
 
-            case _landAttack:
-                return KissyfaceAnimeHash.s_LANDATTACK;
+            case (int)KissyState.LandAttack:
+                return KissyfaceAnimeHash.s_LandAttack;
 
-            case _hurt:
-                return KissyfaceAnimeHash.s_HURT;
+            case (int)KissyState.Hurt:
+                return KissyfaceAnimeHash.s_Hurt;
 
-            case _struggle:
-                return KissyfaceAnimeHash.s_STRUGGLE;
+            case (int)KissyState.Struggle:
+                return KissyfaceAnimeHash.s_Struggle;
 
-            case _recover:
-                return KissyfaceAnimeHash.s_RECOVER;
+            case (int)KissyState.Recover:
+                return KissyfaceAnimeHash.s_Recover;
 
-            case _die:
-                return KissyfaceAnimeHash.s_DIE;
+            case (int)KissyState.Die:
+                return KissyfaceAnimeHash.s_Die;
+
+            case (int)KissyState.Block:
+                return KissyfaceAnimeHash.s_Block;
         }
 
         return 0;
     }
 
-    private void OnTriggerEnter2D( Collider2D collision )
-    {
-        if ( collision.CompareTag( TagLiteral.PLAYER_KATANA_EFFECT ) )
-        {
-            Debug.Log( "키시페이스 가드!" );
-
-            return;
-        }
-
-        if ( collision.CompareTag( TagLiteral.PLAYER ) )
-        {
-            Debug.Log( "플레이어 die" );
-        }
-    }
-
-    public void ActiveAttack()
+    public override void ActiveAttack()
     {
         _setActiveAttack.SetActive(true);
     }
 
-    public void InActiveAttack()
+    public override void InActiveAttack()
     {
         _setActiveAttack.SetActive(false);
     }
 
-    public void InvokeThrow()
+    public override void InvokeThrow()
     {
         _property.IsThrow = true;
         _property.IsEjection = true;
         _property.Weapon.SetActive( true );
     }
 
-    public void InvokeSwing()
+    public override void InvokeSwing()
     {
         _property.IsJumping = true;
         _property.Weapon.SetActive( true );

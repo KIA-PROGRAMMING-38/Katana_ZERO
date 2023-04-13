@@ -13,7 +13,8 @@ public class KissyTug : BossStateMachine
         _property = animator.transform.root.GetComponent<KissyfaceProperty>();
         _axeController = _property.Weapon.GetComponent<AxeController>();
 
-        controller.PrevState = KissyfaceAnimeHash.s_TUG;
+        controller.PrevState = KissyfaceAnimeHash.s_Tug;
+        controller.OnDamageable = true;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -22,8 +23,7 @@ public class KissyTug : BossStateMachine
 
         if ( _property.IsEjection == false && ( Vector3.Distance( animator.transform.position, _property.Weapon.transform.position ) ) <= 0.1f )
         {
-            ChangeState( animator, KissyfaceAnimeHash.s_TUG, KissyfaceAnimeHash.s_RETURNAXE );
-            
+            ChangeState( animator, KissyfaceAnimeHash.s_Tug, KissyfaceAnimeHash.s_ReturnAxe );
         }
     }
 

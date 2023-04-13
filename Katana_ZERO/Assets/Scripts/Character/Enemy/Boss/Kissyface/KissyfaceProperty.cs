@@ -1,5 +1,7 @@
 using UnityEngine;
 using LiteralRepository;
+using static KissyfaceAnimInvoker;
+using System.Collections;
 
 public class KissyfaceProperty : MonoBehaviour
 {
@@ -22,7 +24,7 @@ public class KissyfaceProperty : MonoBehaviour
     {
         _animator = GetComponentInChildren<Animator>();
         _controller = GetComponent<BossEnemyController>();
-        _invokeAnim = GetComponent<KissyfaceAnimInvoker>();
+        _invokeAnim = GetComponentInChildren<KissyfaceAnimInvoker>();
     }
 
     public int NextBehaviour()
@@ -43,17 +45,17 @@ public class KissyfaceProperty : MonoBehaviour
     {
         switch ( nextStateIndex )
         {
-            case KissyState.StateThrowAxe:
-                return KissyfaceAnimeHash.s_THROW;
+            case KissyDefaultAttackState.StateThrowAxe:
+                return KissyfaceAnimeHash.s_Throw;
 
-            case KissyState.StateJumpAttack:
-                return KissyfaceAnimeHash.s_PRELUNGE;
+            case KissyDefaultAttackState.StateJumpAttack:
+                return KissyfaceAnimeHash.s_PreLunge;
 
-            case KissyState.StateJumpSwing:
-                return KissyfaceAnimeHash.s_PREJUMP;
+            case KissyDefaultAttackState.StateJumpSwing:
+                return KissyfaceAnimeHash.s_PreJump;
 
-            case KissyState.StateSlash:
-                return KissyfaceAnimeHash.s_SLASH;
+            case KissyDefaultAttackState.StateSlash:
+                return KissyfaceAnimeHash.s_Slash;
         }
 
         return 0;
@@ -61,6 +63,32 @@ public class KissyfaceProperty : MonoBehaviour
 
     private void OnDamaged()
     {
-        Debug.Log( "키시페이스 공격받음!" );
+        if ( !_controller.OnDamageable )
+        {
+            _invokeAnim.SetNextAnimation();
+        }
+        else if ( _controller.OnDamageable )
+        {
+            Debug.Log( _controller.OnDamageable );
+            Debug.Log( _controller.OnStruggle );
+
+            if ( _controller.OnStruggle )
+            {
+                _invokeAnim.SetNextAnimation( (int)KissyState.Struggle );
+            }
+            else
+            {
+                _invokeAnim.SetNextAnimation( (int)KissyState.Hurt );
+
+                StartCoroutine( OnStruggle() );
+            }
+        }
+    }
+
+    IEnumerator OnStruggle()
+    {
+        yield return new WaitForSeconds( 0.3f );
+
+        _controller.OnStruggle = true;
     }
 }

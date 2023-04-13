@@ -1,13 +1,18 @@
 using UnityEngine;
 
-public class AnimationManager : MonoBehaviour
+public abstract class AnimationManager : MonoBehaviour
 {
-    [SerializeField]
-    protected GameObject _setActiveAttack;
-    protected Animator animator;
+    public abstract void SetNextAnimation( int state );
 
-    public virtual void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
+    public abstract void SetNextAnimation();
+
+    public abstract int GetAnimationStateHash( int state );
+
+    public abstract void ActiveAttack();
+
+    public abstract void InActiveAttack();
+
+    public abstract void InvokeThrow();
+
+    public abstract void InvokeSwing();
 }

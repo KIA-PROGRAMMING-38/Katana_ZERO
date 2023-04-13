@@ -7,7 +7,7 @@ public class KissyPreLunge : BossStateMachine
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        controller.PrevState = KissyfaceAnimeHash.s_PRELUNGE;
+        controller.PrevState = KissyfaceAnimeHash.s_PreLunge;
         CheckedDirection();
     }
 

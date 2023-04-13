@@ -15,7 +15,7 @@ public class KissyJumpSwing : BossStateMachine
         _axeController = _property.Weapon.GetComponent<AxeController>();
 
         capturePos = new Vector2(rigid.velocity.x, rigid.velocity.y - 0.25f);
-        controller.PrevState = KissyfaceAnimeHash.s_JUMPSWING;
+        controller.PrevState = KissyfaceAnimeHash.s_JumpSwing;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -27,7 +27,7 @@ public class KissyJumpSwing : BossStateMachine
         elapsedTime += Time.deltaTime;
         if ( elapsedTime >= 1f )
         {
-            ChangeState( animator, KissyfaceAnimeHash.s_JUMPSWING, KissyfaceAnimeHash.s_LANDATTACK );
+            ChangeState( animator, KissyfaceAnimeHash.s_JumpSwing, KissyfaceAnimeHash.s_LandAttack );
         }
     }
 

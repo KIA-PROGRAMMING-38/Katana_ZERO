@@ -7,7 +7,7 @@ public class KissyBlock : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_BLOCK;
+        controller.PrevState = KissyfaceAnimeHash.s_Block;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

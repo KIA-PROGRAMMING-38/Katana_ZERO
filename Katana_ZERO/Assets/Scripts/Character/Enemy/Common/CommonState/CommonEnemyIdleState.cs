@@ -11,7 +11,7 @@ public class CommonEnemyIdleState : CommonEnemyState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = EnemyAnimationHash.s_IDLE;
+        controller.PrevState = EnemyAnimationHash.s_Idle;
         _waitSec = Random.Range
             ( controller.idleMinSec, controller.idleMaxSec );
     }
@@ -26,12 +26,12 @@ public class CommonEnemyIdleState : CommonEnemyState
 
         if ( elapsedTime > _waitSec )
         {
-            ChangeState( animator, EnemyAnimationHash.s_IDLE, EnemyAnimationHash.s_WALK );
+            ChangeState( animator, EnemyAnimationHash.s_Idle, EnemyAnimationHash.s_Walk );
         }
 
         if ( controller.TrackActive )
         {
-            ChangeState( animator, EnemyAnimationHash.s_IDLE, EnemyAnimationHash.s_WALK );
+            ChangeState( animator, EnemyAnimationHash.s_Idle, EnemyAnimationHash.s_Walk );
         }
     }
 

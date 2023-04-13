@@ -11,7 +11,7 @@ public class KissyIdle : BossStateMachine
 
         _property = animator.transform.root.GetComponent<KissyfaceProperty>();
 
-        controller.PrevState = KissyfaceAnimeHash.s_IDLE;
+        controller.PrevState = KissyfaceAnimeHash.s_Idle;
         getNextStateHash = _property.NextBehaviour();
         CheckedDirection();
     }
@@ -20,7 +20,7 @@ public class KissyIdle : BossStateMachine
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        ChangeState( animator, KissyfaceAnimeHash.s_IDLE, getNextStateHash );
+        ChangeState( animator, KissyfaceAnimeHash.s_Idle, getNextStateHash );
     }
 
     override public void OnStateExit( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

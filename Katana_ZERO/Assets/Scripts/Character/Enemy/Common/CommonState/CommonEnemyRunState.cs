@@ -8,7 +8,7 @@ public class CommonEnemyRunState : CommonEnemyState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = EnemyAnimationHash.s_RUN;
+        controller.PrevState = EnemyAnimationHash.s_Run;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -21,7 +21,7 @@ public class CommonEnemyRunState : CommonEnemyState
 
         if ( controller.AttackActive )
         {
-            ChangeState( animator, EnemyAnimationHash.s_RUN, EnemyAnimationHash.s_AIM );
+            ChangeState( animator, EnemyAnimationHash.s_Run, EnemyAnimationHash.s_Aim );
         }
     }
 

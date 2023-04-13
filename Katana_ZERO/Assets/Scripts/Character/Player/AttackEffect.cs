@@ -1,3 +1,4 @@
+using LiteralRepository;
 using UnityEngine;
 
 public class AttackEffect : MonoBehaviour
@@ -17,7 +18,7 @@ public class AttackEffect : MonoBehaviour
     private void FixedUpdate()
     {
         Collider2D[] collision  = Physics2D.OverlapCircleAll
-            ( _collisionPos.position, _data.AttackRadius, LayerMask.GetMask( "Enemy" ) );
+            ( _collisionPos.position, _data.AttackRadius, 1 << LayerMaskNumber.s_Enemy );
 
         foreach ( Collider2D elem in collision )
         {
@@ -25,7 +26,7 @@ public class AttackEffect : MonoBehaviour
             {
                 if ( elem.gameObject.layer == 8 )
                 {
-                    elem.transform.root.SendMessage( "OnDamaged" );
+                    elem.transform.root.SendMessage( FuncLiteral.ONDAMAGED );
                 }
             }
         }

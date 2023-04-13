@@ -1,3 +1,4 @@
+using LiteralRepository;
 using UnityEngine;
 
 public class SetActiveAttack : MonoBehaviour
@@ -13,15 +14,15 @@ public class SetActiveAttack : MonoBehaviour
     private void CheckedCollision()
     {
         Collider2D[] collision = Physics2D.OverlapCircleAll
-            ( transform.position, _attackRadius, LayerMask.GetMask( "Player" ) );
+            ( transform.position, _attackRadius, 1 << LayerMaskNumber.s_Player );
 
         foreach ( Collider2D elem in collision )
         {
             if ( elem != null )
             {
-                if ( elem.gameObject.layer == 7 )
+                if ( elem.gameObject.layer == LayerMaskNumber.s_Player )
                 {
-                    elem.transform.root.SendMessage( "OnDamaged" );
+                    elem.transform.root.SendMessage( FuncLiteral.ONDAMAGED );
                 }
             }
         }

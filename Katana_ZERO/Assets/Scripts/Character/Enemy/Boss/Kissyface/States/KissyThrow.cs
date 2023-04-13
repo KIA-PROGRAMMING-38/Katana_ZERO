@@ -7,7 +7,7 @@ public class KissyThrow : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_THROW;
+        controller.PrevState = KissyfaceAnimeHash.s_Throw;
         CheckedDirection();
     }
 

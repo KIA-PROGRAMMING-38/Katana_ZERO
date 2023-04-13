@@ -7,7 +7,7 @@ public class KissySlash : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_SLASH;
+        controller.PrevState = KissyfaceAnimeHash.s_Slash;
         CheckedDirection();
     }
 

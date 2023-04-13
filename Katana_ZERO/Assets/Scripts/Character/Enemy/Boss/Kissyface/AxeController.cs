@@ -32,12 +32,13 @@ public class AxeController : MonoBehaviour
         _property = gameObject.transform.root.GetComponent<KissyfaceProperty>();
     }
 
+    private float _valueY;
     private void OnEnable()
     {
         transform.localPosition = Vector3.zero;
 
         _captureKissyPos = _controller.gameObject.transform.position;
-        _targetPos = _controller.TargetTransform.position;
+        _valueY = _controller.gameObject.transform.position.y;
 
         if ( _property.IsJumping )
         {
@@ -46,7 +47,8 @@ public class AxeController : MonoBehaviour
         }
         else if ( _property.IsThrow )
         {
-            _targetPos = _controller.TargetTransform.position;
+            _targetPos = new Vector3
+            ( _controller.TargetTransform.position.x, _valueY, _controller.TargetTransform.position.z );
         }
     }
 
@@ -71,8 +73,9 @@ public class AxeController : MonoBehaviour
         else if ( _property.IsThrow )
         {
             _axeBody.transform.Rotate( _forwardVec, -_throwRotationSpeed );
+            Vector3 curVec = new Vector3( transform.position.x, _valueY, transform.position.z );
 
-            if ( (Vector3.Distance(transform.position, _targetPos)) <= 0.1f )
+            if ( (Vector3.Distance(transform.position, _targetPos)) <= 0.2f )
             {
                 _property.IsEjection = false;
             }
@@ -80,12 +83,12 @@ public class AxeController : MonoBehaviour
             if ( _property.IsEjection )
             {
                 transform.position = Vector3.MoveTowards
-                    ( transform.position, _targetPos, _throwAxeSpeed * deltaTime );
+                    ( curVec, _targetPos, _throwAxeSpeed * deltaTime );
             }
             else
             {
                 transform.position = Vector3.MoveTowards
-                    ( transform.position, _captureKissyPos, _throwAxeSpeed * deltaTime );
+                    ( curVec, _captureKissyPos, _throwAxeSpeed * deltaTime );
             }
         }
     }

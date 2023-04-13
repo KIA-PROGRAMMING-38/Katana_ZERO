@@ -14,7 +14,7 @@ public class KissyToBattle : BossStateMachine
 
         _property = animator.gameObject.transform.root.GetComponent<KissyfaceProperty>();
 
-        controller.PrevState = KissyfaceAnimeHash.s_TOBATTLE;
+        controller.PrevState = KissyfaceAnimeHash.s_ToBattle;
         getNextStateHash = _property.CheckedNextState( _initialState );
     }
 
@@ -24,7 +24,7 @@ public class KissyToBattle : BossStateMachine
 
         if ( stateInfo.normalizedTime >= 1f )
         {
-            ChangeState( animator, KissyfaceAnimeHash.s_TOBATTLE, getNextStateHash );
+            ChangeState( animator, KissyfaceAnimeHash.s_ToBattle, getNextStateHash );
         }
     }
 

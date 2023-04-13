@@ -8,7 +8,7 @@ public class CommonEnemyAttackState : CommonEnemyState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = EnemyAnimationHash.s_ATTACK;
+        controller.PrevState = EnemyAnimationHash.s_Attack;
         controller.isShot = true;
     }
 
@@ -20,12 +20,12 @@ public class CommonEnemyAttackState : CommonEnemyState
 
         if ( controller.AttackActive == false )
         {
-            ChangeState( animator, EnemyAnimationHash.s_ATTACK, EnemyAnimationHash.s_RUN );
+            ChangeState( animator, EnemyAnimationHash.s_Attack, EnemyAnimationHash.s_Run );
         }
 
         if ( elapsedTime >= 1f )
         {
-            ChangeState( animator, EnemyAnimationHash.s_ATTACK, EnemyAnimationHash.s_AIM );
+            ChangeState( animator, EnemyAnimationHash.s_Attack, EnemyAnimationHash.s_Aim );
         }
     }
 

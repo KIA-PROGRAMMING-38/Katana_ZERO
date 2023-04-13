@@ -9,7 +9,7 @@ public class KissyLunge : BossStateMachine
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        controller.PrevState = KissyfaceAnimeHash.s_LUNGE;
+        controller.PrevState = KissyfaceAnimeHash.s_Lunge;
         moveVec = Vector3.zero;
  
         float middleX = startPos.x + direction * ( Mathf.Abs( startPos.x - playerPos.x ) / 2f );

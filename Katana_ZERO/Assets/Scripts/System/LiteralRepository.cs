@@ -37,17 +37,6 @@ namespace LiteralRepository
         public const string DIE = "isDie";
     }
 
-    public class EnemyAnimationHash
-    {
-        public static int s_IDLE = Animator.StringToHash( EnemyAnimationLiteral.IDLE );
-        public static int s_WALK = Animator.StringToHash( EnemyAnimationLiteral.WALK );
-        public static int s_RUN = Animator.StringToHash( EnemyAnimationLiteral.RUN );
-        public static int s_AIM = Animator.StringToHash( EnemyAnimationLiteral.AIM );
-        public static int s_ATTACK = Animator.StringToHash( EnemyAnimationLiteral.ATTACK );
-        public static int s_KNOCKDOWN = Animator.StringToHash( EnemyAnimationLiteral.KNOCKDOWN );
-        public static int s_DIE = Animator.StringToHash( EnemyAnimationLiteral.DIE );
-    }
-
     public static class KissyfaceAnimeLiteral
     {
         public const string TOBATTLE = "isToBattle";
@@ -70,26 +59,56 @@ namespace LiteralRepository
         public const string BLOCK = "isBlock";
     }
 
+    public class EnemyAnimationHash
+    {
+        public static int s_Idle = Animator.StringToHash( EnemyAnimationLiteral.IDLE );
+        public static int s_Walk = Animator.StringToHash( EnemyAnimationLiteral.WALK );
+        public static int s_Run = Animator.StringToHash( EnemyAnimationLiteral.RUN );
+        public static int s_Aim = Animator.StringToHash( EnemyAnimationLiteral.AIM );
+        public static int s_Attack = Animator.StringToHash( EnemyAnimationLiteral.ATTACK );
+        public static int s_KnockDown = Animator.StringToHash( EnemyAnimationLiteral.KNOCKDOWN );
+        public static int s_Die = Animator.StringToHash( EnemyAnimationLiteral.DIE );
+    }
+
+   
+
     public class KissyfaceAnimeHash
     {
-        public static int s_TOBATTLE = Animator.StringToHash( KissyfaceAnimeLiteral.TOBATTLE );
-        public static int s_IDLE = Animator.StringToHash( KissyfaceAnimeLiteral.IDLE );
-        public static int s_PRELUNGE = Animator.StringToHash( KissyfaceAnimeLiteral.PRELUNGE );
-        public static int s_LUNGE = Animator.StringToHash( KissyfaceAnimeLiteral.LUNGE );
-        public static int s_LUNGEATTACK = Animator.StringToHash( KissyfaceAnimeLiteral.LUNGEATTACK );
-        public static int s_THROW = Animator.StringToHash( KissyfaceAnimeLiteral.THROW );
-        public static int s_TUG = Animator.StringToHash( KissyfaceAnimeLiteral.TUG );
-        public static int s_RETURNAXE = Animator.StringToHash( KissyfaceAnimeLiteral.RETURNAXE );
-        public static int s_SLASH = Animator.StringToHash( KissyfaceAnimeLiteral.SLASH );
-        public static int s_PREJUMP = Animator.StringToHash( KissyfaceAnimeLiteral.PREJUMP );
-        public static int s_JUMP = Animator.StringToHash( KissyfaceAnimeLiteral.JUMP );
-        public static int s_JUMPSWING = Animator.StringToHash( KissyfaceAnimeLiteral.JUMPSWING );
-        public static int s_LANDATTACK = Animator.StringToHash( KissyfaceAnimeLiteral.LANDATTACK );
-        public static int s_HURT = Animator.StringToHash( KissyfaceAnimeLiteral.HURT );
-        public static int s_STRUGGLE = Animator.StringToHash( KissyfaceAnimeLiteral.STRUGGLE );
-        public static int s_RECOVER = Animator.StringToHash( KissyfaceAnimeLiteral.RECOVER );
-        public static int s_DIE = Animator.StringToHash( KissyfaceAnimeLiteral.DIE );
-        public static int s_BLOCK = Animator.StringToHash( KissyfaceAnimeLiteral.BLOCK );
+        public static int s_ToBattle = Animator.StringToHash( KissyfaceAnimeLiteral.TOBATTLE );
+        public static int s_Idle = Animator.StringToHash( KissyfaceAnimeLiteral.IDLE );
+        public static int s_PreLunge = Animator.StringToHash( KissyfaceAnimeLiteral.PRELUNGE );
+        public static int s_Lunge = Animator.StringToHash( KissyfaceAnimeLiteral.LUNGE );
+        public static int s_LungeAttack = Animator.StringToHash( KissyfaceAnimeLiteral.LUNGEATTACK );
+        public static int s_Throw = Animator.StringToHash( KissyfaceAnimeLiteral.THROW );
+        public static int s_Tug = Animator.StringToHash( KissyfaceAnimeLiteral.TUG );
+        public static int s_ReturnAxe = Animator.StringToHash( KissyfaceAnimeLiteral.RETURNAXE );
+        public static int s_Slash = Animator.StringToHash( KissyfaceAnimeLiteral.SLASH );
+        public static int s_PreJump = Animator.StringToHash( KissyfaceAnimeLiteral.PREJUMP );
+        public static int s_Jump = Animator.StringToHash( KissyfaceAnimeLiteral.JUMP );
+        public static int s_JumpSwing = Animator.StringToHash( KissyfaceAnimeLiteral.JUMPSWING );
+        public static int s_LandAttack = Animator.StringToHash( KissyfaceAnimeLiteral.LANDATTACK );
+        public static int s_Hurt = Animator.StringToHash( KissyfaceAnimeLiteral.HURT );
+        public static int s_Struggle = Animator.StringToHash( KissyfaceAnimeLiteral.STRUGGLE );
+        public static int s_Recover = Animator.StringToHash( KissyfaceAnimeLiteral.RECOVER );
+        public static int s_Die = Animator.StringToHash( KissyfaceAnimeLiteral.DIE );
+        public static int s_Block = Animator.StringToHash( KissyfaceAnimeLiteral.BLOCK );
+    }
+
+    public class LayerMaskNumber
+    {
+        public static int s_Default = 0;
+        public static int s_Transparent = 1;
+        public static int s_IgnoreRaycast = 2;
+        public static int s_Ground = 3;
+        public static int s_Water = 4;
+        public static int s_UI = 5;
+        public static int s_Item = 6;
+        public static int s_Player = 7;
+        public static int s_Enemy = 8;
+        public static int s_DieEnemy = 9;
+        public static int s_Bullet = 10;
+        public static int s_ReflectedBullet = 11;
+        public static int s_EnemyWeapon = 12;
     }
 
     public static class InputAxisString
@@ -107,6 +126,11 @@ namespace LiteralRepository
         public const string ITEM = "Item";
         public const string BULLET = "Bullet";
         public const string PLAYER_KATANA_EFFECT = "PlayerKatanaEffect";
+    }
+
+    public static class FuncLiteral
+    {
+        public const string ONDAMAGED = "OnDamaged";
     }
 }
 
