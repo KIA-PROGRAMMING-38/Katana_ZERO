@@ -722,6 +722,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1557175857, guid: ed47eb34c4c05244dae5d63b632bca4e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 446062571158155968, guid: ed47eb34c4c05244dae5d63b632bca4e, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -770,13 +774,13 @@ PrefabInstance:
       propertyPath: TargetTransform
       value: 
       objectReference: {fileID: 1721604750}
+    - target: {fileID: 446062571158155969, guid: ed47eb34c4c05244dae5d63b632bca4e, type: 3}
+      propertyPath: TargetGameObject
+      value: 
+      objectReference: {fileID: 1922855087}
     - target: {fileID: 446062571158155983, guid: ed47eb34c4c05244dae5d63b632bca4e, type: 3}
       propertyPath: m_Name
       value: Boss Kissyface
-      objectReference: {fileID: 0}
-    - target: {fileID: 446062571158155983, guid: ed47eb34c4c05244dae5d63b632bca4e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed47eb34c4c05244dae5d63b632bca4e, type: 3}
@@ -891,27 +895,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &629160103 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6583524171885452725, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-  m_PrefabInstance: {fileID: 6583524171364259680}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &629160108
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 629160103}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.06}
-  m_Size: {x: 0.2, y: 0.37}
-  m_Direction: 0
 --- !u!1 &712843952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,27 +1075,6 @@ PrefabInstance:
       objectReference: {fileID: 1922855087}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e4d518664ab27f4f80e2137b5bbd7cb, type: 3}
---- !u!1 &1371963826 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6772837828536875299, guid: 732a6d7ad7a0e8045b12a81c4bb5903a, type: 3}
-  m_PrefabInstance: {fileID: 6772837828270888065}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &1371963832
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1371963826}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.25, y: 0.47}
-  m_Direction: 0
 --- !u!4 &1721604750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8434017543976709980, guid: c01562db8eb488c43a06172f65ca6570, type: 3}
@@ -1294,17 +1256,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1132737462, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6583524171885452725, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
       propertyPath: m_Name
       value: Enemy_Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 6583524171885452725, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6583524171885452727, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
       propertyPath: PatrolPoints.Array.data[0]
@@ -1367,10 +1321,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1066504252, guid: 732a6d7ad7a0e8045b12a81c4bb5903a, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875298, guid: 732a6d7ad7a0e8045b12a81c4bb5903a, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1419,14 +1369,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Knife
       objectReference: {fileID: 0}
-    - target: {fileID: 6772837828536875299, guid: 732a6d7ad7a0e8045b12a81c4bb5903a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772837828536875305, guid: 732a6d7ad7a0e8045b12a81c4bb5903a, type: 3}
-      propertyPath: attackCooltime
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875305, guid: 732a6d7ad7a0e8045b12a81c4bb5903a, type: 3}
       propertyPath: PatrolPoints.Array.data[0]
       value: 
@@ -1444,10 +1386,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5729342214554822775, guid: c01562db8eb488c43a06172f65ca6570, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8434017543963519265, guid: c01562db8eb488c43a06172f65ca6570, type: 3}
       propertyPath: _targetPos
       value: 

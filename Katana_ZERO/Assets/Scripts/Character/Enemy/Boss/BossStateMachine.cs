@@ -1,4 +1,5 @@
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class BossStateMachine : StateMachineBehaviour
 {
@@ -20,14 +21,15 @@ public class BossStateMachine : StateMachineBehaviour
         rigid = animator.gameObject.transform.root.GetComponent<Rigidbody2D>();
         controller = animator.gameObject.transform.root.GetComponent<KissyfaceController>();
         KissyfaceAnimInvoker = animator.GetComponent<KissyfaceAnimInvoker>();
-
+        
+        currentKissyState = KissyState.Default;
         startPos = animator.transform.position;
         playerPos = controller.TargetTransform.position;
 
         direction = Mathf.Sign( playerPos.x - startPos.x );
 
         moveVec = Vector3.zero;
-
+        controller.OnDamageable = false;
         getNextStateHash = 0;
         elapsedTime = 0f;
     }

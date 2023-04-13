@@ -4,8 +4,6 @@ public abstract class AnimationManager : MonoBehaviour
 {
     public abstract void SetNextAnimation( int state );
 
-    public abstract void SetNextAnimation();
-
     public abstract int GetAnimationStateHash( int state );
 
     public abstract void ActiveAttack();

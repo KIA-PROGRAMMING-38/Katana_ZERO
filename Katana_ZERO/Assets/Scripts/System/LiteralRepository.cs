@@ -57,6 +57,8 @@ namespace LiteralRepository
         public const string RECOVER = "isRecover";
         public const string DIE = "isDie";
         public const string BLOCK = "isBlock";
+        public const string DEAD = "isDead";
+        public const string NOHEAD = "isNoHead";
     }
 
     public class EnemyAnimationHash
@@ -92,6 +94,8 @@ namespace LiteralRepository
         public static int s_Recover = Animator.StringToHash( KissyfaceAnimeLiteral.RECOVER );
         public static int s_Die = Animator.StringToHash( KissyfaceAnimeLiteral.DIE );
         public static int s_Block = Animator.StringToHash( KissyfaceAnimeLiteral.BLOCK );
+        public static int s_Dead = Animator.StringToHash( KissyfaceAnimeLiteral.DEAD );
+        public static int s_NoHead = Animator.StringToHash( KissyfaceAnimeLiteral.NOHEAD );
     }
 
     public class LayerMaskNumber

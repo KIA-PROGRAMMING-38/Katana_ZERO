@@ -1,5 +1,6 @@
 using UnityEngine;
 using LiteralRepository;
+using static KissyfaceAnimInvoker;
 
 public class KissyPreLunge : BossStateMachine
 {
@@ -7,7 +8,7 @@ public class KissyPreLunge : BossStateMachine
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        controller.PrevState = KissyfaceAnimeHash.s_PreLunge;
+        currentKissyState = KissyState.PreLunge;
         CheckedDirection();
     }
 

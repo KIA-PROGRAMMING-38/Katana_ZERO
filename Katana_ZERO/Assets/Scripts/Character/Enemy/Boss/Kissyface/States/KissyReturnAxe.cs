@@ -1,5 +1,5 @@
-using LiteralRepository;
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class KissyReturnAxe : BossStateMachine
 {
@@ -7,7 +7,7 @@ public class KissyReturnAxe : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_ReturnAxe;
+        currentKissyState = KissyState.ReturnAxe;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

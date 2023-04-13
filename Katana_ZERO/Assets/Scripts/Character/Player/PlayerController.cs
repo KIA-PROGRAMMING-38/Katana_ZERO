@@ -165,7 +165,7 @@ public class PlayerController : Character
 
     public override void OnDamaged()
     {
-
+        Debug.Log( "공격당함!" );
     }
 }
 

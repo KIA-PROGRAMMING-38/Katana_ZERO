@@ -71,7 +71,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79636f721a6133a4297d5d0aedd2a7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRadius: 0.4
 --- !u!1 &1557175856
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +144,7 @@ GameObject:
   - component: {fileID: 446062571158155972}
   - component: {fileID: 446062571158155970}
   - component: {fileID: 446062571158155969}
+  - component: {fileID: 437506439}
   m_Layer: 8
   m_Name: Boss Kissyface
   m_TagString: Enemy
@@ -226,10 +226,25 @@ MonoBehaviour:
   OnDamageable: 0
   PrevState: 0
   NextState: 0
-  TargetTransform: {fileID: 0}
   TargetGameObject: {fileID: 0}
   BossDirection: 0
   OnStruggle: 0
+--- !u!70 &437506439
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446062571158155983}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.01}
+  m_Size: {x: 0.31, y: 0.47}
+  m_Direction: 0
 --- !u!1 &446062571339121845
 GameObject:
   m_ObjectHideFlags: 0
@@ -498,6 +513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 446062573034220843}
   - component: {fileID: 446062573034220844}
+  - component: {fileID: 1670136186}
   m_Layer: 13
   m_Name: AttackSensor
   m_TagString: Untagged
@@ -532,4 +548,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79636f721a6133a4297d5d0aedd2a7c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRadius: 0.26
+--- !u!58 &1670136186
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446062573034220842}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.26

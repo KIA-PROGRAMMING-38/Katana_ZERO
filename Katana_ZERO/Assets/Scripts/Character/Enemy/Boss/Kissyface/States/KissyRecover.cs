@@ -1,5 +1,5 @@
-using LiteralRepository;
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class KissyRecover : BossStateMachine
 {
@@ -7,7 +7,7 @@ public class KissyRecover : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_Recover;
+        currentKissyState = KissyState.Recover;
         CheckedDirection();
     }
 

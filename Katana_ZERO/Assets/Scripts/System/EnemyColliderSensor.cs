@@ -10,7 +10,6 @@ public class EnemyColliderSensor : MonoBehaviour
         if ( collision.CompareTag( TagLiteral.PLAYER_KATANA_EFFECT ) )
         {
             transform.root.SendMessage( FuncLiteral.OnDamaged );
-            Debug.Log( "attacksensor" );
         }
     }
 }

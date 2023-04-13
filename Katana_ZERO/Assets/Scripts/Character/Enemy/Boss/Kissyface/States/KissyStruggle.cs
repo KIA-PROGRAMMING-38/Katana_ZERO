@@ -1,5 +1,6 @@
 using LiteralRepository;
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class KissyStruggle : BossStateMachine
 {
@@ -11,7 +12,8 @@ public class KissyStruggle : BossStateMachine
 
         _count = 3;
         controller.TargetGameObject.gameObject.SetActive( false );
-        controller.PrevState = KissyfaceAnimeHash.s_Struggle;
+        controller.OnDamageable = true;
+        currentKissyState = KissyState.Struggle;
         CheckedDirection();
     }
 
@@ -24,11 +26,12 @@ public class KissyStruggle : BossStateMachine
         if ( Input.GetMouseButtonDown( 0 ) )
         {
             --_count;
+            Debug.Log( $"남은 클릭횟수 : {_count}" );
         }
 
-        if ( _count == 3 )
+        if ( _count == 0 )
         {
-            SetTrigger( animator, KissyfaceAnimeHash.s_Struggle, KissyfaceAnimeHash.s_Die );
+            ChangeState( animator, KissyfaceAnimeHash.s_Struggle, KissyfaceAnimeHash.s_Die );
         }
     }
 
