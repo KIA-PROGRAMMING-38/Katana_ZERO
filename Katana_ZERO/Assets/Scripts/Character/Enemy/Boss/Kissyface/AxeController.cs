@@ -1,12 +1,12 @@
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class AxeController : MonoBehaviour
 {
     [SerializeField]
     private GameObject _axeBody;
 
-    private KissyfaceProperty _property;
-    private BossEnemyController _controller;
+    private KissyfaceController _controller;
     private Vector3 _targetPos;
     private Vector3 _captureKissyPos;
 
@@ -28,8 +28,7 @@ public class AxeController : MonoBehaviour
 
     private void Awake()
     {
-        _controller = gameObject.transform.root.GetComponent<BossEnemyController>();
-        _property = gameObject.transform.root.GetComponent<KissyfaceProperty>();
+        _controller = gameObject.transform.root.GetComponent<KissyfaceController>();
     }
 
     private float _valueY;
@@ -40,12 +39,12 @@ public class AxeController : MonoBehaviour
         _captureKissyPos = _controller.gameObject.transform.position;
         _valueY = _controller.gameObject.transform.position.y;
 
-        if ( _property.IsJumping )
+        if ( _controller.IsJumping )
         {
             _axeBody.transform.position = new Vector3
                 ( transform.position.x + _offSetX, transform.position.y, transform.position.z );
         }
-        else if ( _property.IsThrow )
+        else if ( _controller.IsThrow )
         {
             _targetPos = new Vector3
             ( _controller.TargetTransform.position.x, _valueY, _controller.TargetTransform.position.z );
@@ -63,24 +62,25 @@ public class AxeController : MonoBehaviour
     private void Update()
     {
         float deltaTime = Time.deltaTime;
+        if ( currentKissyState != KissyState.Tug || currentKissyState != KissyState.JumpSwing )
 
-        if ( _property.IsJumping )
+        if ( _controller.IsJumping )
         {
             transform.position = _captureKissyPos;
             _axeBody.transform.Rotate( _forwardVec, _jumpRotationSpeed );
             transform.Rotate( _forwardVec, -_rotationSpeed );
         }
-        else if ( _property.IsThrow )
+        else if ( _controller.IsThrow )
         {
             _axeBody.transform.Rotate( _forwardVec, -_throwRotationSpeed );
             Vector3 curVec = new Vector3( transform.position.x, _valueY, transform.position.z );
 
             if ( (Vector3.Distance(transform.position, _targetPos)) <= 0.2f )
             {
-                _property.IsEjection = false;
+                _controller.IsEjection = false;
             }
 
-            if ( _property.IsEjection )
+            if ( _controller.IsEjection )
             {
                 transform.position = Vector3.MoveTowards
                     ( curVec, _targetPos, _throwAxeSpeed * deltaTime );
@@ -95,11 +95,11 @@ public class AxeController : MonoBehaviour
 
     public void JumpSwing()
     {
-        _property.IsJumping = true;
+        _controller.IsJumping = true;
     }
 
     public void ThrowAxe()
     {
-        _property.IsThrow = false;
+        _controller.IsThrow = false;
     }
 }

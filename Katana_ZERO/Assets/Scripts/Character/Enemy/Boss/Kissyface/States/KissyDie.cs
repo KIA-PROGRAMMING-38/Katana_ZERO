@@ -1,12 +1,13 @@
 using UnityEngine;
-using LiteralRepository;
+using static KissyfaceAnimInvoker;
 
 public class KissyDie : BossStateMachine
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
-        animator.gameObject.layer = LayerMaskNumber.s_DieEnemy;
+
+        currentKissyState = KissyState.Die;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

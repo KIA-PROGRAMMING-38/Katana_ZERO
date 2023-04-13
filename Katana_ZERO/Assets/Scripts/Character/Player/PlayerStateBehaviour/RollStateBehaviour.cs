@@ -1,6 +1,5 @@
 using UnityEngine;
 using LiteralRepository;
-using Mono.Cecil.Cil;
 
 public class RollStateBehaviour : PlayerState
 {
@@ -10,6 +9,7 @@ public class RollStateBehaviour : PlayerState
 
         rigid.velocity = new Vector2
             ( data.RollHorizontalForce * input.PrimitiveMoveVec.x, rigid.velocity.y );
+        dustParticle.Play();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -33,5 +33,6 @@ public class RollStateBehaviour : PlayerState
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         rigid.velocity = Vector2.zero;
+        dustParticle.Stop();
     }
 }

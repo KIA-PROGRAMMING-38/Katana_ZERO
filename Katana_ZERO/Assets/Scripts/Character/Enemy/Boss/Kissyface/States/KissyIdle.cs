@@ -1,18 +1,19 @@
 using LiteralRepository;
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class KissyIdle : BossStateMachine
 {
-    private KissyfaceProperty _property;
+    private KissyfaceAnimInvoker _animInvoke;
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        _property = animator.transform.root.GetComponent<KissyfaceProperty>();
+        _animInvoke = animator.transform.root.GetComponent<KissyfaceAnimInvoker>();
 
-        controller.PrevState = KissyfaceAnimeHash.s_Idle;
-        getNextStateHash = _property.NextBehaviour();
+        currentKissyState = KissyState.Idle;
+        getNextStateHash = _animInvoke.NextBehaviour();
         CheckedDirection();
     }
 

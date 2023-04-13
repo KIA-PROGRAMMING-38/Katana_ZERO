@@ -15,20 +15,11 @@ public class AttackEffect : MonoBehaviour
         SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void FixedUpdate()
+    private void OnTriggerEnter2D( Collider2D collision )
     {
-        Collider2D[] collision  = Physics2D.OverlapCircleAll
-            ( _collisionPos.position, _data.AttackRadius, 1 << LayerMaskNumber.s_Enemy );
-
-        foreach ( Collider2D elem in collision )
+        if (collision.gameObject.layer == LayerMaskNumber.s_ColliderSensor )
         {
-            if ( elem != null ) 
-            {
-                if ( elem.gameObject.layer == 8 )
-                {
-                    elem.transform.root.SendMessage( FuncLiteral.ONDAMAGED );
-                }
-            }
+            // 화면에서 타격 이펙트 호출
         }
     }
 

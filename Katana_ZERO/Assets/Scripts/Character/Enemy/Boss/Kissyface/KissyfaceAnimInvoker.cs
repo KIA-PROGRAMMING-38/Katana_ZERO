@@ -1,21 +1,13 @@
 using UnityEngine;
 using LiteralRepository;
 
-public static class KissyDefaultAttackState
-{
-    public const int StateThrowAxe = 0;
-    public const int StateJumpAttack = 1;
-    public const int StateJumpSwing = 2;
-    public const int StateSlash = 3; 
-}
 
 public class KissyfaceAnimInvoker : AnimationManager
 {
     [SerializeField]
     private GameObject _setActiveAttack;
     private Animator _animator;
-    private BossEnemyController _controller;
-    private KissyfaceProperty _property;
+    private KissyfaceController _controller;
 
     public enum KissyState
     {
@@ -36,14 +28,94 @@ public class KissyfaceAnimInvoker : AnimationManager
         Struggle = 14,
         Recover = 15,
         Die = 16,
-        Block = 17
+        Block = 17,
+        Dead = 18,
+        NoHead = 19,
+        Default = 20
     }
+    public enum RandomState
+    {
+        StateThrowAxe = 0,
+        StateJumpAttack = 1,
+        StateJumpSwing = 2,
+        StateSlash = 3
+    }
+
+    public static KissyState currentKissyState;
+    public static RandomState nextKissyState;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _controller = transform.root.GetComponent<BossEnemyController>();
-        _property = transform.root.GetComponent<KissyfaceProperty>();
+        _controller = transform.root.GetComponent<KissyfaceController>();
+    }
+
+    private void Start()
+    {
+        _controller.SetNextBehaviour -= OnDamagedNextAnimation;
+        _controller.SetNextBehaviour += OnDamagedNextAnimation;
+    }
+
+    public int RandomNextAttackBehaviour( int nextStateIndex )
+    {
+        switch ( nextStateIndex )
+        {
+            case (int)RandomState.StateThrowAxe:
+                return KissyfaceAnimeHash.s_Throw;
+
+            case (int)RandomState.StateJumpAttack:
+                return KissyfaceAnimeHash.s_PreLunge;
+
+            case (int)RandomState.StateJumpSwing:
+                return KissyfaceAnimeHash.s_PreJump;
+
+            case (int)RandomState.StateSlash:
+                return KissyfaceAnimeHash.s_Slash;
+        }
+
+        return 0;
+    }
+
+    public int NextBehaviour()
+    {
+        while ( true )
+        {
+            int nextStateIndex = Random.Range( 0, 4 );
+
+            if ( (int)nextKissyState != nextStateIndex )
+            {
+                nextKissyState = (RandomState)nextStateIndex;
+                return RandomNextAttackBehaviour( nextStateIndex );
+            }
+        }
+    }
+
+    public int NextBehaviour( int stateIndex )
+    {
+        return RandomNextAttackBehaviour( stateIndex );
+    }
+
+    private void OnDamagedNextAnimation( bool onDamageable )
+    {
+        if ( onDamageable == false )
+        {
+            PlayerBlockAnimation();
+        }
+        else
+        {
+            if ( currentKissyState == KissyState.Tug )
+            {
+                SetNextAnimation( (int)KissyState.Hurt );
+            }
+            else if ( currentKissyState == KissyState.Hurt )
+            {
+                SetNextAnimation( (int)KissyState.Struggle );
+            }
+            else if ( currentKissyState == KissyState.Dead )
+            {
+                SetAnimationTrigger( KissyfaceAnimeLiteral.NOHEAD );
+            }
+        }
     }
 
     public override void SetNextAnimation( int state )
@@ -53,8 +125,14 @@ public class KissyfaceAnimInvoker : AnimationManager
         _animator.SetBool( _controller.PrevState, false );
         _animator.SetBool( nextStateHashCode, true );
     }
+    
+    private void SetAnimationTrigger( string state )
+    {
+        _animator.SetBool( _controller.PrevState, false );
+        _animator.SetTrigger( state );
+    }
 
-    public override void SetNextAnimation()
+    private void PlayerBlockAnimation()
     {
         _animator.SetBool( _controller.PrevState, false );
         _animator.SetTrigger( KissyfaceAnimeHash.s_Block );
@@ -117,11 +195,18 @@ public class KissyfaceAnimInvoker : AnimationManager
 
             case (int)KissyState.Block:
                 return KissyfaceAnimeHash.s_Block;
+
+            case (int)KissyState.Dead:
+                return KissyfaceAnimeHash.s_Dead;
+
+            case (int)KissyState.NoHead:
+                return KissyfaceAnimeHash.s_Dead;
         }
 
         return 0;
     }
 
+    #region 애니메이션 이벤트 호출 함수
     public override void ActiveAttack()
     {
         _setActiveAttack.SetActive(true);
@@ -134,14 +219,15 @@ public class KissyfaceAnimInvoker : AnimationManager
 
     public override void InvokeThrow()
     {
-        _property.IsThrow = true;
-        _property.IsEjection = true;
-        _property.Weapon.SetActive( true );
+        _controller.IsThrow = true;
+        _controller.IsEjection = true;
+        _controller.Weapon.SetActive( true );
     }
 
     public override void InvokeSwing()
     {
-        _property.IsJumping = true;
-        _property.Weapon.SetActive( true );
+        _controller.IsJumping = true;
+        _controller.Weapon.SetActive( true );
     }
+    #endregion
 }

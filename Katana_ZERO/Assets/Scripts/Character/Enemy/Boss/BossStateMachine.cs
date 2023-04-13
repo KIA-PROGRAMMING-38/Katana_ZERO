@@ -1,9 +1,10 @@
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class BossStateMachine : StateMachineBehaviour
 {
     protected Rigidbody2D rigid;
-    protected BossEnemyController controller;
+    protected KissyfaceController controller;
     protected KissyfaceAnimInvoker KissyfaceAnimInvoker;
 
     protected float elapsedTime;
@@ -18,16 +19,17 @@ public class BossStateMachine : StateMachineBehaviour
     public override void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         rigid = animator.gameObject.transform.root.GetComponent<Rigidbody2D>();
-        controller = animator.gameObject.transform.root.GetComponent<BossEnemyController>();
+        controller = animator.gameObject.transform.root.GetComponent<KissyfaceController>();
         KissyfaceAnimInvoker = animator.GetComponent<KissyfaceAnimInvoker>();
-
+        
+        currentKissyState = KissyState.Default;
         startPos = animator.transform.position;
         playerPos = controller.TargetTransform.position;
 
         direction = Mathf.Sign( playerPos.x - startPos.x );
 
         moveVec = Vector3.zero;
-
+        controller.OnDamageable = false;
         getNextStateHash = 0;
         elapsedTime = 0f;
     }

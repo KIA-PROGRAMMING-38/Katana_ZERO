@@ -5,33 +5,31 @@ public class KnifeProperty : MonoBehaviour
 {
     private Animator _animator;
     private CommonEnemyController _controller;
+    private Rigidbody2D _rigid;
 
     private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
         _controller = GetComponent<CommonEnemyController>();
+        _rigid = GetComponent<Rigidbody2D>();
+
+        _controller.ThisEnemyType = Enemy.CommonEnemyType.Knife;
     }
 
-    private void Update()
+    private void Start()
     {
-        if ( _controller.PrevState == EnemyAnimationHash.s_Attack )
-        {
-            _controller.OnDamageable = false;
-        }
-        else
-        {
-            _controller.OnDamageable = true;
-        }
+        _controller.CheckedOnDamage -= DamagedEffect;
+        _controller.CheckedOnDamage += DamagedEffect;
     }
 
-    private void OnDamaged()
+    private void DamagedEffect( bool onDamageable )
     {
-        if ( _controller.OnDamageable )
+        if ( onDamageable )
         {
-            _controller.rigid.velocity = Vector2.zero;
-            _animator.SetBool( _controller.PrevState, false );
-            _animator.SetTrigger( EnemyAnimationHash.s_Die );
-            _controller.ChangeLayer( gameObject.transform, 9 );
+            _rigid.velocity = Vector2.zero;
+            _controller.BodyAnimator.SetBool( _controller.PrevState, false );
+            _controller.BodyAnimator.SetTrigger( EnemyAnimationHash.s_Die );
+            _controller.ChangeLayer( gameObject.transform, LayerMaskNumber.s_DieEnemy );
         }
         else
         {

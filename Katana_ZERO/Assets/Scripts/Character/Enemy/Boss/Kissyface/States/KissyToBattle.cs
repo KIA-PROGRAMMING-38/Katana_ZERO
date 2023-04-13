@@ -1,10 +1,11 @@
 using LiteralRepository;
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class KissyToBattle : BossStateMachine
 {
     private int _initialState;
-    private KissyfaceProperty _property;
+    private KissyfaceAnimInvoker _animInvoker;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -12,10 +13,8 @@ public class KissyToBattle : BossStateMachine
 
         _initialState = Random.Range( 0, 2 );
 
-        _property = animator.gameObject.transform.root.GetComponent<KissyfaceProperty>();
-
-        controller.PrevState = KissyfaceAnimeHash.s_ToBattle;
-        getNextStateHash = _property.CheckedNextState( _initialState );
+        currentKissyState = KissyState.ToBattle;
+        getNextStateHash = _animInvoker.NextBehaviour( _initialState );
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

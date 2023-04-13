@@ -3,28 +3,11 @@ using UnityEngine;
 
 public class SetActiveAttack : MonoBehaviour
 {
-    [SerializeField]
-    private float _attackRadius;
-
-    private void FixedUpdate()
+    private void OnTriggerEnter2D( Collider2D collision )
     {
-        CheckedCollision();
-    }
-
-    private void CheckedCollision()
-    {
-        Collider2D[] collision = Physics2D.OverlapCircleAll
-            ( transform.position, _attackRadius, 1 << LayerMaskNumber.s_Player );
-
-        foreach ( Collider2D elem in collision )
+        if ( collision.CompareTag( TagLiteral.PLAYER ) )
         {
-            if ( elem != null )
-            {
-                if ( elem.gameObject.layer == LayerMaskNumber.s_Player )
-                {
-                    elem.transform.root.SendMessage( FuncLiteral.ONDAMAGED );
-                }
-            }
+            collision.transform.root.SendMessage( FuncLiteral.OnDamaged );
         }
     }
 }

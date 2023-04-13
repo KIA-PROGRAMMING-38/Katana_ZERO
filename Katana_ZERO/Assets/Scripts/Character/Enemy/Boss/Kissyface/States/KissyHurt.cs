@@ -1,7 +1,6 @@
 using LiteralRepository;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class KissyHurt : BossStateMachine
 {
@@ -9,8 +8,8 @@ public class KissyHurt : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_Hurt;
-
+        currentKissyState = KissyState.Hurt;
+        controller.OnDamageable = true;
         CheckedDirection();
     }
 
@@ -21,7 +20,6 @@ public class KissyHurt : BossStateMachine
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
         elapsedTime += Time.deltaTime;
-
         if ( elapsedTime >= _defaultStateTime )
         {
             ChangeState( animator, KissyfaceAnimeHash.s_Hurt, KissyfaceAnimeHash.s_Recover );
@@ -31,8 +29,5 @@ public class KissyHurt : BossStateMachine
     override public void OnStateExit( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
-
-        controller.OnStruggle = false;
-        controller.OnDamageable = false;
     }
 }

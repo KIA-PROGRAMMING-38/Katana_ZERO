@@ -1,4 +1,4 @@
-using LiteralRepository;
+using static KissyfaceAnimInvoker;
 using UnityEngine;
 
 public class KissyJump : BossStateMachine
@@ -7,7 +7,7 @@ public class KissyJump : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_Jump;
+        currentKissyState = KissyState.Jump;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

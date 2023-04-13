@@ -1,5 +1,5 @@
-using LiteralRepository;
 using UnityEngine;
+using static KissyfaceAnimInvoker;
 
 public class KissyThrow : BossStateMachine
 {
@@ -7,7 +7,7 @@ public class KissyThrow : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_Throw;
+        currentKissyState = KissyState.Throw;
         CheckedDirection();
     }
 
