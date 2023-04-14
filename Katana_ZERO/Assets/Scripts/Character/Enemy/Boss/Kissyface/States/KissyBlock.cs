@@ -1,5 +1,5 @@
 using UnityEngine;
-using LiteralRepository;
+using static KissyfaceAnimInvoker;
 
 public class KissyBlock : BossStateMachine
 {
@@ -7,7 +7,8 @@ public class KissyBlock : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        controller.PrevState = KissyfaceAnimeHash.s_Block;
+        currentKissyState = KissyState.Block;
+        controller.PrevState = (int)KissyState.Block;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

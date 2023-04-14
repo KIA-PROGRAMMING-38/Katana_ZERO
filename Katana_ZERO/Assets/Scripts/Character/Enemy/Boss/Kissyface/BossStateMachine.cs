@@ -5,7 +5,7 @@ public class BossStateMachine : StateMachineBehaviour
 {
     protected Rigidbody2D rigid;
     protected KissyfaceController controller;
-    protected KissyfaceAnimInvoker KissyfaceAnimInvoker;
+    protected KissyfaceAnimInvoker kissyfaceAnimInvoker;
 
     protected float elapsedTime;
     protected float direction;
@@ -20,7 +20,7 @@ public class BossStateMachine : StateMachineBehaviour
     {
         rigid = animator.gameObject.transform.root.GetComponent<Rigidbody2D>();
         controller = animator.gameObject.transform.root.GetComponent<KissyfaceController>();
-        KissyfaceAnimInvoker = animator.GetComponent<KissyfaceAnimInvoker>();
+        kissyfaceAnimInvoker = animator.GetComponent<KissyfaceAnimInvoker>();
         
         currentKissyState = KissyState.Default;
         startPos = animator.transform.position;
@@ -33,6 +33,7 @@ public class BossStateMachine : StateMachineBehaviour
         getNextStateHash = 0;
         elapsedTime = 0f;
     }
+
 
     protected void ChangeState( Animator animator, string currentState, string nextState )
     {

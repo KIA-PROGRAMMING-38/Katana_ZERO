@@ -7,6 +7,7 @@ public class KissyJump : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
+        controller.PrevState = (int)KissyState.Jump;
         currentKissyState = KissyState.Jump;
     }
 

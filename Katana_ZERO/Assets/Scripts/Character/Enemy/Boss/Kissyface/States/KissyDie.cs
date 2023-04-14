@@ -8,6 +8,7 @@ public class KissyDie : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         currentKissyState = KissyState.Die;
+        controller.PrevState = (int)KissyState.Die;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -10,10 +10,9 @@ public class KissyIdle : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        _animInvoke = animator.transform.root.GetComponent<KissyfaceAnimInvoker>();
-
         currentKissyState = KissyState.Idle;
-        getNextStateHash = _animInvoke.NextBehaviour();
+        controller.PrevState = (int)KissyState.Idle;
+        getNextStateHash = kissyfaceAnimInvoker.NextBehaviour();
         CheckedDirection();
     }
 

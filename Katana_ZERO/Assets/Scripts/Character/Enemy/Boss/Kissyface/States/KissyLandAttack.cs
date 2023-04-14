@@ -8,6 +8,7 @@ public class KissyLandAttack : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         currentKissyState = KissyState.LandAttack;
+        controller.PrevState = (int)KissyState.LandAttack;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

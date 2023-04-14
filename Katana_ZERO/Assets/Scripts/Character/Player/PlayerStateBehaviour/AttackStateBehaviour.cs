@@ -21,6 +21,7 @@ public class AttackStateBehaviour : PlayerState
 
         rigid.AddForce( _attackDirection * data.AttackForce, ForceMode2D.Impulse );
         controller.CheckedJumpFlip();
+        controller.ActiveAfterImage();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

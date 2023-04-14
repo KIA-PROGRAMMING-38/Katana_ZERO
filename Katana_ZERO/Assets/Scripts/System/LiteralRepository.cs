@@ -72,8 +72,6 @@ namespace LiteralRepository
         public static int s_Die = Animator.StringToHash( EnemyAnimationLiteral.DIE );
     }
 
-   
-
     public class KissyfaceAnimeHash
     {
         public static int s_ToBattle = Animator.StringToHash( KissyfaceAnimeLiteral.TOBATTLE );
@@ -114,6 +112,7 @@ namespace LiteralRepository
         public static int s_ReflectedBullet = 11;
         public static int s_EnemyWeapon = 12;
         public static int s_ColliderSensor = 13;
+        public static int s_ImmunityState = 14;
     }
 
     public static class InputAxisString

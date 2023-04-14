@@ -9,7 +9,9 @@ public class RollStateBehaviour : PlayerState
 
         rigid.velocity = new Vector2
             ( data.RollHorizontalForce * input.PrimitiveMoveVec.x, rigid.velocity.y );
-        dustParticle.Play();
+        footParticle.Play();
+        controller.gameObject.layer = LayerMaskNumber.s_ImmunityState;
+        controller.ActiveAfterImage();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -33,6 +35,7 @@ public class RollStateBehaviour : PlayerState
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         rigid.velocity = Vector2.zero;
-        dustParticle.Stop();
+        footParticle.Stop();
+        controller.gameObject.layer = LayerMaskNumber.s_Player;
     }
 }

@@ -11,7 +11,8 @@ public class KissyJumpSwing : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         capturePos = new Vector2(rigid.velocity.x, rigid.velocity.y - 0.25f);
-        currentKissyState = KissyState.Jump;
+        currentKissyState = KissyState.JumpSwing;
+        controller.PrevState = (int)KissyState.JumpSwing;
     }
 
     private float _jumpingTime = 1f;

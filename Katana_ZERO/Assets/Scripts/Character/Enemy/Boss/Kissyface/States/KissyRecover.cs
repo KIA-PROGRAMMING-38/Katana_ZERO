@@ -8,6 +8,7 @@ public class KissyRecover : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         currentKissyState = KissyState.Recover;
+        controller.PrevState = (int)KissyState.Recover;
         CheckedDirection();
     }
 

@@ -6,7 +6,8 @@ public class PlayerState : StateMachineBehaviour
     protected PlayerData data;
     protected PlayerController controller;
     protected Rigidbody2D rigid;
-    protected ParticleSystem dustParticle;
+    protected ParticleSystem footParticle;
+    protected ParticleSystem wallParticle;
 
     public override void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
@@ -14,13 +15,27 @@ public class PlayerState : StateMachineBehaviour
         data = animator.GetComponent<PlayerData>();
         controller = animator.GetComponent<PlayerController>();
         rigid = animator.GetComponent<Rigidbody2D>();
-        dustParticle = controller.DustParticle.GetComponent<ParticleSystem>();
+
+        footParticle = controller.FootParticle.GetComponent<ParticleSystem>();
+        wallParticle = controller.WallParticle.GetComponent<ParticleSystem>();
     }
 
     protected void ChangeState( Animator animator, string currentState, string nextState )
     {
         animator.SetBool( currentState, false );
         animator.SetBool( nextState, true );
+    }
+
+    protected void ChangeState( Animator animator, int currentHash, int nextHash )
+    {
+        animator.SetBool( currentHash, false );
+        animator.SetBool( nextHash, true );
+    }
+
+    protected void SetTrigger( Animator animator, int currentHash, int setTriggerHash )
+    {
+        animator.SetBool( currentHash, false );
+        animator.SetTrigger( setTriggerHash );
     }
 }
 
