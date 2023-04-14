@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private LineRenderer _line;
+
+    private void Awake()
     {
-        
+        _line = GetComponentInChildren<LineRenderer>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+
     }
 }
