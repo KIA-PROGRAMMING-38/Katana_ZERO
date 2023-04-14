@@ -11,16 +11,16 @@ public class AxeController : MonoBehaviour
     private Vector3 _captureKissyPos;
 
     [SerializeField]
-    [Range(2f, 20f)]
+    [Range(2f, 1000f)]
     private float _rotationSpeed;
     [SerializeField]
-    [Range( 2f, 20f )]
+    [Range( 2f, 1000f )]
     private float _jumpRotationSpeed;
     [SerializeField]
-    [Range( 2f, 20f )]
+    [Range( 2f, 1000f )]
     private float _throwRotationSpeed;
     [SerializeField]
-    [Range( 2f, 20f )]
+    [Range( 2f, 200f )]
     private float _throwAxeSpeed;
     [SerializeField]
     [Range(0f, 2f)]
@@ -67,12 +67,12 @@ public class AxeController : MonoBehaviour
         if ( _controller.IsJumping )
         {
             transform.position = _captureKissyPos;
-            _axeBody.transform.Rotate( _forwardVec, _jumpRotationSpeed );
-            transform.Rotate( _forwardVec, -_rotationSpeed );
+            _axeBody.transform.Rotate( _forwardVec, _jumpRotationSpeed * deltaTime );
+            transform.Rotate( _forwardVec, -_rotationSpeed * deltaTime );
         }
         else if ( _controller.IsThrow )
         {
-            _axeBody.transform.Rotate( _forwardVec, -_throwRotationSpeed );
+            _axeBody.transform.Rotate( _forwardVec, -_throwRotationSpeed * deltaTime );
             Vector3 curVec = new Vector3( transform.position.x, _valueY, transform.position.z );
 
             if ( (Vector3.Distance(transform.position, _targetPos)) <= 0.2f )
