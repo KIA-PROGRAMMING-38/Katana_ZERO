@@ -16,6 +16,7 @@ public class KissyLunge : BossStateMachine
         float middleY = startPos.y + 2f;
 
         currentKissyState = KissyState.Lunge;
+        controller.PrevState = (int)KissyState.Lunge;
         _controlPos = new Vector2( middleX, middleY );
     }
 

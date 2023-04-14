@@ -9,6 +9,7 @@ public class KissyPreLunge : BossStateMachine
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
         currentKissyState = KissyState.PreLunge;
+        controller.PrevState = (int)KissyState.PreLunge;
         CheckedDirection();
     }
 

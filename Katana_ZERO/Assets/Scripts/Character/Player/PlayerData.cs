@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+
     public GameObject Item;
     public Transform ThrowPoint;
 

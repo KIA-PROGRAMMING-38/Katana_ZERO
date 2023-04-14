@@ -9,6 +9,7 @@ public class KissyHurt : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         currentKissyState = KissyState.Hurt;
+        controller.PrevState = (int)KissyState.Hurt;
         controller.OnDamageable = true;
         CheckedDirection();
     }

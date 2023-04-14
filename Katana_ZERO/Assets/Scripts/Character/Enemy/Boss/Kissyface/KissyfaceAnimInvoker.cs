@@ -1,5 +1,6 @@
 using UnityEngine;
 using LiteralRepository;
+using Unity.VisualScripting;
 
 
 public class KissyfaceAnimInvoker : AnimationManager
@@ -38,11 +39,13 @@ public class KissyfaceAnimInvoker : AnimationManager
         StateThrowAxe = 0,
         StateJumpAttack = 1,
         StateJumpSwing = 2,
-        StateSlash = 3
+        StateSlash = 3,
+        DefaultValue = 4
+
     }
 
     public static KissyState currentKissyState;
-    public static RandomState nextKissyState;
+    public static RandomState nextKissyState = RandomState.DefaultValue;
 
     private void Awake()
     {
@@ -120,21 +123,26 @@ public class KissyfaceAnimInvoker : AnimationManager
 
     public override void SetNextAnimation( int state )
     {
+        int prevStateHashCode = GetAnimationStateHash( _controller.PrevState );
         int nextStateHashCode = GetAnimationStateHash( state );
 
-        _animator.SetBool( _controller.PrevState, false );
+        _animator.SetBool( prevStateHashCode, false );
         _animator.SetBool( nextStateHashCode, true );
     }
     
     private void SetAnimationTrigger( string state )
     {
-        _animator.SetBool( _controller.PrevState, false );
+        int prevStateHashCode = GetAnimationStateHash( _controller.PrevState );
+
+        _animator.SetBool( prevStateHashCode, false );
         _animator.SetTrigger( state );
     }
 
     private void PlayerBlockAnimation()
     {
-        _animator.SetBool( _controller.PrevState, false );
+        int prevStateHashCode = GetAnimationStateHash( _controller.PrevState );
+        
+        _animator.SetBool( prevStateHashCode, false );
         _animator.SetTrigger( KissyfaceAnimeHash.s_Block );
     }
 

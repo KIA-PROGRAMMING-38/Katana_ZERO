@@ -10,7 +10,8 @@ public class KissyPreJump : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         rigid.velocity = Vector2.up * _jumpForce;
-        currentKissyState = KissyState.ReturnAxe;
+        currentKissyState = KissyState.PreJump;
+        controller.PrevState = (int)KissyState.PreJump;
         CheckedDirection();
     }
 

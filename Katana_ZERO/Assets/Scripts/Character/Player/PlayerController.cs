@@ -5,7 +5,14 @@ using UnityEngine;
 
 public class PlayerController : Character
 {
-    public GameObject DustParticle;
+    public event Action OnIllusionEffect;
+
+    public GameObject Illusion;
+
+    
+
+    public GameObject FootParticle;
+    public GameObject WallParticle;
 
     private PlayerInput _input;
     private PlayerData _data;
@@ -166,6 +173,11 @@ public class PlayerController : Character
     public override void OnDamaged()
     {
         Debug.Log( "공격당함!" );
+    }
+
+    public void ActiveAfterImage()
+    {
+        OnIllusionEffect?.Invoke();
     }
 }
 

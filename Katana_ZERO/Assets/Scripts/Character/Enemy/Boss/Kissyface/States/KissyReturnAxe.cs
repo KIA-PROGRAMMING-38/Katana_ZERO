@@ -7,6 +7,7 @@ public class KissyReturnAxe : BossStateMachine
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
+        controller.PrevState = (int)KissyState.ReturnAxe;
         currentKissyState = KissyState.ReturnAxe;
     }
 

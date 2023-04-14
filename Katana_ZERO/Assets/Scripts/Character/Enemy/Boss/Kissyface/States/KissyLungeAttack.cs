@@ -11,6 +11,7 @@ public class KissyLungeAttack : BossStateMachine
 
         _invokeAnimation = animator.GetComponent<KissyfaceAnimInvoker>();
         currentKissyState = KissyState.LungeAttack;
+        controller.PrevState = (int)KissyState.LungeAttack;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -9,6 +9,7 @@ public class KissyDead : BossStateMachine
 
         controller.OnDamageable = true;
         currentKissyState = KissyState.Dead;
+        controller.PrevState = (int)KissyState.Dead;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

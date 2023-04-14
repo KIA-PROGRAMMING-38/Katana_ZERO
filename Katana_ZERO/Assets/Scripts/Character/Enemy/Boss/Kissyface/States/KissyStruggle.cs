@@ -14,6 +14,7 @@ public class KissyStruggle : BossStateMachine
         controller.TargetGameObject.gameObject.SetActive( false );
         controller.OnDamageable = true;
         currentKissyState = KissyState.Struggle;
+        controller.PrevState = (int)KissyState.Struggle;
         CheckedDirection();
     }
 

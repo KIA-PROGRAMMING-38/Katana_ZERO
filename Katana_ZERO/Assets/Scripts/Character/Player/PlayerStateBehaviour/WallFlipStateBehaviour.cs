@@ -8,6 +8,7 @@ public class WallFlipStateBehaviour : PlayerState
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         rigid.velocity = new Vector2( data.WallFlipHorizontalForce * data.FacingDirection, data.WallFlipVerticalForce );
+        controller.ActiveAfterImage();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

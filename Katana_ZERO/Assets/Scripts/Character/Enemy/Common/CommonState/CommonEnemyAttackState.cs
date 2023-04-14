@@ -9,6 +9,7 @@ public class CommonEnemyAttackState : CommonEnemyState
 
         controller.isShot = true;
         controller.PrevState = EnemyAnimationHash.s_Attack;
+        controller.OnDamageable = false;
 
         if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
         {

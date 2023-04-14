@@ -8,6 +8,7 @@ public class KissyThrow : BossStateMachine
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         currentKissyState = KissyState.Throw;
+        controller.PrevState = (int)KissyState.Throw;
         CheckedDirection();
     }
 

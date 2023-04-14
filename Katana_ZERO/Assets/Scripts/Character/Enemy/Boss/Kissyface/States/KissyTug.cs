@@ -14,6 +14,7 @@ public class KissyTug : BossStateMachine
         _axeController = controller.Weapon.GetComponent<AxeController>();
 
         currentKissyState = KissyState.Tug;
+        controller.PrevState = (int)KissyState.Tug;
         controller.OnDamageable = true;
     }
 

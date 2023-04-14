@@ -24,7 +24,7 @@ TagManager:
   - ReflectedBullet
   - EnemyWeapon
   - ColliderSensor
-  - 
+  - ImmunityState
   - 
   - 
   - 
