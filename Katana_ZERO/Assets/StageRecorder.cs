@@ -45,7 +45,7 @@ public class StageRecorder : MonoBehaviour
             RenderTexture.active = renderTexture;
             texture.ReadPixels( new Rect( 0, 0, captureWidth, captureHeight ), 0, 0 );
             texture.Apply();
-            RenderTexture.active = null; 
+            RenderTexture.active = null;
 
             currentString = $"frame{_index}.png";
             File.WriteAllBytes( Path.Combine( outputFolder, currentString ), texture.EncodeToPNG() );
