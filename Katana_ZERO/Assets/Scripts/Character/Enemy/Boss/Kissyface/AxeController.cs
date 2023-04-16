@@ -11,19 +11,19 @@ public class AxeController : MonoBehaviour
     private Vector3 _captureKissyPos;
 
     [SerializeField]
-    [Range(2f, 1000f)]
+    [Range(2f, 3000f)]
     private float _rotationSpeed;
     [SerializeField]
-    [Range( 2f, 1000f )]
+    [Range( 2f, 3000f )]
     private float _jumpRotationSpeed;
     [SerializeField]
-    [Range( 2f, 1000f )]
+    [Range( 2f, 3000f )]
     private float _throwRotationSpeed;
     [SerializeField]
-    [Range( 2f, 200f )]
+    [Range( 2f, 1000f )]
     private float _throwAxeSpeed;
     [SerializeField]
-    [Range(0f, 2f)]
+    [Range(0f, 20f)]
     private float _offSetX;
 
     private void Awake()
