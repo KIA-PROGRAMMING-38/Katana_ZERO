@@ -9,7 +9,6 @@ public class PlayerData : MonoBehaviour
 
     public Transform GroundCheck;
     public Transform WallCheck;
-    public GameObject AttackEffect;
 
     private PlayerInput _input;
     private Rigidbody2D _rigid;

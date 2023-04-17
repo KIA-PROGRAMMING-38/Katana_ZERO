@@ -9,7 +9,7 @@ public class AttackStateBehaviour : PlayerState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-        data.AttackEffect.SetActive( true );
+        effectManager.OnEnableAttackEffect();
 
         rigid.velocity = Vector2.zero;
         rigid.gravityScale = 0f;
@@ -44,7 +44,7 @@ public class AttackStateBehaviour : PlayerState
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
-        data.AttackEffect.SetActive( false );
+        effectManager.OnDisableAttackEffect();
 
         rigid.gravityScale = data.DefaultGravityScale;
         rigid.velocity = new Vector2( 0f , -2f );

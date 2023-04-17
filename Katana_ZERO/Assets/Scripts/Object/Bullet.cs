@@ -1,4 +1,5 @@
 using LiteralRepository;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -44,6 +45,8 @@ public class Bullet : MonoBehaviour
             if ( collision.CompareTag( TagLiteral.ENEMY ) )
             {
                 Destroy( gameObject );
+
+                collision.GetComponent<CommonEnemyController>().OutsideEffect.ActivateEffect();
             }
         }
 
@@ -58,6 +61,7 @@ public class Bullet : MonoBehaviour
             float reflectAngle = Mathf.Atan2
             ( reflectedDirection.y, reflectedDirection.x ) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler( 0f, 0f, reflectAngle );
+
         }
     }
 }
