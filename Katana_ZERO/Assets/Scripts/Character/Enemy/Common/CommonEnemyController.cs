@@ -7,6 +7,9 @@ public class CommonEnemyController : Enemy
     public event Action ReadyToAttack;
     public event Action RestoreCondition;
 
+    public DrawBlood DrawBlood;
+    public ImpactBlood ImpactBlood;
+
     [Header( "Speed" )]
     public float walkSpeed;
     public float runSpeed;

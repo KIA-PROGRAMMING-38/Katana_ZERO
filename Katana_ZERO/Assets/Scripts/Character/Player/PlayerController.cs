@@ -9,8 +9,6 @@ public class PlayerController : Character
 
     public GameObject Illusion;
 
-    
-
     public GameObject FootParticle;
     public GameObject WallParticle;
 

@@ -1,6 +1,4 @@
 using LiteralRepository;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CommonEnemyWalkState : CommonEnemyState

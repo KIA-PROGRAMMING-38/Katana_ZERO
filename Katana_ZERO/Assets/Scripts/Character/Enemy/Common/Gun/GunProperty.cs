@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GunProperty : MonoBehaviour
 {
-
     private Animator _animator;
     private CommonEnemyController _controller;
     private Rigidbody2D _rigid;
@@ -57,6 +56,8 @@ public class GunProperty : MonoBehaviour
         _animator.SetBool( _controller.PrevState, false );
         _animator.SetTrigger( EnemyAnimationHash.s_Die );
         _controller.ChangeLayer( gameObject.transform, LayerMaskNumber.s_DieEnemy );
+        _controller.DrawBlood.TargetObject.Add( gameObject );
+        _controller.DrawBlood.StartDrawBlood( _controller.DrawBlood.TargetObject.Count - 1 );
 
         Vector2 reflectedDirection = (Vector2)_controller.ThisIsPlayer.gameObject.transform.position
             - (Vector2)gameObject.transform.position;
