@@ -8,11 +8,15 @@ public class GunProperty : MonoBehaviour
 
     private Animator _animator;
     private CommonEnemyController _controller;
+    private Rigidbody2D _rigid;
 
     [SerializeField]
     private GameObject _arms;
     [SerializeField]
     private GameObject _gun;
+    [SerializeField]
+    [Range( 0f, 100f )]
+    private float _pushedBackPos;
 
     public Transform TargetTransform;
     public Transform BulletSpawnPoint;
@@ -24,6 +28,7 @@ public class GunProperty : MonoBehaviour
     {
         _animator = GetComponentInChildren<Animator>();
         _controller = GetComponent<CommonEnemyController>();
+        _rigid = GetComponent<Rigidbody2D>();
 
         _controller.ThisEnemyType = Enemy.CommonEnemyType.Gun;
     }
@@ -52,6 +57,12 @@ public class GunProperty : MonoBehaviour
         _animator.SetBool( _controller.PrevState, false );
         _animator.SetTrigger( EnemyAnimationHash.s_Die );
         _controller.ChangeLayer( gameObject.transform, LayerMaskNumber.s_DieEnemy );
+
+        Vector2 reflectedDirection = (Vector2)_controller.ThisIsPlayer.gameObject.transform.position
+            - (Vector2)gameObject.transform.position;
+        Vector2 normal = -reflectedDirection.normalized;
+
+        _rigid.AddForce( normal  * _pushedBackPos, ForceMode2D.Impulse );
     }
 
     private void TakeAim()

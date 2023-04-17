@@ -8,7 +8,6 @@ public class WallSlideStateBehaviour : PlayerState
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         wallParticle.Play();
-        Debug.Log( wallParticle );
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

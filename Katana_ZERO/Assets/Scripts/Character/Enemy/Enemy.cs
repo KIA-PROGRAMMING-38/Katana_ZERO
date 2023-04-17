@@ -8,6 +8,8 @@ public abstract class Enemy : NonPlayableChacter
     public Transform TargetTransform;
     public Animator BodyAnimator;
 
+    public GameObject ThisIsPlayer;
+
     [Header( "Basic Controller" )]
     public float FacingDirection;
     public bool FlipIsRight;

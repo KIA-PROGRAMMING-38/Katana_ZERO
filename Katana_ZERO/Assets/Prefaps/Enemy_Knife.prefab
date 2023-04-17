@@ -329,7 +329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6772837828536875298
 Transform:
   m_ObjectHideFlags: 0
@@ -384,6 +384,7 @@ MonoBehaviour:
   rigid: {fileID: 6772837828536875303}
   TargetTransform: {fileID: 0}
   BodyAnimator: {fileID: 6772837827576453858}
+  ThisIsPlayer: {fileID: 0}
   FacingDirection: 1
   FlipIsRight: 1
   OnDamageable: 0
@@ -398,7 +399,7 @@ MonoBehaviour:
   - {fileID: 0}
   idleMaxSec: 5
   idleMinSec: 3
-  attackCooltime: 0.8
+  attackCooltime: 0.5
   isShot: 0
   TrackActive: 0
   AttackActive: 0
@@ -415,6 +416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f02f5cfa6fe4ede41aea1abdcf9e8d11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pushedBackPos: 2.5
 --- !u!70 &1371963832
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

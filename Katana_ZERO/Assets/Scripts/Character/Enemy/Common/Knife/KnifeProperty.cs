@@ -7,6 +7,10 @@ public class KnifeProperty : MonoBehaviour
     private CommonEnemyController _controller;
     private Rigidbody2D _rigid;
 
+    [SerializeField]
+    [Range(0f,100f)]
+    private float _pushedBackPos;
+
     private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
@@ -26,10 +30,15 @@ public class KnifeProperty : MonoBehaviour
     {
         if ( onDamageable )
         {
-            _rigid.velocity = Vector2.zero;
             _controller.BodyAnimator.SetBool( _controller.PrevState, false );
             _controller.BodyAnimator.SetTrigger( EnemyAnimationHash.s_Die );
             _controller.ChangeLayer( gameObject.transform, LayerMaskNumber.s_DieEnemy );
+
+            Vector2 reflectedDirection = (Vector2)_controller.ThisIsPlayer.gameObject.transform.position
+                - (Vector2)gameObject.transform.position;
+            Vector2 normal = -reflectedDirection.normalized;
+
+            _rigid.AddForce( normal  * _pushedBackPos, ForceMode2D.Impulse );
         }
         else
         {

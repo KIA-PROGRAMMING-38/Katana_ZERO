@@ -7,7 +7,7 @@ public class EnemyColliderSensor : MonoBehaviour
 {
     private void OnTriggerEnter2D( Collider2D collision )
     {
-        if ( collision.CompareTag( TagLiteral.PLAYER_KATANA_EFFECT ) )
+        if ( collision.CompareTag( TagLiteral.PLAYER_KATANA_EFFECT ) || collision.CompareTag(TagLiteral.BULLET) )
         {
             transform.root.SendMessage( FuncLiteral.OnDamaged );
         }
