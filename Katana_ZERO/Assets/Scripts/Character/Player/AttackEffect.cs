@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class AttackEffect : MonoBehaviour
 {
-    [SerializeField] private Transform _targetPos;
-    [SerializeField] private Transform _collisionPos;
+    [SerializeField] 
+    private Transform _targetPos;
+    [SerializeField] 
     private PlayerData _data;
+    [SerializeField]
+    private OutSideEffect _outSideEffect;
 
-    public SpriteRenderer SpriteRenderer;
-
-    private void Awake()
+    private void Update()
     {
-        _data = GetComponentInParent<PlayerData>();
-        SpriteRenderer = GetComponent<SpriteRenderer>();
+        transform.position = _data.transform.position;
     }
 
     private void OnTriggerEnter2D( Collider2D collision )
     {
-        if (collision.gameObject.layer == LayerMaskNumber.s_ColliderSensor )
+        if (collision.gameObject.layer == LayerMaskNumber.s_EnemyColliderSensor )
         {
-            // 화면에서 타격 이펙트 호출
+            _outSideEffect.ActivateEffect();
         }
     }
 
@@ -27,11 +27,11 @@ public class AttackEffect : MonoBehaviour
     {
         if ( _data.CursorDirection.x > 0f )
         {
-            transform.localRotation = Quaternion.Euler( 0f, 0f, _data.AttackAngle );
+            transform.rotation = Quaternion.Euler( 0f, 0f, _data.AttackAngle );
         }
         else
         {
-            transform.localRotation = Quaternion.Euler( 180f, 180f, -_data.AttackAngle );
+            transform.rotation = Quaternion.Euler( 180f, 0f, -_data.AttackAngle );
         }
     }
 }

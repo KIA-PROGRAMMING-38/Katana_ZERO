@@ -8,6 +8,7 @@ public class PlayerState : StateMachineBehaviour
     protected Rigidbody2D rigid;
     protected ParticleSystem footParticle;
     protected ParticleSystem wallParticle;
+    protected EffectManager effectManager;
 
     public override void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
@@ -16,6 +17,7 @@ public class PlayerState : StateMachineBehaviour
         controller = animator.GetComponent<PlayerController>();
         rigid = animator.GetComponent<Rigidbody2D>();
 
+        effectManager = controller.EffectManager.GetComponent<EffectManager>();
         footParticle = controller.FootParticle.GetComponent<ParticleSystem>();
         wallParticle = controller.WallParticle.GetComponent<ParticleSystem>();
     }

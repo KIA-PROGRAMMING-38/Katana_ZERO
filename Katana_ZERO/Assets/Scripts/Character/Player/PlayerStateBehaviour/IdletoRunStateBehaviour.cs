@@ -6,6 +6,8 @@ public class IdletoRunStateBehaviour : PlayerState
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
+
+        footParticle.Play();
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -39,5 +41,7 @@ public class IdletoRunStateBehaviour : PlayerState
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit(animator, stateInfo, layerIndex);
+
+        footParticle.Stop();
     }
 }

@@ -23,11 +23,11 @@ TagManager:
   - Bullet
   - ReflectedBullet
   - EnemyWeapon
-  - ColliderSensor
+  - EnemyColliderSensor
   - ImmunityState
   - Obstacles
-  - 
-  - 
+  - Effect
+  - PlayerColliderSensor
   - 
   - 
   - 

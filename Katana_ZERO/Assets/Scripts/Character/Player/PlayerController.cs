@@ -8,8 +8,7 @@ public class PlayerController : Character
     public event Action OnIllusionEffect;
 
     public GameObject Illusion;
-
-    
+    public GameObject EffectManager;
 
     public GameObject FootParticle;
     public GameObject WallParticle;

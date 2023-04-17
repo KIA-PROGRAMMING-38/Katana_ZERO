@@ -33,6 +33,8 @@ public class KnifeProperty : MonoBehaviour
             _controller.BodyAnimator.SetBool( _controller.PrevState, false );
             _controller.BodyAnimator.SetTrigger( EnemyAnimationHash.s_Die );
             _controller.ChangeLayer( gameObject.transform, LayerMaskNumber.s_DieEnemy );
+            _controller.DrawBlood.TargetObject.Add( gameObject );
+            _controller.DrawBlood.StartDrawBlood( _controller.DrawBlood.TargetObject.Count - 1 );
 
             Vector2 reflectedDirection = (Vector2)_controller.ThisIsPlayer.gameObject.transform.position
                 - (Vector2)gameObject.transform.position;
