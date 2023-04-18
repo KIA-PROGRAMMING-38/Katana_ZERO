@@ -1282,7 +1282,6 @@ GameObject:
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
-  - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1428,24 +1427,6 @@ MonoBehaviour:
   _targetTransform: {fileID: 1721604750}
   _offsetY: 0.5
   _offsetZ: -10
---- !u!114 &519420035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dd2877d34ea04d409f314505d360878, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  captureWidth: 1280
-  captureHeight: 720
-  captureFrameRate: 30
-  outputFolder: 
-  currentString: 
-  fileName: ScreenRecording.mp4
 --- !u!1 &528428945
 GameObject:
   m_ObjectHideFlags: 0
