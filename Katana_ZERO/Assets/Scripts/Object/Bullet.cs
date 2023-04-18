@@ -61,7 +61,6 @@ public class Bullet : MonoBehaviour
             float reflectAngle = Mathf.Atan2
             ( reflectedDirection.y, reflectedDirection.x ) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler( 0f, 0f, reflectAngle );
-
         }
     }
 }
