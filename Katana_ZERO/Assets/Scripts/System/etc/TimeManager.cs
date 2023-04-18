@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    public event Action OnActiveSlowTime;
+    public event Action DeActiveSlowTime;
+
     [SerializeField]
     private GameObject _slowTimeEffectPanel;
     [SerializeField]
@@ -38,12 +41,14 @@ public class TimeManager : MonoBehaviour
         if ( (Input.GetKeyUp( KeyCode.LeftShift ) || _elapsedTime <= 0f) && _isPressed )
         {
             EndCoroutine();
+            DeActiveSlowTime?.Invoke();
             _isPressed = false;
         }
 
         if ( Input.GetKeyDown( KeyCode.LeftShift ) && _elapsedTime >= 0f && !_isPressed )
         {
             StartCouroutine();
+            OnActiveSlowTime?.Invoke();
             _isPressed = true;
         } 
 
@@ -54,6 +59,7 @@ public class TimeManager : MonoBehaviour
             if ( _elapsedTime <= 0f )
             {
                 EndCoroutine();
+                DeActiveSlowTime?.Invoke();
                 _isPressed = false;
             }
         }
