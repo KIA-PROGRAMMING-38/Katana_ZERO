@@ -7,6 +7,8 @@ public class TimeManager : MonoBehaviour
     public event Action OnActiveSlowTime;
     public event Action DeActiveSlowTime;
 
+    public event Action AllUsedSlowTime;
+
     public float RemainingTime = 100f;
 
     [SerializeField]
@@ -19,18 +21,18 @@ public class TimeManager : MonoBehaviour
     private IEnumerator _initialCoroutine;
     private IEnumerator _endCoroutine;
 
-    private float _elapsedTime;
 
     // InGame Default Value = 8sec;
     [SerializeField]
     [Range(0f, 10f)]
-    private float _maxElapsedTime;
+    public float MaxElapsedTime;
 
-    private bool _isPressed;
+    public float PossibleSlowTime;
+    public bool IsPressed;
 
     private void Awake()
     {
-        _elapsedTime = _maxElapsedTime;
+        PossibleSlowTime = MaxElapsedTime;
     }
 
     private void Update()
@@ -39,37 +41,38 @@ public class TimeManager : MonoBehaviour
 
         RemainingTime -= elapsedTime;
 
-        if ( _elapsedTime >= _maxElapsedTime )
-            _elapsedTime = _maxElapsedTime;
+        if ( PossibleSlowTime >= MaxElapsedTime )
+            PossibleSlowTime = MaxElapsedTime;
 
-        if ( (Input.GetKeyUp( KeyCode.LeftShift ) || _elapsedTime <= 0f) && _isPressed )
+        if ( (Input.GetKeyUp( KeyCode.LeftShift ) || PossibleSlowTime <= 0f) && IsPressed )
         {
             EndCoroutine();
             DeActiveSlowTime?.Invoke();
-            _isPressed = false;
+            IsPressed = false;
         }
 
-        if ( Input.GetKeyDown( KeyCode.LeftShift ) && _elapsedTime >= 0f && !_isPressed )
+        if ( Input.GetKeyDown( KeyCode.LeftShift ) && PossibleSlowTime >= 0f && !IsPressed )
         {
             StartCouroutine();
             OnActiveSlowTime?.Invoke();
-            _isPressed = true;
+            IsPressed = true;
         } 
 
-        if ( Input.GetKey( ( KeyCode.LeftShift ) ) && _elapsedTime >= 0f && _isPressed )
+        if ( Input.GetKey( ( KeyCode.LeftShift ) ) && PossibleSlowTime >= 0f && IsPressed )
         {
-            _elapsedTime -= elapsedTime;
+            PossibleSlowTime -= elapsedTime;
 
-            if ( _elapsedTime <= 0f )
+            if ( PossibleSlowTime <= 0f )
             {
                 EndCoroutine();
                 DeActiveSlowTime?.Invoke();
-                _isPressed = false;
+                AllUsedSlowTime?.Invoke();
+                IsPressed = false;
             }
         }
         else
-        {
-            _elapsedTime += elapsedTime;
+        {   
+            PossibleSlowTime += elapsedTime;
         }
     }
 
