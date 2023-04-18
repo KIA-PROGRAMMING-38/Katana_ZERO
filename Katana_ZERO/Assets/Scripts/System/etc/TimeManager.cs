@@ -7,6 +7,8 @@ public class TimeManager : MonoBehaviour
     public event Action OnActiveSlowTime;
     public event Action DeActiveSlowTime;
 
+    public float RemainingTime = 100f;
+
     [SerializeField]
     private GameObject _slowTimeEffectPanel;
     [SerializeField]
@@ -34,6 +36,8 @@ public class TimeManager : MonoBehaviour
     private void Update()
     {
         float elapsedTime = Time.unscaledDeltaTime;
+
+        RemainingTime -= elapsedTime;
 
         if ( _elapsedTime >= _maxElapsedTime )
             _elapsedTime = _maxElapsedTime;
