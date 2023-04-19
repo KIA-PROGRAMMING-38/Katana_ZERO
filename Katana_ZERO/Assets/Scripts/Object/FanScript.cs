@@ -53,7 +53,7 @@ public class FanScript : MonoBehaviour
 
     private void CaptureSlowTime()
     {
-        _anim.speed = 1f;
+        _anim.speed = 2f;
         _isSlowTime = true;
     }
 

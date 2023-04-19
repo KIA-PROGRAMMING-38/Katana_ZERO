@@ -1,5 +1,6 @@
 using LiteralRepository;
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -9,9 +10,14 @@ public class PlayerController : Character
 
     public GameObject Illusion;
     public GameObject EffectManager;
+    private EffectManager _effectManager;
 
     public GameObject FootParticle;
     public GameObject WallParticle;
+
+    [SerializeField]
+    [Range( 0f, 1f )]
+    private float _delayLaserDeathTime;
 
     private PlayerInput _input;
     private PlayerData _data;
@@ -21,11 +27,17 @@ public class PlayerController : Character
     public event Action<bool> ExistAroundItem;
     public event Action AlreadyHaveItem;
 
+    private IEnumerator _delayDeathEffectCoroutine;
+  
+    private WaitForSeconds _delayLaserDeathEffectTime;
+
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
         _data = GetComponent<PlayerData>();
         _rigid = GetComponent<Rigidbody2D>();
+        _effectManager = EffectManager.GetComponent<EffectManager>();
+        _delayLaserDeathEffectTime = new WaitForSeconds( _delayLaserDeathTime );
     }
 
     private void FixedUpdate()
@@ -177,6 +189,25 @@ public class PlayerController : Character
     public void ActiveAfterImage()
     {
         OnIllusionEffect?.Invoke();
+    }
+
+    public void Burn()
+    {
+        if ( _delayDeathEffectCoroutine != null )
+        {
+            StopCoroutine( _delayDeathEffectCoroutine );
+        }
+
+        _delayDeathEffectCoroutine = DelayDeathEffect();
+        StartCoroutine( _delayDeathEffectCoroutine );
+    }
+
+    private IEnumerator DelayDeathEffect()
+    {
+        yield return _delayLaserDeathEffectTime;
+
+        _effectManager.PlayLaserBurnEffect( transform.root , gameObject.GetComponent<SpriteRenderer>() );
+        gameObject.SetActive( false );
     }
 }
 
