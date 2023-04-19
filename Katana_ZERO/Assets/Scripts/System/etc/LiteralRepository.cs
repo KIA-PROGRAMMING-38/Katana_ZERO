@@ -139,6 +139,7 @@ namespace LiteralRepository
     {
         public const string OnDamaged = "OnDamaged";
         public const string Release = "Release";
+        public const string Burn = "Burn";
     }
 }
 

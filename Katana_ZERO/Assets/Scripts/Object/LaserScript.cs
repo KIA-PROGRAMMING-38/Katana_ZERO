@@ -13,10 +13,13 @@ public class LaserScript : MonoBehaviour
 
     private void OnTriggerEnter2D( Collider2D collision )
     {
-        if ( collision.gameObject.layer == LayerMaskNumber.s_EnemyColliderSensor ||
-            collision.gameObject.layer == LayerMaskNumber.s_PlayerColliderSensor )
+        if ( collision.gameObject.layer == LayerMaskNumber.s_Enemy ||
+            collision.gameObject.layer == LayerMaskNumber.s_Player )
         {
-            collision.gameObject.transform.root.SendMessage( FuncLiteral.OnDamaged );
+            if ( collision != null )
+            {
+                collision.gameObject.transform.root.SendMessage( FuncLiteral.Burn );
+            }
         }
     }
 }

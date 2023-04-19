@@ -1,17 +1,20 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DieLaserEffect : MonoBehaviour
 {
     [SerializeField] private Renderer _renderer;
-    [SerializeField] private Material _mtrlOrg;
     [SerializeField] private Material _mtrlPhase;
-    [SerializeField] private float _fadeTime;
+    [SerializeField][Range(0f,20f)] 
+    private float _fadeTime;
 
+    public float SetActiveFalseTime;
 
     private ParticleSystem _particle;
-    public SpriteRenderer _sprite;
+    private SpriteRenderer _sprite;
+    private WaitForSeconds _setActiveFalseTimer;
+
+    private IEnumerator _setActiveFalseCoroutine;
 
     private void Awake()
     {
@@ -19,7 +22,9 @@ public class DieLaserEffect : MonoBehaviour
         _sprite = GetComponent<SpriteRenderer>();
         _renderer = GetComponent<Renderer>();
         _renderer.material = _mtrlPhase;
-        
+        _setActiveFalseTimer = new WaitForSeconds( SetActiveFalseTime );
+
+
         gameObject.SetActive( false );
     }
 
@@ -27,10 +32,29 @@ public class DieLaserEffect : MonoBehaviour
     {
         _particle.Play();
         Dofade( 0.18f, -3f, _fadeTime );
+
+        SetCoroutine();
     }
 
+    private void SetCoroutine()
+    {
+        if ( _setActiveFalseCoroutine != null )
+        {
+            StopCoroutine( _setActiveFalseCoroutine );
+        }
 
-    void Dofade(float start, float dest, float time)
+        _setActiveFalseCoroutine = SetActiveFalse();
+        StartCoroutine( _setActiveFalseCoroutine );
+    }
+
+    private IEnumerator SetActiveFalse()
+    {
+        yield return _setActiveFalseTimer;
+
+        gameObject.SetActive( false );
+    }
+
+    private void Dofade(float start, float dest, float time)
     {
         iTween.ValueTo( gameObject, iTween.Hash( "from", start, "to", dest, "time", time,
             "onupdatetarget", gameObject, 
@@ -38,7 +62,7 @@ public class DieLaserEffect : MonoBehaviour
             "easetype", iTween.EaseType.easeInOutCubic ) );
     }
 
-    void TweenOnUpdate(float value)
+    private void TweenOnUpdate(float value)
     {
         _renderer.material.SetFloat( "_SplitValue", value );
     }
