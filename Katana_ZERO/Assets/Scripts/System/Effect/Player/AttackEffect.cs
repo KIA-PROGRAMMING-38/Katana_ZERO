@@ -13,6 +13,11 @@ public class AttackEffect : MonoBehaviour
     private void Update()
     {
         transform.position = _data.transform.position;
+
+        if ( _data.gameObject.activeSelf == false )
+        {
+            gameObject.SetActive( false );
+        }
     }
 
     private void OnTriggerEnter2D( Collider2D collision )
