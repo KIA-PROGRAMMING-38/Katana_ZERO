@@ -1,5 +1,6 @@
 using LiteralRepository;
 using UnityEngine;
+using Util;
 
 public class AttackEffect : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class AttackEffect : MonoBehaviour
     [SerializeField] 
     private PlayerData _data;
     [SerializeField]
-    private OutSideEffect _outSideEffect;
+    private LinearEffectController _linearEffectController;
 
     private void Update()
     {
@@ -22,9 +23,10 @@ public class AttackEffect : MonoBehaviour
 
     private void OnTriggerEnter2D( Collider2D collision )
     {
-        if (collision.gameObject.layer == LayerMaskNumber.s_EnemyColliderSensor )
+        if ( collision.gameObject.layer == LayerMaskNumber.s_DieEnemy ||
+            collision.gameObject.layer == LayerMaskNumber.s_EnemyColliderSensor )
         {
-            _outSideEffect.ActivateEffect();
+            _linearEffectController.PlayEffect( collision.transform );
         }
     }
 

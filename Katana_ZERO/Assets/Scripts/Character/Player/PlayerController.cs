@@ -38,6 +38,7 @@ public class PlayerController : Character
         _rigid = GetComponent<Rigidbody2D>();
         _effectManager = EffectManager.GetComponent<EffectManager>();
         _delayLaserDeathEffectTime = new WaitForSeconds( _delayLaserDeathTime );
+
     }
 
     private void FixedUpdate()

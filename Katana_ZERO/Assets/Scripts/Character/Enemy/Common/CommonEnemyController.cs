@@ -9,7 +9,7 @@ public class CommonEnemyController : Enemy
 
     public DrawBlood DrawBlood;
     public ImpactBlood ImpactBlood;
-    public OutSideEffect OutsideEffect;
+    public LinearEffectController LinearEffectController;
 
     [Header( "Speed" )]
     public float walkSpeed;

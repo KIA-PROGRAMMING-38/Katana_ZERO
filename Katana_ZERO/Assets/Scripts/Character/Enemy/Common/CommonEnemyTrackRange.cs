@@ -14,7 +14,7 @@ public class CommonEnemyTrackRange : MonoBehaviour
 
     private void OnTriggerStay2D( Collider2D collision )
     {
-        if ( TargetObject == null && collision.CompareTag( TagLiteral.PLAYER ) )
+        if ( TargetObject == null && collision.gameObject.layer == LayerMaskNumber.s_PlayerColliderSensor )
         {
             TargetObject = collision.transform.root;
             _controller.TrackActive = true;

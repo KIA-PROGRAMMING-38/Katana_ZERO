@@ -1,7 +1,7 @@
 using LiteralRepository;
 using System;
 using UnityEngine;
-using UnityEngine.Pool;
+using Util.Pool;
 
 public class GunProperty : MonoBehaviour
 {
@@ -19,10 +19,10 @@ public class GunProperty : MonoBehaviour
 
     public Transform TargetTransform;
     public Transform BulletSpawnPoint;
-    public GameObject BulletPrefap;
+    public Bullet BulletPrefab;
 
     private Vector2 _trackVec;
-    private IObjectPool<Bullet> _pool;
+    private ObjectPool<Bullet> _bulletPool;
 
     private void Awake()
     {
@@ -31,6 +31,39 @@ public class GunProperty : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
 
         _controller.ThisEnemyType = Enemy.CommonEnemyType.Gun;
+
+        Initialized();
+    }
+
+    private void Initialized()
+    {
+        _bulletPool = new ObjectPool<Bullet>
+            ( CreateInstantiate, OnGetBullet, OnReleaseBullet, OnDestroyBullet );
+    }
+
+
+    private Bullet CreateInstantiate()
+    {
+        Bullet bullet = Bullet.Instantiate( BulletPrefab );
+        bullet.SetPoolReference( _bulletPool );
+        bullet.gameObject.SetActive( false );
+
+        return bullet;
+    }
+
+    private void OnGetBullet( Bullet bullet )
+    {
+        bullet.gameObject.SetActive( true );
+    }
+
+    private void OnReleaseBullet( Bullet bullet )
+    {
+        bullet.gameObject.SetActive( false );
+    }
+
+    private void OnDestroyBullet( Bullet bullet )
+    {
+        Destroy( bullet.gameObject );
     }
 
     private void Start()
@@ -80,10 +113,9 @@ public class GunProperty : MonoBehaviour
 
         BulletSpawnPoint.rotation = Quaternion.Euler( 0f, 0f, AttackAngle );
 
-        GameObject shootBullet = Instantiate( BulletPrefap );
-        Rigidbody bulletRigid = shootBullet.GetComponent<Rigidbody>();
-        shootBullet.transform.position = BulletSpawnPoint.position;
-        shootBullet.transform.rotation = BulletSpawnPoint.rotation;
+        Bullet bullet = _bulletPool.Get();
+        bullet.transform.position = BulletSpawnPoint.position;
+        bullet.transform.rotation = BulletSpawnPoint.rotation;
 
         _controller.isShot = false;
     }
