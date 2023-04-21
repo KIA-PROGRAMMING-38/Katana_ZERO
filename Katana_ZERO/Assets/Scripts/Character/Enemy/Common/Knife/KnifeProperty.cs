@@ -30,6 +30,7 @@ public class KnifeProperty : MonoBehaviour
     {
         if ( onDamageable )
         {
+            _controller.rigid.velocity = Vector2.zero;
             _controller.BodyAnimator.SetBool( _controller.PrevState, false );
             _controller.BodyAnimator.SetTrigger( EnemyAnimationHash.s_Die );
             _controller.ChangeLayer( gameObject.transform, LayerMaskNumber.s_DieEnemy );
