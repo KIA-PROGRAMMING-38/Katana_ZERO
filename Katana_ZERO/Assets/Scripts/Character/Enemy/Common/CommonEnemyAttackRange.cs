@@ -12,7 +12,7 @@ public class CommonEnemyAttackRange : MonoBehaviour
 
     private void OnTriggerStay2D( Collider2D collision )
     {
-        if ( collision.CompareTag( TagLiteral.PLAYER ) )
+        if ( collision.gameObject.layer == LayerMaskNumber.s_PlayerColliderSensor )
         {
             _controller.AttackActive = true;
         }
@@ -20,7 +20,7 @@ public class CommonEnemyAttackRange : MonoBehaviour
 
     private void OnTriggerExit2D( Collider2D collision )
     {
-        if ( collision.CompareTag( TagLiteral.PLAYER ) )
+        if ( collision.gameObject.layer == LayerMaskNumber.s_PlayerColliderSensor )
         {
             _controller.AttackActive = false;
         }

@@ -1,5 +1,6 @@
 using Unity.Collections;
 using UnityEngine;
+using Util;
 
 public class PlayerData : MonoBehaviour
 {
@@ -62,10 +63,13 @@ public class PlayerData : MonoBehaviour
 
     private void FixedUpdate()
     {
+        GlobalData.PlayerTransform = gameObject.transform;
+        GlobalData.PlayerGameObject = gameObject;
+
         MoveVec = new Vector2( _input.PrimitiveMoveVec.x * _moveSpeed, _rigid.velocity.y );
-        CursorDirection = _input.PrimitiveMouseWorldPos - (Vector2)transform.position;
-        AttackAngle = Mathf.Atan2
-            ( CursorDirection.y, CursorDirection.x ) * Mathf.Rad2Deg;
+
+        CursorDirection = GlobalData.GetDirectionBetweenTargetToMouse( transform.position );
+        AttackAngle = GlobalData.GetAngleBetweenPlayerToMouse( transform.position );
 
         if ( CursorDirection.x > 0f )
         {

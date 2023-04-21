@@ -18,6 +18,7 @@ namespace Util.Pool
 
         public int CountAll { get; private set; }
         public int CountInactive => _pool.Count;
+       
         public int CountActive => CountAll - CountInactive;
         public ObjectPool(Func<T> createFunc,
             Action<T> actionOnGet = null,

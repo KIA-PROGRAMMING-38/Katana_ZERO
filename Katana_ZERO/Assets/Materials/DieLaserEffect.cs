@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Util.Pool;
 
 public class DieLaserEffect : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class DieLaserEffect : MonoBehaviour
     private WaitForSeconds _setActiveFalseTimer;
 
     private IEnumerator _setActiveFalseCoroutine;
+    private IObjectPool<DieLaserEffect> _pool;
 
     private void Awake()
     {
@@ -65,5 +67,10 @@ public class DieLaserEffect : MonoBehaviour
     private void TweenOnUpdate(float value)
     {
         _renderer.material.SetFloat( "_SplitValue", value );
+    }
+
+    public void SetPoolRef( IObjectPool<DieLaserEffect> pool )
+    {
+        _pool = pool;
     }
 }
