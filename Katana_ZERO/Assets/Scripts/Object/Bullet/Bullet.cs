@@ -1,7 +1,7 @@
 using LiteralRepository;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
-using Util.Pool;
+using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
@@ -9,25 +9,23 @@ public class Bullet : MonoBehaviour
     [Range(3f, 20f)]
     public float _bulletSpeed = 10f;
     private Rigidbody2D _rigid;
-    private Vector2 _velocity;
 
-    private ObjectPool<Bullet> _pool;
+    private IObjectPool<Bullet> _pool;
+
 
     private void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
+    private void Update()
     {
-        Initialize();
-
-        _rigid.velocity = _velocity;
+        _rigid.velocity = transform.right * _bulletSpeed;
     }
 
-    private void Initialize() => _velocity = transform.right * _bulletSpeed;
-    public void SetPoolReference( ObjectPool<Bullet> pool ) => _pool = pool;
+    public void SetPoolReference( IObjectPool<Bullet> pool ) => _pool = pool;
     public void Release() => _pool.Release( this );
+
 
     private void OnTriggerEnter2D( Collider2D collision )
     {

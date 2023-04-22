@@ -1,7 +1,7 @@
 using LiteralRepository;
 using System;
 using UnityEngine;
-using Util.Pool;
+using UnityEngine.Pool;
 
 public class GunProperty : MonoBehaviour
 {
@@ -22,7 +22,7 @@ public class GunProperty : MonoBehaviour
     public Bullet BulletPrefab;
 
     private Vector2 _trackVec;
-    private ObjectPool<Bullet> _bulletPool;
+    private IObjectPool<Bullet> _bulletPool;
 
     private void Awake()
     {
@@ -46,7 +46,6 @@ public class GunProperty : MonoBehaviour
     {
         Bullet bullet = Bullet.Instantiate( BulletPrefab );
         bullet.SetPoolReference( _bulletPool );
-        bullet.gameObject.SetActive( false );
 
         return bullet;
     }

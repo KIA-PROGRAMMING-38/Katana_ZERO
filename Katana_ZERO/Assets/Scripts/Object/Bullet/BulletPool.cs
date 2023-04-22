@@ -22,7 +22,7 @@ public class BulletPool
     private Bullet CreateBullet()
     {
         Bullet bullet = Object.Instantiate( _bulletPrefab );
-        bullet.SetPoolReference( _bulletPool );
+        // bullet.SetPoolReference( _bulletPool );
 
         return bullet;
     }
