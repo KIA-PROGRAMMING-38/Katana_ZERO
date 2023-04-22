@@ -56,7 +56,10 @@ public class PlayerController : Character
 
     public void HorizontalMovement()
     {
-        _rigid.velocity = _data.MoveVec;
+        if ( _data.OnGround )
+        {
+            _rigid.velocity = new Vector2( _data.MoveVec.x, 0f );
+        }
     }
 
     public void Jump()

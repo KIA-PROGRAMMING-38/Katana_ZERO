@@ -20,7 +20,8 @@ public abstract class Enemy : NonPlayableChacter
     public enum CommonEnemyType
     {
         Knife,
-        Gun
+        Gun,
+        Grunt
     }
 
     public enum BossEnemyType

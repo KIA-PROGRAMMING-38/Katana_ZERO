@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 6583524169975040532}
   - component: {fileID: 6583524169975040533}
   - component: {fileID: 6583524169975040534}
-  m_Layer: 13
+  m_Layer: 8
   m_Name: TrackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.4, y: 1.6}
+  m_Offset: {x: 2.29, y: 1.42}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -118,7 +118,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 2}
+  m_Size: {x: 3.71, y: 1.4}
   m_EdgeRadius: 0
 --- !u!114 &6583524169975040534
 MonoBehaviour:
@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 6583524171582803734}
   - component: {fileID: 6583524171582803735}
   - component: {fileID: 6583524171582803736}
-  m_Layer: 13
+  m_Layer: 8
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,7 +603,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.4, y: 1.6}
+  m_Offset: {x: 2.08, y: 1.45}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -614,7 +614,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6, y: 6}
+  m_Size: {x: 3.06, y: 3.25}
   m_EdgeRadius: 0
 --- !u!114 &6583524171582803736
 MonoBehaviour:
@@ -680,7 +680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6583524171885452729
 Transform:
   m_ObjectHideFlags: 0
@@ -690,7 +690,7 @@ Transform:
   m_GameObject: {fileID: 6583524171885452725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.891, y: -0.179, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6583524170777914623}
@@ -735,11 +735,15 @@ MonoBehaviour:
   rigid: {fileID: 6583524171885452728}
   TargetTransform: {fileID: 0}
   BodyAnimator: {fileID: 6583524170777914560}
-  FacingDirection: 1
-  FlipIsRight: 1
+  ThisIsPlayer: {fileID: 0}
+  FacingDirection: -1
+  FlipIsRight: 0
   OnDamageable: 0
   PrevState: 0
   NextState: 0
+  DrawBlood: {fileID: 0}
+  ImpactBlood: {fileID: 0}
+  LinearEffectController: {fileID: 0}
   walkSpeed: 1
   runSpeed: 2
   patrolMaxSec: 7
@@ -753,7 +757,7 @@ MonoBehaviour:
   isShot: 0
   TrackActive: 0
   AttackActive: 0
-  ThisEnemyType: 0
+  ThisEnemyType: 1
 --- !u!114 &6583524171885452730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -768,9 +772,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arms: {fileID: 6583524171589088938}
   _gun: {fileID: 6583524170128713559}
+  _pushedBackPos: 5
   TargetTransform: {fileID: 0}
   BulletSpawnPoint: {fileID: 6583524171544433596}
-  BulletPrefap: {fileID: 3723697195642242561, guid: b5a931300bbc2bb449d2bfceffa16c6a, type: 3}
+  BulletPrefab: {fileID: 3723697195642242562, guid: b5a931300bbc2bb449d2bfceffa16c6a, type: 3}
 --- !u!70 &629160108
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
