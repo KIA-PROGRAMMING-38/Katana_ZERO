@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Util.Pool;
+using UnityEngine.Pool;
 
 public class LinearEffect : MonoBehaviour
 {
     private IObjectPool<LinearEffect> _pool;
+    private Rigidbody2D _rigid;
 
     public void SetPoolReference(IObjectPool<LinearEffect> pool)
     {

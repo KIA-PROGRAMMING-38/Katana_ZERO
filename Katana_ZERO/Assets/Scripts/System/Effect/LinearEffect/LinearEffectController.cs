@@ -1,6 +1,6 @@
 using UnityEngine;
 using Util;
-using Util.Pool;
+using UnityEngine.Pool;
 
 public class LinearEffectController : EffectController
 {
@@ -8,7 +8,7 @@ public class LinearEffectController : EffectController
     [SerializeField]
     private LinearEffect _linearPrefabs;
 
-    public ObjectPool<LinearEffect> _linearEffectPool;
+    public IObjectPool<LinearEffect> _linearEffectPool;
 
     private void Awake()
     {
@@ -48,7 +48,6 @@ public class LinearEffectController : EffectController
     {
         LinearEffect linearEffect = LinearEffect.Instantiate( _linearPrefabs );
         linearEffect.SetPoolReference( _linearEffectPool );
-        linearEffect.gameObject.SetActive( false );
 
         return linearEffect;
     }
