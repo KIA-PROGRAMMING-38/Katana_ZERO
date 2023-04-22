@@ -11,7 +11,7 @@ namespace Util
         public static Vector2 MouseScreenPos => _mouseScreenPos;
         private static Vector2 _mouseScreenPos;
 
-        public static Vector2 mouseWorldPos => _mouseWorldPos;
+        public static Vector2 MouseWorldPos => _mouseWorldPos;
         private static Vector2 _mouseWorldPos;
 
         private static Camera _mainCamera;

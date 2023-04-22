@@ -33,7 +33,7 @@ public class CommonEnemyWalkState : CommonEnemyState
             ChangeState( animator, EnemyAnimationHash.s_Walk, EnemyAnimationHash.s_Idle );
         }
 
-        if ( Vector2.Distance( controller.transform.position, _nextPoint ) <= 0.1f )
+        if ( Vector2.Distance( controller.transform.position, _nextPoint ) <= 0.2f )
         {
             SetNextPoint();
         }

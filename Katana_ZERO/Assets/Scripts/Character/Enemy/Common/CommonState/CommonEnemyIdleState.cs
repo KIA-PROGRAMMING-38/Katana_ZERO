@@ -24,13 +24,16 @@ public class CommonEnemyIdleState : CommonEnemyState
 
         elapsedTime += deltaTime;
 
-        if ( elapsedTime > _waitSec )
+        if ( controller.TrackActive )
         {
             ChangeState( animator, EnemyAnimationHash.s_Idle, EnemyAnimationHash.s_Walk );
         }
 
-        if ( controller.TrackActive )
+        if ( elapsedTime > _waitSec )
         {
+            if ( controller.PatrolPoints[0] == null )
+                return;
+
             ChangeState( animator, EnemyAnimationHash.s_Idle, EnemyAnimationHash.s_Walk );
         }
     }

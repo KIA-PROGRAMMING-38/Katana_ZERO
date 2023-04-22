@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6772837827112696082}
   - component: {fileID: 6772837827112696084}
   - component: {fileID: 814796586518679860}
-  m_Layer: 13
+  m_Layer: 8
   m_Name: AttackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 6772837827292171816}
   - component: {fileID: 6772837827292171819}
   - component: {fileID: 1687210318}
-  m_Layer: 13
+  m_Layer: 8
   m_Name: TrackRange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rigid: {fileID: 6772837828536875303}
   TargetTransform: {fileID: 0}
-  BodyAnimator: {fileID: 0}
+  BodyAnimator: {fileID: 5268789724662818563}
   ThisIsPlayer: {fileID: 0}
   FacingDirection: 1
   FlipIsRight: 1
@@ -238,7 +238,7 @@ MonoBehaviour:
   isShot: 0
   TrackActive: 0
   AttackActive: 0
-  ThisEnemyType: 0
+  ThisEnemyType: 2
 --- !u!114 &2534017846056261040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +265,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.06}
   m_Size: {x: 0.25, y: 0.47}
   m_Direction: 0
 --- !u!1 &7421354248519612895
@@ -421,7 +421,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.06}
   m_Size: {x: 0.25, y: 0.47}
   m_Direction: 0
 --- !u!114 &95722751254669438

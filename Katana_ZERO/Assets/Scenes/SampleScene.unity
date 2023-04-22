@@ -4274,11 +4274,6 @@ Transform:
   m_Father: {fileID: 1398834935}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1364373470 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5268789724662818563, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
-  m_PrefabInstance: {fileID: 4754013870694667523}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1398834934
 GameObject:
   m_ObjectHideFlags: 0
@@ -10164,6 +10159,63 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c01562db8eb488c43a06172f65ca6570, type: 3}
+--- !u!1001 &4489044534904426945
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4489044533139299562, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_Name
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.30146
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.33217466
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.009128479
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4489044533139299565, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 469701d8e4f67a84ba35954a0cf6b19c, type: 3}
 --- !u!1001 &4721539003922867457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10236,26 +10288,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1371963832, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 1371963832, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3853029568579122487, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772837827112696083, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772837827292171817, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875298, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -10304,6 +10336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Grunt
       objectReference: {fileID: 0}
+    - target: {fileID: 6772837828536875299, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875305, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
       propertyPath: DrawBlood
       value: 
@@ -10313,21 +10349,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1222911006}
     - target: {fileID: 6772837828536875305, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
-      propertyPath: BodyAnimator
-      value: 
-      objectReference: {fileID: 1364373470}
-    - target: {fileID: 6772837828536875305, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
       propertyPath: ThisIsPlayer
       value: 
       objectReference: {fileID: 1922855087}
-    - target: {fileID: 6772837828536875305, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
-      propertyPath: ThisEnemyType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772837828536875305, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
-      propertyPath: TargetTransform
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875305, guid: 228aeb9b6440ad945aaadd2f5d90baf6, type: 3}
       propertyPath: LinearEffectController
       value: 
@@ -10349,14 +10373,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6583524169975040531, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6583524171582803733, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 6583524171885452725, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
       propertyPath: m_Name
       value: Enemy_Gun
@@ -10377,22 +10393,6 @@ PrefabInstance:
       propertyPath: ThisIsPlayer
       value: 
       objectReference: {fileID: 1922855087}
-    - target: {fileID: 6583524171885452727, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: aslkdjfalsdf
-      value: 
-      objectReference: {fileID: 772348656}
-    - target: {fileID: 6583524171885452727, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: ThisEnemyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6583524171885452727, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: DrawBloodManager
-      value: 
-      objectReference: {fileID: 611817886}
-    - target: {fileID: 6583524171885452727, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: ImpactBloodManager
-      value: 
-      objectReference: {fileID: 1222911004}
     - target: {fileID: 6583524171885452727, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
       propertyPath: LinearEffectController
       value: 
@@ -10448,14 +10448,6 @@ PrefabInstance:
     - target: {fileID: 6583524171885452729, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6583524171885452730, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: BulletPrefab
-      value: 
-      objectReference: {fileID: 3723697195642242562, guid: b5a931300bbc2bb449d2bfceffa16c6a, type: 3}
-    - target: {fileID: 6583524171885452730, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
-      propertyPath: _pushedBackPos
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 166a91de1a2a1744cba392432c30fb8f, type: 3}
