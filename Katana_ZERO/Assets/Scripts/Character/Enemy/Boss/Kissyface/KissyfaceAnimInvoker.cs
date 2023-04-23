@@ -7,7 +7,6 @@ public class KissyfaceAnimInvoker : AnimationManager
 {
     [SerializeField]
     private GameObject _setActiveAttack;
-    private Animator _animator;
     private KissyfaceController _controller;
 
     public enum KissyState
@@ -41,15 +40,13 @@ public class KissyfaceAnimInvoker : AnimationManager
         StateJumpSwing = 2,
         StateSlash = 3,
         DefaultValue = 4
-
     }
 
     public static KissyState currentKissyState;
     public static RandomState nextKissyState = RandomState.DefaultValue;
 
-    private void Awake()
+    public override void Awake()
     {
-        _animator = GetComponent<Animator>();
         _controller = transform.root.GetComponent<KissyfaceController>();
     }
 
@@ -126,24 +123,24 @@ public class KissyfaceAnimInvoker : AnimationManager
         int prevStateHashCode = GetAnimationStateHash( _controller.PrevState );
         int nextStateHashCode = GetAnimationStateHash( state );
 
-        _animator.SetBool( prevStateHashCode, false );
-        _animator.SetBool( nextStateHashCode, true );
+        animator.SetBool( prevStateHashCode, false );
+        animator.SetBool( nextStateHashCode, true );
     }
     
-    private void SetAnimationTrigger( string state )
+    public override void SetAnimationTrigger( string state )
     {
         int prevStateHashCode = GetAnimationStateHash( _controller.PrevState );
 
-        _animator.SetBool( prevStateHashCode, false );
-        _animator.SetTrigger( state );
+        animator.SetBool( prevStateHashCode, false );
+        animator.SetTrigger( state );
     }
 
     private void PlayerBlockAnimation()
     {
         int prevStateHashCode = GetAnimationStateHash( _controller.PrevState );
         
-        _animator.SetBool( prevStateHashCode, false );
-        _animator.SetTrigger( KissyfaceAnimeHash.s_Block );
+        animator.SetBool( prevStateHashCode, false );
+        animator.SetTrigger( KissyfaceAnimeHash.s_Block );
     }
 
     public override int GetAnimationStateHash( int state )
@@ -215,24 +212,24 @@ public class KissyfaceAnimInvoker : AnimationManager
     }
 
     #region 애니메이션 이벤트 호출 함수
-    public override void ActiveAttack()
+    public void ActiveAttack()
     {
         _setActiveAttack.SetActive(true);
     }
 
-    public override void InActiveAttack()
+    public void InActiveAttack()
     {
         _setActiveAttack.SetActive(false);
     }
 
-    public override void InvokeThrow()
+    public void InvokeThrow()
     {
         _controller.IsThrow = true;
         _controller.IsEjection = true;
         _controller.Weapon.SetActive( true );
     }
 
-    public override void InvokeSwing()
+    public void InvokeSwing()
     {
         _controller.IsJumping = true;
         _controller.Weapon.SetActive( true );

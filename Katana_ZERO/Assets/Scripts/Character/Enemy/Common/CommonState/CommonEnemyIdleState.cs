@@ -24,6 +24,9 @@ public class CommonEnemyIdleState : CommonEnemyState
 
         elapsedTime += deltaTime;
 
+        if ( controller.ThisIsPlayer.layer == LayerMaskNumber.s_DiePlayer )
+            return;
+
         if ( controller.TrackActive )
         {
             ChangeState( animator, EnemyAnimationHash.s_Idle, EnemyAnimationHash.s_Walk );

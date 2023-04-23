@@ -14,7 +14,6 @@ public class CommonEnemyTrackRange : MonoBehaviour
 
     private void OnTriggerEnter2D( Collider2D collision )
     {
-
         if ( TargetObject == null && collision.gameObject.layer == LayerMaskNumber.s_PlayerColliderSensor )
         {
             TargetObject = collision.transform.root;

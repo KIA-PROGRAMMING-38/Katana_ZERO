@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +15,16 @@ public class UIManager : MonoBehaviour
     private Stack<Image> _alreadyUsedbatterySprite = new Stack<Image>();
     private Stack<Image> _unUsedbatterySprite = new Stack<Image>();
 
+    private float _maxSlowTimeValue = 8;
+    private float _maxBatteryCount = 11;
+
+    private float _defaultMod;
+    private float _elapsedTime;
+
     private void Awake()
     {
+        _defaultMod = _maxSlowTimeValue / _maxBatteryCount;
+
         foreach ( GameObject elem in _batteryComponents )
         {
             _unUsedbatterySprite.Push( elem.GetComponent<Image>() );
@@ -24,9 +33,7 @@ public class UIManager : MonoBehaviour
         _timeManager.AllUsedSlowTime -= UseBattery;
         _timeManager.AllUsedSlowTime += UseBattery;
     }
-
-    private float _defaultMod = 8/11f;
-    private float _elapsedTime;
+  
 
     private void Update()
     {

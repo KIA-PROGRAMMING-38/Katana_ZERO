@@ -1,11 +1,14 @@
 using UnityEngine;
 using LiteralRepository;
+using static PlayerAnimInvoker;
 
 public class RunStateBehaviour : PlayerState
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
+
+        CurrentPlayerState = PlayerAnimInvoker.PlayerState.Run;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

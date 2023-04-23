@@ -1,13 +1,14 @@
 using LiteralRepository;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static PlayerAnimInvoker;
 
 public class RunToIdleStateBehaviour : PlayerState
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
+
+        CurrentPlayerState = PlayerAnimInvoker.PlayerState.RunToIdle;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

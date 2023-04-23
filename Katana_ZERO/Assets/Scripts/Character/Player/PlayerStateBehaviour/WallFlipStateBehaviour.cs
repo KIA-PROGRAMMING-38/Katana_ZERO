@@ -1,5 +1,6 @@
 using UnityEngine;
 using LiteralRepository;
+using static PlayerAnimInvoker;
 
 public class WallFlipStateBehaviour : PlayerState
 {
@@ -9,6 +10,8 @@ public class WallFlipStateBehaviour : PlayerState
 
         rigid.velocity = new Vector2( data.WallFlipHorizontalForce * data.FacingDirection, data.WallFlipVerticalForce );
         controller.ActiveAfterImage();
+        controller.gameObject.layer = LayerMaskNumber.s_ImmunityState;
+        CurrentPlayerState = PlayerAnimInvoker.PlayerState.WallFlip;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -50,5 +53,6 @@ public class WallFlipStateBehaviour : PlayerState
         base.OnStateExit( animator, stateInfo, layerIndex );
 
         rigid.velocity = Vector2.zero;
+        controller.gameObject.layer = LayerMaskNumber.s_Player;
     }
 }

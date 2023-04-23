@@ -2,6 +2,7 @@ using LiteralRepository;
 using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Pool;
+using Util;
 
 public class Bullet : MonoBehaviour
 {
@@ -30,9 +31,16 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D( Collider2D collision )
     {
         // 바닥 혹은 플레이어와 맞닿았을 시 풀에 다시 집어넣어 줌
-        if ( collision.CompareTag( TagLiteral.FLOOR ) || collision.CompareTag( TagLiteral.PLAYER ) )
+        if ( collision.CompareTag( TagLiteral.FLOOR )  )
         {
             Release();
+        }
+
+        if ( collision.CompareTag( TagLiteral.PLAYER ))
+        {
+            Release();
+
+            GlobalData.PlayerGameObject.GetComponent<PlayerController>().OnDamaged( gameObject.transform.position );
         }
 
         // 플레이어에 의해 반사되는 총알일 경우에만 에너미에게 타격을 줄 수 있도록 설계

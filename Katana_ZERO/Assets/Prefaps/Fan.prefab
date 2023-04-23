@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 4721539003225225458}
   - component: {fileID: 4721539003225225459}
   - component: {fileID: 4721539003225225461}
-  - component: {fileID: 483958567063600261}
   - component: {fileID: 4721539003225225460}
   m_Layer: 15
   m_Name: Propeller
@@ -206,18 +205,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeManager: {fileID: 0}
---- !u!114 &483958567063600261
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4721539003225225457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79636f721a6133a4297d5d0aedd2a7c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &4721539003225225460
 BoxCollider2D:
   m_ObjectHideFlags: 0

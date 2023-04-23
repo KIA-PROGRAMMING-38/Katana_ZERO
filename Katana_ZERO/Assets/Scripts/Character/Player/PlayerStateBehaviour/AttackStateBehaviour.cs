@@ -1,5 +1,6 @@
 using UnityEngine;
 using LiteralRepository;
+using static PlayerAnimInvoker;
 
 public class AttackStateBehaviour : PlayerState
 {
@@ -22,6 +23,8 @@ public class AttackStateBehaviour : PlayerState
         rigid.AddForce( _attackDirection * data.AttackForce, ForceMode2D.Impulse );
         controller.CheckedJumpFlip();
         controller.ActiveAfterImage();
+
+        CurrentPlayerState = PlayerAnimInvoker.PlayerState.Attack;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

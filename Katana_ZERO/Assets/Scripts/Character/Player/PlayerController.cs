@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class PlayerController : Character
 {
@@ -16,12 +17,19 @@ public class PlayerController : Character
     public GameObject WallParticle;
 
     [SerializeField]
+    public DrawBlood DrawBlood;
+    [SerializeField]
+    public ImpactBlood ImpactBlood;
+
+    [SerializeField]
     [Range( 0f, 1f )]
     private float _delayLaserDeathTime;
 
     private PlayerInput _input;
     private PlayerData _data;
+    private PlayerAnimInvoker _animInvoker;
     private Rigidbody2D _rigid;
+    private Animator _anim;
 
     public Transform CursorPosition;
     public event Action<bool> ExistAroundItem;
@@ -36,6 +44,8 @@ public class PlayerController : Character
         _input = GetComponent<PlayerInput>();
         _data = GetComponent<PlayerData>();
         _rigid = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+        _animInvoker = GetComponent<PlayerAnimInvoker>();
         _effectManager = EffectManager.GetComponent<EffectManager>();
         _delayLaserDeathEffectTime = new WaitForSeconds( _delayLaserDeathTime );
 
@@ -74,13 +84,16 @@ public class PlayerController : Character
 
     private void CheckedFlip()
     {
-        if ( _data.FlipIsRight && _rigid.velocity.x < 0f && _data.OnGround )
+        if ( gameObject.layer != LayerMaskNumber.s_DiePlayer )
         {
-            Flip();
-        }
-        else if ( _data.FlipIsRight == false && _rigid.velocity.x > 0f && _data.OnGround )
-        {
-            Flip();
+            if ( _data.FlipIsRight && _rigid.velocity.x < 0f && _data.OnGround )
+            {
+                Flip();
+            }
+            else if ( _data.FlipIsRight == false && _rigid.velocity.x > 0f && _data.OnGround )
+            {
+                Flip();
+            }
         }
     }
 
@@ -185,9 +198,22 @@ public class PlayerController : Character
         _data.HasItem = false;
     }
 
-    public override void OnDamaged()
+    [SerializeField][Range( 0f, 10f )]
+    private float _pushedBackPos;
+    public void OnDamaged(Vector2 transform)
     {
-        Debug.Log( "공격당함!" );
+        ChangeLayer( gameObject.transform, LayerMaskNumber.s_DiePlayer );
+        GameManager.GetGameOverState();
+
+        Vector2 reflectedDirection = (Vector2)transform
+            - (Vector2)gameObject.transform.position;
+        Vector2 normal = -reflectedDirection.normalized;
+
+        _rigid.AddForce( normal * _pushedBackPos, ForceMode2D.Impulse );
+
+        _animInvoker.SetAnimationTrigger( PlayerAnimationLiteral.ONDAMAGED );
+        DrawBlood.TargetObject.Add( gameObject );
+        DrawBlood.StartDrawBlood( DrawBlood.TargetObject.Count - 1 );
     }
 
     public void ActiveAfterImage()

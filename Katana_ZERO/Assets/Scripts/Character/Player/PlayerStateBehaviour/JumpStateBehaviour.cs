@@ -1,5 +1,6 @@
 using UnityEngine;
 using LiteralRepository;
+using static PlayerAnimInvoker;
 
 public class JumpStateBehaviour : PlayerState
 {
@@ -8,6 +9,7 @@ public class JumpStateBehaviour : PlayerState
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         controller.Jump();
+        CurrentPlayerState = PlayerAnimInvoker.PlayerState.Jump;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -15,7 +17,6 @@ public class JumpStateBehaviour : PlayerState
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
         controller.CheckedIfWallSliding();
-        // controller.CheckedJumpFlip();
 
         if ( rigid.velocity.y < 0 )
         {

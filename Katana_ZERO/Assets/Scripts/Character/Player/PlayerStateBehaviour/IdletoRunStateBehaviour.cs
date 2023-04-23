@@ -1,5 +1,6 @@
 using UnityEngine;
 using LiteralRepository;
+using static PlayerAnimInvoker;
 
 public class IdletoRunStateBehaviour : PlayerState
 {
@@ -8,6 +9,7 @@ public class IdletoRunStateBehaviour : PlayerState
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         footParticle.Play();
+        CurrentPlayerState = PlayerAnimInvoker.PlayerState.IdleToRun;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

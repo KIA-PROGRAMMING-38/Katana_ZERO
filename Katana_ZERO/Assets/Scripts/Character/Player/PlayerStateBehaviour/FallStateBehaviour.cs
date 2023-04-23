@@ -1,5 +1,6 @@
 using UnityEngine;
 using LiteralRepository;
+using static PlayerAnimInvoker;
 
 public class FallStateBehaviour : PlayerState
 {
@@ -19,6 +20,8 @@ public class FallStateBehaviour : PlayerState
         {
             data.MoveVec = new Vector2( rigid.velocity.x, -2f );
         }
+
+        CurrentPlayerState = PlayerAnimInvoker.PlayerState.Fall;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
