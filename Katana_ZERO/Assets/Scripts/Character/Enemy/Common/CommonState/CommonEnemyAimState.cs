@@ -10,10 +10,10 @@ public class CommonEnemyAimState : CommonEnemyState
         rigid.velocity = Vector2.zero;
         controller.PrevState = EnemyAnimationHash.s_Aim;
 
-        // if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
-        // {
-        //     controller.GunReadyToAttack();
-        // }
+        if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
+        {
+            controller.GunReadyToAttack();
+        }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

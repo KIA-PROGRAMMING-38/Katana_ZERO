@@ -1,5 +1,6 @@
 using UnityEngine;
 using LiteralRepository;
+using static PlayerAnimInvoker;
 
 public class WallSlideStateBehaviour : PlayerState
 {
@@ -8,6 +9,7 @@ public class WallSlideStateBehaviour : PlayerState
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
         wallParticle.Play();
+        CurrentPlayerState = PlayerAnimInvoker.PlayerState.WallSlide;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

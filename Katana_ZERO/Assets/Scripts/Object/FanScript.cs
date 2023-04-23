@@ -1,7 +1,10 @@
 using LiteralRepository;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using Util;
 
 public class FanScript : MonoBehaviour
 {
@@ -77,7 +80,12 @@ public class FanScript : MonoBehaviour
     {
         if ( collision.CompareTag( TagLiteral.PLAYER ) )
         {
-            collision.transform.root.SendMessage( FuncLiteral.OnDamaged );
+            Rigidbody2D rigid = GlobalData.PlayerGameObject.GetComponent<Rigidbody2D>();
+            Vector2 reflectedDirection = (Vector2)gameObject.transform.position
+                - (Vector2)GlobalData.PlayerTransform.position;
+            Vector2 normal = -reflectedDirection.normalized;
+            
+            rigid.AddForce( normal * 22f, ForceMode2D.Impulse );
         }
     }
 }

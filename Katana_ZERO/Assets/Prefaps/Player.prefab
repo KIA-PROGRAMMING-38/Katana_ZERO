@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2670706741239672325}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CheckedWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2670706741875083681}
   - component: {fileID: 2670706741875083680}
-  m_Layer: 13
+  m_Layer: 17
   m_Name: DamageSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2670706742511073786}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CheckedGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 2670706742618818146}
   - component: {fileID: 2670706742618818148}
   - component: {fileID: 2670706742618818149}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FootDustParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4933,7 +4933,7 @@ GameObject:
   - component: {fileID: 2670706742777127544}
   - component: {fileID: 2670706742777127546}
   - component: {fileID: 2670706742777127547}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallDustParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9743,7 +9743,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2670706742801613545}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ThrowingPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9775,6 +9775,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2670706742728334591}
   - component: {fileID: 2670706743064000176}
+  - component: {fileID: 1061392042279281678}
   - component: {fileID: 2670706743064000184}
   - component: {fileID: 2670706743064000185}
   - component: {fileID: 2670706743064000182}
@@ -9799,7 +9800,7 @@ Transform:
   m_GameObject: {fileID: 2670706743064000222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.503, y: -0.531, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2670706742511073786}
@@ -9863,6 +9864,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1061392042279281678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670706743064000222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ffbeee05572c0d47a9978cdbe675f45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2670706743064000184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9879,7 +9892,6 @@ MonoBehaviour:
   ThrowPoint: {fileID: 2670706742801613545}
   GroundCheck: {fileID: 2670706742511073786}
   WallCheck: {fileID: 2670706741239672325}
-  AttackEffect: {fileID: 0}
   _moveSpeed: 4
   jumpPower: 9
   MoveVec: {x: 0, y: 0}
@@ -9908,6 +9920,7 @@ MonoBehaviour:
   OnLeftWall: 0
   PrevStateisGrab: 0
   HasItem: 0
+  IsDie: 0
 --- !u!114 &2670706743064000185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9921,9 +9934,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Illusion: {fileID: 0}
+  EffectManager: {fileID: 0}
   FootParticle: {fileID: 2670706742618818147}
   WallParticle: {fileID: 2670706742777127545}
+  DrawBlood: {fileID: 0}
+  ImpactBlood: {fileID: 0}
+  _delayLaserDeathTime: 0.1
   CursorPosition: {fileID: 0}
+  _pushedBackPos: 6
 --- !u!114 &2670706743064000182
 MonoBehaviour:
   m_ObjectHideFlags: 0

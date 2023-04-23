@@ -1,3 +1,4 @@
+using LiteralRepository;
 using System;
 using UnityEngine;
 
@@ -41,6 +42,12 @@ public class CommonEnemyController : Enemy
         base.Awake();
     }
 
+    private void Start()
+    {
+        GameManager.SetGameOverEffect -= SetIdleState;
+        GameManager.SetGameOverEffect += SetIdleState;
+    }
+
     public virtual void Update()
     {
         CheckedFlip();
@@ -56,6 +63,12 @@ public class CommonEnemyController : Enemy
         {
             Flip();
         }
+    }
+
+    private void SetIdleState()
+    {
+        BodyAnimator.SetBool( PrevState, false );
+        BodyAnimator.SetBool( EnemyAnimationHash.s_Idle, true );
     }
 
     public void Flip()

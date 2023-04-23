@@ -54,6 +54,7 @@ public class PlayerData : MonoBehaviour
     public bool OnLeftWall;
     public bool PrevStateisGrab;
     public bool HasItem;
+    public bool IsDie;
 
     private void Awake()
     {

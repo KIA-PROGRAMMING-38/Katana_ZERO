@@ -5,7 +5,10 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-    public abstract void OnDamaged();
+    public virtual void OnDamaged()
+    {
+
+    }
 
     public void ChangeLayer( Transform transform, int newLayer )
     {
