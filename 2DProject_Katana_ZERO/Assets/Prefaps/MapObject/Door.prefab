@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4489044533139299565}
-  m_Layer: 3
+  m_Layer: 15
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2670828776878985520}
   - component: {fileID: 4489044535088189376}
   - component: {fileID: 468212981}
-  m_Layer: 3
+  m_Layer: 15
   m_Name: Body
   m_TagString: Door
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4489044535088188478}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

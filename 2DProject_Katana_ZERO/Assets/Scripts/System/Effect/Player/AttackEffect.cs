@@ -29,11 +29,6 @@ public class AttackEffect : MonoBehaviour
         {
             _linearEffectController.PlayEffect( collision.transform );
         }
-
-        if ( collision.gameObject.CompareTag( TagLiteral.DOOR ) )
-        {
-            collision.gameObject.transform.SendMessage( "Open" );
-        }
     }
 
     private void OnEnable()
