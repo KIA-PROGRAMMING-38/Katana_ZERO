@@ -60,7 +60,7 @@ public class PlayerController : Character
     [SerializeField]
     [Range( 0f, 1f )]
     private float offsetX;
-    Vector3 offsetVec;
+    private Vector3 offsetVec;
 
     [SerializeField]
     [Range( 0f, 100f )]
@@ -191,7 +191,7 @@ public class PlayerController : Character
     /// </summary>
 
 
-    public void GroundStateCheck()
+    private void GroundStateCheck()
     {
         if ( _rigid.velocity.x != 0 )
         {

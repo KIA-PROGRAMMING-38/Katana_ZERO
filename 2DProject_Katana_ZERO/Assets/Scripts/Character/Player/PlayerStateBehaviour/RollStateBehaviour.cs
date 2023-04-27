@@ -9,12 +9,15 @@ public class RollStateBehaviour : PlayerState
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
 
-  
+        // 현재 상태 저장
         CurrentPlayerState = PlayerAnimInvoker.PlayerState.Roll;
-
+        // Update에서 실행되는 RollMovement에 영향을 주는 플레이어의 입력 direction을 캡쳐
         CatureDirection = input.PrimitiveMoveVec.x;
+        // Roll 상태에서는 먼지구름 이펙트가 발생
         footParticle.Play();
+        // Roll 상태에서는 공격받지 않는 상태여야함. 무적 레이어 전환
         controller.gameObject.layer = LayerMaskNumber.s_ImmunityState;
+        // Roll 상태에서는 잔상 이펙트 효과 On
         controller.ActiveAfterImage();
     }
 
@@ -49,12 +52,18 @@ public class RollStateBehaviour : PlayerState
         controller.gameObject.layer = LayerMaskNumber.s_Player;
     }
 
+    /// <summary>
+    /// GrondState가 Flat일 때 계산되는 Movement
+    /// </summary>
     private void FlatGroundRollMovement()
     {
         rigid.velocity = new Vector2
             ( data.RollHorizontalForce * CatureDirection, 0f );
     } 
 
+    /// <summary>
+    /// GrondState가 Slope일 때 계산되는 Movement
+    /// </summary>
     private void SlopeGroundRollMovement()
     {
         if ( controller.IsClimb )

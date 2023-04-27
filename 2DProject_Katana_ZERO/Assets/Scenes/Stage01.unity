@@ -1116,6 +1116,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1454835111}
     - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
+      propertyPath: emptyForce
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
+      propertyPath: slopeForce
+      value: 17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
       propertyPath: ImpactBlood
       value: 
       objectReference: {fileID: 1454835110}
@@ -1123,6 +1131,10 @@ PrefabInstance:
       propertyPath: ThisIsPlayer
       value: 
       objectReference: {fileID: 2141163568}
+    - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
+      propertyPath: downVelocityForce
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
       propertyPath: LinearEffectController
       value: 

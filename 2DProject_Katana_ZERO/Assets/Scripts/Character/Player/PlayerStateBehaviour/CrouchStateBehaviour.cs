@@ -16,8 +16,6 @@ public class CrouchStateBehaviour : PlayerState
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        Debug.Log( data.PlayerOnGround );
-
         if ( data.PlayerOnGround == GlobalData.GroundState.Slope )
         {
             rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;

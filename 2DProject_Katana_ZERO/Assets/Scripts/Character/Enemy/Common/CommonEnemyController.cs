@@ -1,6 +1,8 @@
 using LiteralRepository;
 using System;
 using UnityEngine;
+using UnityEngine.Windows;
+using Util;
 
 public class CommonEnemyController : Enemy
 {
@@ -15,11 +17,13 @@ public class CommonEnemyController : Enemy
     [Header( "Speed" )]
     public float walkSpeed;
     public float runSpeed;
+    public float slopeForce;
+    public float emptyForce;
+    public float downVelocityForce;
 
     [Header( "Patrol" )]
     public float patrolMaxSec;
     public float patrolMinSec;
-
     // 순회할 포인트 저장
     public Transform[] PatrolPoints;
 
@@ -36,16 +40,24 @@ public class CommonEnemyController : Enemy
     public bool AttackActive;
 
     public CommonEnemyType ThisEnemyType;
+    public GlobalData.GroundState EnemyOnGround;
 
     public override void Awake()
     {
         base.Awake();
+
+        slopeForceRayLength = 3f;
     }
 
     private void Start()
     {
         GameManager.SetGameOverEffect -= SetIdleState;
         GameManager.SetGameOverEffect += SetIdleState;
+    }
+
+    private void FixedUpdate()
+    {
+        GroundStateCheck();
     }
 
     public virtual void Update()
@@ -91,5 +103,55 @@ public class CommonEnemyController : Enemy
     public void GunRestoreCondition()
     {
         RestoreCondition?.Invoke();
+    }
+
+    [SerializeField]
+    [Range( 0f, 1f )]
+    private float offsetX;
+    private Vector3 offsetVec;
+    public RaycastHit2D belowHit;
+    public RaycastHit2D forwardHit;
+    public float slopeForceRayLength;
+    public bool IsClimb;
+
+    private void GroundStateCheck()
+    {
+        if ( rigid.velocity.x != 0 )
+        {
+            offsetVec = new Vector3( offsetX * FacingDirection, 0f, 0f );
+
+            // Ground의 레이어를 검사하는 Raycast 실행
+            belowHit = Physics2D.Raycast( transform.position + offsetVec, Vector2.down, slopeForceRayLength,
+                ( 1 << LayerMaskNumber.s_FlatGround ) | ( 1 << LayerMaskNumber.s_SlopeGround ) );
+
+            Debug.DrawRay( transform.position + offsetVec, Vector2.down * 2f, Color.red );
+
+            if ( belowHit.transform != null )
+            {
+                // 검출된 레이어가 Flat인 경우
+                if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_FlatGround )
+                {
+                    // 에너미가 밟고있는 GroundState == Flat
+                    EnemyOnGround = GlobalData.GroundState.Flat;
+                }
+                // 검출된 레이어가 Slope인 경우
+                else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_SlopeGround )
+                {
+                    // 에너미가 밟고있는 GroundState == Slope
+                    EnemyOnGround = GlobalData.GroundState.Slope;
+                    forwardHit = Physics2D.Raycast
+                        ( transform.position, transform.right, slopeForceRayLength, 1 << LayerMaskNumber.s_SlopeGround );
+
+                    // forwardHit 가 true인 경우, Slope를 올라가는 중
+                    // forwardHit 가 false인 경우, Slope를 내려가는 중
+                    IsClimb = forwardHit;
+                    Debug.DrawRay( transform.position, transform.right * 2f, Color.red );
+                }
+            }
+            else
+            {
+                EnemyOnGround = GlobalData.GroundState.Empty;
+            }
+        }
     }
 }

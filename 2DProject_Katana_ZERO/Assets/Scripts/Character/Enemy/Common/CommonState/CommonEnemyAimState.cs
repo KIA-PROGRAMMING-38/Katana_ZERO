@@ -1,5 +1,6 @@
 using LiteralRepository;
 using UnityEngine;
+using Util;
 
 public class CommonEnemyAimState : CommonEnemyState
 {
@@ -10,10 +11,10 @@ public class CommonEnemyAimState : CommonEnemyState
         rigid.velocity = Vector2.zero;
         controller.PrevState = EnemyAnimationHash.s_Aim;
 
-        // if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
-        // {
-        //     controller.GunReadyToAttack();
-        // }
+        if ( controller.EnemyOnGround == GlobalData.GroundState.Slope )
+        {
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -37,9 +38,6 @@ public class CommonEnemyAimState : CommonEnemyState
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
 
-        if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
-        {
-            controller.GunRestoreCondition();
-        }
+        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

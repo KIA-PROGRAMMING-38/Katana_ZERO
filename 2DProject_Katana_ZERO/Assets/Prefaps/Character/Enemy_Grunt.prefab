@@ -227,6 +227,9 @@ MonoBehaviour:
   LinearEffectController: {fileID: 0}
   walkSpeed: 7
   runSpeed: 10
+  slopeForce: 17.5
+  emptyForce: -8
+  downVelocityForce: 6
   patrolMaxSec: 7
   patrolMinSec: 3
   PatrolPoints:
@@ -239,6 +242,10 @@ MonoBehaviour:
   TrackActive: 0
   AttackActive: 0
   ThisEnemyType: 2
+  EnemyOnGround: 0
+  offsetX: 0
+  slopeForceRayLength: 0
+  IsClimb: 0
 --- !u!114 &2534017846056261040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,3 +443,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed968b62d604014ba3803b771c35e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _linearController: {fileID: 0}
