@@ -57,6 +57,17 @@ public class PlayerController : Character
     public RaycastHit2D forwardHit;
     public bool IsClimb;
 
+    [SerializeField]
+    [Range( 0f, 1f )]
+    private float offsetX;
+    Vector3 offsetVec;
+
+    [SerializeField]
+    [Range( 0f, 100f )]
+    public float slopeRollForce;
+    [Range( 0f, 30f )]
+    public float downRollVelocityForce;
+
     private void Awake()
     {
         _input = GetComponent<PlayerInput>();
@@ -77,23 +88,6 @@ public class PlayerController : Character
         CheckedFlip();
 
         UseItem();
-    }
-
-    private void Update()
-    {
-        CursorSpritePosition();
-    }
-
-    public void HorizontalMovement()
-    {
-        if ( _data.OnGround )
-        {
-            _rigid.velocity = new Vector2( _data.MoveVec.x, 0f );
-        }
-        else if ( !_data.OnGround )
-        {
-            _rigid.velocity = new Vector2( _data.MoveVec.x, _data.FallStateYVector );
-        }
     }
 
     /// <summary>
@@ -122,12 +116,14 @@ public class PlayerController : Character
         {
             Vector2 slopeDirection = Vector2.Perpendicular( belowHit.normal ).normalized;
             Vector2 slopeMovement = new Vector2
-                ( slopeDirection.x * -_input.PrimitiveMoveVec.x * emptyForce, downVelocityForce );
+                ( slopeDirection.x * -_input.PrimitiveMoveVec.x * emptyForce, 0f );
 
             _data.MoveVec += slopeMovement;
             _rigid.velocity = new Vector2( _data.MoveVec.x, _rigid.velocity.y - downVelocityForce * Time.fixedDeltaTime );
         }
     }
+
+ 
 
     /// <summary>
     /// 플레이어 점프
@@ -137,10 +133,6 @@ public class PlayerController : Character
         _rigid.velocity = new Vector2( _data.MoveVec.x * 1.5f, _data.jumpPower );
     }
 
-    private void CursorSpritePosition()
-    {
-        CursorPosition.position = _input.PrimitiveMouseWorldPos;
-    }
 
     /// <summary>
     /// 플레이어의 flip 체크
@@ -198,10 +190,7 @@ public class PlayerController : Character
     /// Ground의 레이어를 검사하여 값을 플레이어의 PlayerOnGround에 할당한다
     /// </summary>
 
-    [SerializeField]
-    [Range(0f, 1f)]
-    private float offsetX;
-    Vector3 offsetVec;
+
     public void GroundStateCheck()
     {
         if ( _input.PrimitiveMoveVec.x != 0 )
@@ -214,26 +203,36 @@ public class PlayerController : Character
 
             Debug.DrawRay( transform.position + offsetVec, Vector2.down * 2f, Color.red );
 
-            Debug.Log( belowHit.transform.gameObject.name );
-
-            // 검출된 레이어가 Flat인 경우
-            if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_FlatGround )
+            if ( belowHit.transform != null )
             {
-                _data.PlayerOnGround = GlobalData.GroundState.Flat;
+                // 검출된 레이어가 Flat인 경우
+                if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_FlatGround )
+                {
+                    // 플레이어가 밟고있는 GroundState == Flat
+                    _data.PlayerOnGround = GlobalData.GroundState.Flat;
+                }
+                // 검출된 레이어가 Slope인 경우
+                else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_SlopeGround )
+                {
+                    // 플레이어가 밟고있는 GroundState == Slope
+                    _data.PlayerOnGround = GlobalData.GroundState.Slope;
+                    forwardHit = Physics2D.Raycast
+                        ( transform.position, transform.right, slopeForceRayLength, 1 << LayerMaskNumber.s_SlopeGround );
+
+                    // forwardHit 가 true인 경우, Slope를 올라가는 중
+                    // forwardHit 가 false인 경우, Slope를 내려가는 중
+                    IsClimb = forwardHit;
+                    Debug.DrawRay( transform.position, transform.right * 2f, Color.red );
+                }
             }
-            // 검출된 레이어가 Slope인 경우
-            else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_SlopeGround )
+            else
             {
-                _data.PlayerOnGround = GlobalData.GroundState.Slope;
-                forwardHit = Physics2D.Raycast
-                    ( transform.position, transform.right, slopeForceRayLength, 1 << LayerMaskNumber.s_SlopeGround );
-
-                IsClimb = forwardHit;
-                Debug.DrawRay( transform.position, transform.right * 2f, Color.red );
+                _data.PlayerOnGround = GlobalData.GroundState.Empty;
             }
         }
         else if ( Mathf.Abs( _input.PrimitiveMoveVec.x ) > 0.01f && !_data.OnGround )
         {
+            // 값이 입력되고 있지만, 땅이 아닐경우 플레이어는 공중에 뜬 상태
             _data.PlayerOnGround = GlobalData.GroundState.Empty;
         }
     }

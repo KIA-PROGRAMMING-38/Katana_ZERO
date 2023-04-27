@@ -10,23 +10,23 @@ public class PlayerAnimInvoker : AnimationManager
 
     public enum PlayerState
     {
-        Default = 0,
-        Idle,
-        IdleToRun,
-        Run,
-        RunToIdle,
-        Jump,
-        WallGrab,
-        WallSlide,
-        WallFlip,
-        Fall,
-        PreCrouch,
-        Crouch,
-        PostCrouch,
-        Roll,
-        Attack,
-        OnDamaged,
-        Die
+        Default     = 0,
+        Idle        = 1,
+        IdleToRun   = 2,
+        Run         = 3,
+        RunToIdle   = 4,
+        Jump        = 5,
+        WallGrab    = 6,
+        WallSlide   = 7,
+        WallFlip    = 8,
+        Fall        = 9,
+        PreCrouch   = 10,
+        Crouch      = 11,
+        PostCrouch  = 12,
+        Roll        = 13,
+        Attack      = 14,
+        OnDamaged   = 15,
+        Die         = 16
     }
 
     public static PlayerState CurrentPlayerState = PlayerState.Default;

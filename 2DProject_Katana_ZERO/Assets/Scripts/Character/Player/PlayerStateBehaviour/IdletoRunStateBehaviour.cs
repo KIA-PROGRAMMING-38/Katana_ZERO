@@ -11,17 +11,16 @@ public class IdletoRunStateBehaviour : PlayerState
 
         footParticle.Play();
         CurrentPlayerState = PlayerAnimInvoker.PlayerState.IdleToRun;
-        rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
+        if ( data.PlayerOnGround == GlobalData.GroundState.Slope )
+        {
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
-
-        if (stateInfo.normalizedTime >= 1f )
-        {
-            ChangeState( animator, PlayerAnimationLiteral.IDLE_TO_RUN, PlayerAnimationLiteral.RUN );
-        }
 
         if ( Input.GetButtonDown( InputAxisString.UP_KEY ) )
         {

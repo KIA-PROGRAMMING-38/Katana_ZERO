@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D( Collider2D collision )
     {
         // 바닥 혹은 플레이어와 맞닿았을 시 풀에 다시 집어넣어 줌
-        if ( collision.CompareTag( TagLiteral.FLOOR )  )
+        if ( collision.CompareTag( TagLiteral.GROUND )  )
         {
             Release();
         }

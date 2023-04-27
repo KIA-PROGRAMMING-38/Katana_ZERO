@@ -1265,6 +1265,23 @@ PrefabInstance:
       objectReference: {fileID: 3723697195642242562, guid: f92ee253bfddfc342b38666f074f3589, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d035748106fdc7546918705f1b9e2235, type: 3}
+--- !u!1 &1877367990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1154874094542764799, guid: af55885fe908e0640a1ad3f9c010b7e2, type: 3}
+  m_PrefabInstance: {fileID: 1454835106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1877367992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877367990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88cd8759ac3c154eba77a78e21daf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2141163565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1316,45 +1333,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2670706742777127544, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706742777127544, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706742777127544, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706742777127544, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706742777127544, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0
-      objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000184, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: AttackForce
+      propertyPath: RollHorizontalForce
       value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706743064000184, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: FallStateYVector
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706743064000184, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: FallingBoostForce
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706743064000184, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: GroundCheckRadius
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: offsetX
-      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
       propertyPath: Illusion
@@ -1364,14 +1345,6 @@ PrefabInstance:
       propertyPath: DrawBlood
       value: 
       objectReference: {fileID: 1454835111}
-    - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: emptyForce
-      value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: slopeForce
-      value: 3.8
-      objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
       propertyPath: ImpactBlood
       value: 
@@ -1385,12 +1358,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1454835108}
     - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: downVelocityForce
-      value: -2
+      propertyPath: slopeRollForce
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: slopeForceRayLength
-      value: 3
+      propertyPath: downRollVelocityForce
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000222, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
       propertyPath: m_Name
