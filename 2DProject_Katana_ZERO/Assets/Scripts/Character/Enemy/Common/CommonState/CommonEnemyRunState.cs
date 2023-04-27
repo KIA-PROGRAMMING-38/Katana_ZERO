@@ -30,9 +30,6 @@ public class CommonEnemyRunState : CommonEnemyState
             SlopeGroundMovement();
         }
 
-        Debug.Log( controller.EnemyOnGround );
-        Debug.Log( rigid.velocity );
-
         if ( controller.AttackActive )
         {
             ChangeState( animator, EnemyAnimationHash.s_Run, EnemyAnimationHash.s_Aim );
