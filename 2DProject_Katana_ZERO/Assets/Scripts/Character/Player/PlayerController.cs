@@ -189,8 +189,6 @@ public class PlayerController : Character
     /// 플레이어가 땅 위에서 움직일 경우만 검사한다
     /// Ground의 레이어를 검사하여 값을 플레이어의 PlayerOnGround에 할당한다
     /// </summary>
-
-
     private void GroundStateCheck()
     {
         if ( _rigid.velocity.x != 0 )
@@ -264,7 +262,8 @@ public class PlayerController : Character
     /// </summary>
     private void CheckedWall()
     {
-        _data.IsTouchingWall = Physics2D.Raycast( _data.WallCheck.position, transform.right, _data.WallCheckDistance, LayerMask.GetMask( "Ground" ) );
+        _data.IsTouchingWall = Physics2D.Raycast
+            ( _data.WallCheck.position, transform.right, _data.WallCheckDistance, 1 << LayerMaskNumber.s_FlatGround );
     }
 
     /// <summary>
