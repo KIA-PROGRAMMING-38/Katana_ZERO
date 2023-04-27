@@ -139,6 +139,8 @@ namespace LiteralRepository
         public static int s_Effect               = 16;
         public static int s_PlayerColliderSensor = 17;
         public static int s_DiePlayer            = 18;
+        public static int s_FlatGround           = 19;
+        public static int s_SlopeGround          = 20;
     }
 
     public static class InputAxisString

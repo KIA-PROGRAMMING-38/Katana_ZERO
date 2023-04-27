@@ -22,15 +22,6 @@ public class AttackEffect : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D( Collider2D collision )
-    {
-        if ( collision.gameObject.layer == LayerMaskNumber.s_DieEnemy ||
-            collision.gameObject.layer == LayerMaskNumber.s_EnemyColliderSensor )
-        {
-            _linearEffectController.PlayEffect( collision.transform );
-        }
-    }
-
     private void OnEnable()
     {
         if ( _data.CursorDirection.x > 0f )

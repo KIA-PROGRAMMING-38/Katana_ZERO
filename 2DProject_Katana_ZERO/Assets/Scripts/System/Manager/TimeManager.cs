@@ -30,6 +30,7 @@ public class TimeManager : MonoBehaviour
     public float PossibleSlowTime;
     public bool IsPressed;
 
+
     private void Awake()
     {
         PossibleSlowTime = MaxElapsedTime;

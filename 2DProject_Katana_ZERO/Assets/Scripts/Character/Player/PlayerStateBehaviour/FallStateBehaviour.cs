@@ -34,7 +34,7 @@ public class FallStateBehaviour : PlayerState
         }
 
         controller.HorizontalMovement();
-        controller.CheckedJumpFlip();
+        // controller.CheckedJumpFlip();
         controller.CheckedIfWallSliding();
 
         if ( data.OnGround )

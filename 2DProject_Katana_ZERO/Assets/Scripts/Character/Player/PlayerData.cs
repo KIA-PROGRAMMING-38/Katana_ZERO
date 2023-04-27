@@ -4,7 +4,6 @@ using Util;
 
 public class PlayerData : MonoBehaviour
 {
-
     public GameObject Item;
     public Transform ThrowPoint;
 
@@ -58,6 +57,9 @@ public class PlayerData : MonoBehaviour
     public bool PrevStateisGrab;
     public bool HasItem;
     public bool IsDie;
+
+    // 현재 밟고 있는 땅의 상태를 체크
+    public GlobalData.GroundState PlayerOnGround;
 
     private void Awake()
     {

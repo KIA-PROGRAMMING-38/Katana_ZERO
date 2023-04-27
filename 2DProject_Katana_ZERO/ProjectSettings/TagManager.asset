@@ -6,10 +6,10 @@ TagManager:
   tags:
   - Enemy
   - Bullet
-  - Floor
   - PlayerKatanaEffect
   - Item
   - Door
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -30,8 +30,8 @@ TagManager:
   - Effect
   - PlayerColliderSensor
   - DiePlayer
-  - 
-  - 
+  - FlatGround
+  - SlopeGround
   - 
   - 
   - 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using LiteralRepository;
 using static PlayerAnimInvoker;
+using Util;
 
 public class IdletoRunStateBehaviour : PlayerState
 {
@@ -10,14 +11,12 @@ public class IdletoRunStateBehaviour : PlayerState
 
         footParticle.Play();
         CurrentPlayerState = PlayerAnimInvoker.PlayerState.IdleToRun;
+        rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
-
-        data.MoveVec /= 2f;
-        controller.HorizontalMovement();
 
         if (stateInfo.normalizedTime >= 1f )
         {
@@ -29,7 +28,7 @@ public class IdletoRunStateBehaviour : PlayerState
             ChangeState( animator, PlayerAnimationLiteral.IDLE_TO_RUN, PlayerAnimationLiteral.JUMP );
         }
 
-        if ( rigid.velocity.y < 0 )
+        if ( rigid.velocity.y < 0 && !(data.PlayerOnGround == GlobalData.GroundState.Slope) )
         {
             ChangeState( animator, PlayerAnimationLiteral.IDLE_TO_RUN, PlayerAnimationLiteral.FALL );
         }
@@ -45,5 +44,6 @@ public class IdletoRunStateBehaviour : PlayerState
         base.OnStateExit(animator, stateInfo, layerIndex);
 
         footParticle.Stop();
+        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

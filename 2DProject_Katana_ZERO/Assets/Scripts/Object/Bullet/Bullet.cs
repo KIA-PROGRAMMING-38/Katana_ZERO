@@ -1,5 +1,4 @@
 using LiteralRepository;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Pool;
 using Util;
@@ -7,7 +6,7 @@ using Util;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    [Range(3f, 20f)]
+    [Range(10f, 100f)]
     public float _bulletSpeed = 10f;
     private Rigidbody2D _rigid;
 

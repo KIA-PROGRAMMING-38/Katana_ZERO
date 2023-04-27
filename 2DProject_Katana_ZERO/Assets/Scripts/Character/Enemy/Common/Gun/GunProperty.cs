@@ -85,6 +85,8 @@ public class GunProperty : MonoBehaviour
 
     private void DamagedEffect( bool onDamageable )
     {
+        Debug.Log( "DamageEfeectState" );
+
         _controller.rigid.velocity = Vector2.zero;
         _animator.SetBool( _controller.PrevState, false );
         _animator.SetTrigger( EnemyAnimationHash.s_Die );
