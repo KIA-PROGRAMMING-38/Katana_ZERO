@@ -1,5 +1,6 @@
 using LiteralRepository;
 using UnityEngine;
+using Util;
 
 public class CommonEnemyAttackState : CommonEnemyState
 {
@@ -14,6 +15,11 @@ public class CommonEnemyAttackState : CommonEnemyState
         if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
         {
             controller.GunReadyToAttack();
+        }
+
+        if ( controller.EnemyOnGround == GlobalData.GroundState.Slope )
+        {
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
     }
 
@@ -44,5 +50,7 @@ public class CommonEnemyAttackState : CommonEnemyState
         {
             controller.GunRestoreCondition();
         }
+
+        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

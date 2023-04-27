@@ -1,5 +1,6 @@
 using LiteralRepository;
 using UnityEngine;
+using Util;
 
 public class CommonEnemyIdleState : CommonEnemyState
 {
@@ -12,6 +13,11 @@ public class CommonEnemyIdleState : CommonEnemyState
         controller.PrevState = EnemyAnimationHash.s_Idle;
         _waitSec = Random.Range
             ( controller.idleMinSec, controller.idleMaxSec );
+
+        if ( controller.EnemyOnGround == GlobalData.GroundState.Slope )
+        {
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
@@ -44,5 +50,6 @@ public class CommonEnemyIdleState : CommonEnemyState
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
 
+        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
