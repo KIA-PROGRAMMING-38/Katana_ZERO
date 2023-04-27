@@ -8,6 +8,7 @@ public class IdleStateBehaviour : PlayerState
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
+        rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         CurrentPlayerState = PlayerAnimInvoker.PlayerState.Idle;
     }
 
@@ -15,7 +16,7 @@ public class IdleStateBehaviour : PlayerState
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-        if ( data.MoveVec.x != 0f )
+        if ( input.PrimitiveMoveVec.x != 0f )
         {
             ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.IDLE_TO_RUN );
         }
@@ -30,7 +31,7 @@ public class IdleStateBehaviour : PlayerState
             ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.JUMP );
         }
 
-        if ( Input.GetButton(InputAxisString.DOWN_KEY) )
+        if ( Input.GetButton( InputAxisString.DOWN_KEY ) )
         {
             ChangeState( animator, PlayerAnimationLiteral.IDLE, PlayerAnimationLiteral.PRE_CROUCH );
         }
@@ -39,5 +40,7 @@ public class IdleStateBehaviour : PlayerState
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit(animator, stateInfo, layerIndex);
+
+        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }

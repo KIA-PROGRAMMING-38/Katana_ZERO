@@ -195,6 +195,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1132737461, guid: d035748106fdc7546918705f1b9e2235, type: 3}
+      propertyPath: _linearController
+      value: 
+      objectReference: {fileID: 1454835109}
     - target: {fileID: 6583524171885452725, guid: d035748106fdc7546918705f1b9e2235, type: 3}
       propertyPath: m_Name
       value: Enemy_Gun01
@@ -922,6 +926,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1154874094058957186, guid: af55885fe908e0640a1ad3f9c010b7e2, type: 3}
+      propertyPath: _velocityPower
+      value: 55
+      objectReference: {fileID: 0}
     - target: {fileID: 1154874094080744197, guid: af55885fe908e0640a1ad3f9c010b7e2, type: 3}
       propertyPath: m_Name
       value: EffectManager
@@ -1051,10 +1059,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2534017846056261040, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: _pushedBackPos
-      value: 15
-      objectReference: {fileID: 0}
+    - target: {fileID: 95722751254669438, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
+      propertyPath: _linearController
+      value: 
+      objectReference: {fileID: 1454835109}
     - target: {fileID: 6772837828536875298, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -1103,18 +1111,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Grunt01
       objectReference: {fileID: 0}
-    - target: {fileID: 6772837828536875299, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
       propertyPath: DrawBlood
       value: 
       objectReference: {fileID: 1454835111}
-    - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: FlipIsRight
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
       propertyPath: ImpactBlood
       value: 
@@ -1123,10 +1123,6 @@ PrefabInstance:
       propertyPath: ThisIsPlayer
       value: 
       objectReference: {fileID: 2141163568}
-    - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: FacingDirection
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
       propertyPath: LinearEffectController
       value: 
@@ -1179,6 +1175,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1132737461, guid: d035748106fdc7546918705f1b9e2235, type: 3}
+      propertyPath: _linearController
+      value: 
+      objectReference: {fileID: 1454835109}
+    - target: {fileID: 6583524170777914561, guid: d035748106fdc7546918705f1b9e2235, type: 3}
+      propertyPath: m_Size.x
+      value: 1.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583524170777914561, guid: d035748106fdc7546918705f1b9e2235, type: 3}
+      propertyPath: m_Size.y
+      value: 1.0625
+      objectReference: {fileID: 0}
+    - target: {fileID: 6583524170777914561, guid: d035748106fdc7546918705f1b9e2235, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6583524171885452725, guid: d035748106fdc7546918705f1b9e2235, type: 3}
       propertyPath: m_Name
       value: Enemy_Gun02
@@ -1253,6 +1265,23 @@ PrefabInstance:
       objectReference: {fileID: 3723697195642242562, guid: f92ee253bfddfc342b38666f074f3589, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d035748106fdc7546918705f1b9e2235, type: 3}
+--- !u!1 &1877367990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1154874094542764799, guid: af55885fe908e0640a1ad3f9c010b7e2, type: 3}
+  m_PrefabInstance: {fileID: 1454835106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1877367992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877367990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88cd8759ac3c154eba77a78e21daf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2141163565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1304,25 +1333,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2670706742777127544, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.432
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706742777127544, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.298
-      objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000184, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: AttackForce
+      propertyPath: RollHorizontalForce
       value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706743064000184, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: FallStateYVector
-      value: -11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2670706743064000184, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: FallingBoostForce
-      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
       propertyPath: Illusion
@@ -1344,6 +1357,18 @@ PrefabInstance:
       propertyPath: CursorPosition
       value: 
       objectReference: {fileID: 1454835108}
+    - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
+      propertyPath: slopeRollForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
+      propertyPath: downVelocityForce
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
+      propertyPath: downRollVelocityForce
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000222, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
       propertyPath: m_Name
       value: Player

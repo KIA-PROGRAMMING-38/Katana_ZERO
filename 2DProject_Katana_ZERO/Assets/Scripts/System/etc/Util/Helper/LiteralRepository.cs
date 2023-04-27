@@ -139,6 +139,8 @@ namespace LiteralRepository
         public static int s_Effect               = 16;
         public static int s_PlayerColliderSensor = 17;
         public static int s_DiePlayer            = 18;
+        public static int s_FlatGround           = 19;
+        public static int s_SlopeGround          = 20;
     }
 
     public static class InputAxisString
@@ -152,7 +154,7 @@ namespace LiteralRepository
     {
         public const string PLAYER               = "Player";
         public const string ENEMY                = "Enemy";
-        public const string FLOOR                = "Floor";
+        public const string GROUND               = "Ground";
         public const string ITEM                 = "Item";
         public const string BULLET               = "Bullet";
         public const string PLAYER_KATANA_EFFECT = "PlayerKatanaEffect";

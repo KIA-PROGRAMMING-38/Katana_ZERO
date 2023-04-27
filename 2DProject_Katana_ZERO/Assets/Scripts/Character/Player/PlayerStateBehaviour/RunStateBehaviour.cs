@@ -1,6 +1,10 @@
 using UnityEngine;
 using LiteralRepository;
 using static PlayerAnimInvoker;
+using JetBrains.Annotations;
+using Util;
+using System.Data;
+using System;
 
 public class RunStateBehaviour : PlayerState
 {
@@ -15,7 +19,18 @@ public class RunStateBehaviour : PlayerState
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        controller.HorizontalMovement();
+        if ( data.PlayerOnGround == GlobalData.GroundState.Flat )
+        {
+            controller.FlatGroundMovement();
+        }
+        else if ( data.PlayerOnGround == GlobalData.GroundState.Slope )
+        {
+            controller.SlopeGroundMovement();
+        }
+        else if ( data.PlayerOnGround == GlobalData.GroundState.Empty )
+        {
+            ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.FALL );
+        }
 
         if ( input.PrimitiveMoveVec.x == 0f ) 
         {
@@ -25,11 +40,6 @@ public class RunStateBehaviour : PlayerState
         if ( Input.GetButtonDown( InputAxisString.UP_KEY ) )
         {
             ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.JUMP );
-        }
-
-        if ( rigid.velocity.y < 0 )
-        {
-            ChangeState( animator, PlayerAnimationLiteral.RUN, PlayerAnimationLiteral.FALL );
         }
 
         if ( Input.GetMouseButtonDown( 0 ) )

@@ -5,8 +5,8 @@ namespace Util
     public class GlobalData : MonoBehaviour
     {
         public static GameObject PlayerGameObject;
-        public static Transform PlayerTransform;
         public static GameObject MouseCursorPosition;
+        public static Transform PlayerTransform;
 
         public static Vector2 MouseScreenPos => _mouseScreenPos;
         private static Vector2 _mouseScreenPos;
@@ -15,6 +15,17 @@ namespace Util
         private static Vector2 _mouseWorldPos;
 
         private static Camera _mainCamera;
+
+        // 각 캐릭터가 밟고있을 땅의 상태
+        // 밟고있는 땅이 Flat인지, Slope인지에 따라 이동 벡터가 변경됨
+        // 공중에 뜬 상태일 경우 Empty
+        public enum GroundState 
+        {
+            Default,
+            Flat,
+            Slope,
+            Empty
+        }
 
         private void Awake()
         {

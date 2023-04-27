@@ -1,5 +1,4 @@
 using LiteralRepository;
-using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Pool;
 using Util;
@@ -7,7 +6,7 @@ using Util;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    [Range(3f, 20f)]
+    [Range(10f, 100f)]
     public float _bulletSpeed = 10f;
     private Rigidbody2D _rigid;
 
@@ -31,7 +30,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D( Collider2D collision )
     {
         // 바닥 혹은 플레이어와 맞닿았을 시 풀에 다시 집어넣어 줌
-        if ( collision.CompareTag( TagLiteral.FLOOR )  )
+        if ( collision.CompareTag( TagLiteral.GROUND )  )
         {
             Release();
         }

@@ -27,6 +27,7 @@ public class CommonEnemyDieState : CommonEnemyState
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        Debug.Log( "exit die state" );
         base.OnStateExit(animator, stateInfo, layerIndex);
     }
 }

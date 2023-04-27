@@ -33,8 +33,8 @@ public class FallStateBehaviour : PlayerState
             data.MoveVec.y += data.FallingBoostForce;
         }
 
-        controller.HorizontalMovement();
-        controller.CheckedJumpFlip();
+        FallStateMovement();
+        // controller.CheckedJumpFlip();
         controller.CheckedIfWallSliding();
 
         if ( data.OnGround )
@@ -65,5 +65,10 @@ public class FallStateBehaviour : PlayerState
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
+    }
+
+    private void FallStateMovement()
+    {
+        rigid.velocity = new Vector2( data.MoveVec.x, data.FallStateYVector );
     }
 }

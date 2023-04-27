@@ -1,5 +1,6 @@
 using LiteralRepository;
 using UnityEngine;
+using Util;
 using static PlayerAnimInvoker;
 
 public class PostCrouchStateBehaviour : PlayerState
@@ -8,21 +9,22 @@ public class PostCrouchStateBehaviour : PlayerState
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
 
-        CurrentPlayerState = PlayerAnimInvoker.PlayerState.PreCrouch;
+        CurrentPlayerState = PlayerAnimInvoker.PlayerState.PostCrouch;
+
+        if ( data.PlayerOnGround == GlobalData.GroundState.Slope )
+        {
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        }
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
-
-        if ( stateInfo.normalizedTime >= 1f )
-        {
-            ChangeState( animator, PlayerAnimationLiteral.POST_CROUCH, PlayerAnimationLiteral.IDLE );
-        }
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit(animator, stateInfo, layerIndex);
+        rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
