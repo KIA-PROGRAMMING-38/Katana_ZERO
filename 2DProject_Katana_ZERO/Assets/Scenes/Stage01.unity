@@ -1362,8 +1362,12 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
+      propertyPath: downVelocityForce
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2670706743064000185, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
       propertyPath: downRollVelocityForce
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2670706743064000222, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
       propertyPath: m_Name

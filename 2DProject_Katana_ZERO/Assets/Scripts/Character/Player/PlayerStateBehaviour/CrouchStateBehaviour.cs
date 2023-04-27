@@ -14,8 +14,9 @@ public class CrouchStateBehaviour : PlayerState
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
         base.OnStateUpdate(animator, stateInfo, layerIndex);
+
+        Debug.Log( data.PlayerOnGround );
 
         if ( data.PlayerOnGround == GlobalData.GroundState.Slope )
         {

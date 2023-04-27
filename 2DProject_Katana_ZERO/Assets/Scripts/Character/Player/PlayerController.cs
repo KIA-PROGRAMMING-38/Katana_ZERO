@@ -193,7 +193,7 @@ public class PlayerController : Character
 
     public void GroundStateCheck()
     {
-        if ( _input.PrimitiveMoveVec.x != 0 )
+        if ( _rigid.velocity.x != 0 )
         {
             offsetVec = new Vector3( offsetX * _data.FacingDirection, 0f, 0f );
 
