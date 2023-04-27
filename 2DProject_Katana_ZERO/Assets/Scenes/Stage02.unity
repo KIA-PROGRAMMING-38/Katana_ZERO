@@ -1141,6 +1141,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2765108348294307560, guid: 4e5f64e59cb9c82458907723cce25410, type: 3}
+      propertyPath: m_Layer
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 2765108348294307560, guid: 4e5f64e59cb9c82458907723cce25410, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 2765108348701543910, guid: 4e5f64e59cb9c82458907723cce25410, type: 3}
       propertyPath: m_Tiles.Array.size
       value: 1518
