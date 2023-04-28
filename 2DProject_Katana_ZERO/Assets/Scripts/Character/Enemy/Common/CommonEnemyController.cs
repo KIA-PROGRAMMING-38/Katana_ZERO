@@ -122,7 +122,7 @@ public class CommonEnemyController : Enemy
 
             // Ground의 레이어를 검사하는 Raycast 실행
             belowHit = Physics2D.Raycast( transform.position + offsetVec, Vector2.down, slopeForceRayLength,
-                ( 1 << LayerMaskNumber.s_FlatGround ) | ( 1 << LayerMaskNumber.s_SlopeGround ) );
+                ( 1 << LayerMaskNumber.s_FlatGround ) | ( 1 << LayerMaskNumber.s_SlopeGround ) | ( 1 << LayerMaskNumber.s_OneWayGround ) );
 
             Debug.DrawRay( transform.position + offsetVec, Vector2.down * 2f, Color.red );
 
@@ -133,6 +133,12 @@ public class CommonEnemyController : Enemy
                 {
                     // 에너미가 밟고있는 GroundState == Flat
                     EnemyOnGround = GlobalData.GroundState.Flat;
+                }
+                // 검출된 레이어가 OneWay인 경우
+                else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_OneWayGround )
+                {
+                    // 에너미가 밟고있는 GroundState == OneWay
+                    EnemyOnGround = GlobalData.GroundState.OneWay;
                 }
                 // 검출된 레이어가 Slope인 경우
                 else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_SlopeGround )

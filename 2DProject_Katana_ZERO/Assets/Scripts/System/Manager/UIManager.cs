@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
 
             if ( _elapsedTime <= 0f )
             {
-                //ReturnBattery();
+                ReturnBattery();
             }
         }
 

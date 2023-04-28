@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class CommonEnemyDieState : CommonEnemyState
 {
+    private bool _isShot = true;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
     }
 
-    private bool _isShot = true;
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateUpdate(animator, stateInfo, layerIndex);
@@ -27,7 +28,6 @@ public class CommonEnemyDieState : CommonEnemyState
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log( "exit die state" );
         base.OnStateExit(animator, stateInfo, layerIndex);
     }
 }

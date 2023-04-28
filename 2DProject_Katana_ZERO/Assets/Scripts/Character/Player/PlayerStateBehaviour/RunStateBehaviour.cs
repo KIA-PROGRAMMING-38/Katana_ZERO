@@ -1,10 +1,7 @@
 using UnityEngine;
 using LiteralRepository;
 using static PlayerAnimInvoker;
-using JetBrains.Annotations;
 using Util;
-using System.Data;
-using System;
 
 public class RunStateBehaviour : PlayerState
 {
@@ -19,7 +16,7 @@ public class RunStateBehaviour : PlayerState
     {
         base.OnStateUpdate( animator, stateInfo, layerIndex );
 
-        if ( data.PlayerOnGround == GlobalData.GroundState.Flat )
+        if ( data.PlayerOnGround == GlobalData.GroundState.Flat || data.PlayerOnGround == GlobalData.GroundState.OneWay )
         {
             controller.FlatGroundMovement();
         }

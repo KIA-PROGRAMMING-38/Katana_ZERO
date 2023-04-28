@@ -1,5 +1,9 @@
 using LiteralRepository;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Util;
 
 // Run State == Track
@@ -10,7 +14,7 @@ public class CommonEnemyRunState : CommonEnemyState
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
-
+        
         controller.PrevState = EnemyAnimationHash.s_Run;
     }
 
@@ -21,7 +25,7 @@ public class CommonEnemyRunState : CommonEnemyState
         _trackVec = ( controller.TargetTransform.position - (Vector3)rigid.position ).normalized;
         _moveVec = _trackVec * controller.runSpeed;
 
-        if ( controller.EnemyOnGround == GlobalData.GroundState.Flat )
+        if ( controller.EnemyOnGround == GlobalData.GroundState.Flat || controller.EnemyOnGround == GlobalData.GroundState.OneWay )
         {
             FlatGroundMovement();
         }

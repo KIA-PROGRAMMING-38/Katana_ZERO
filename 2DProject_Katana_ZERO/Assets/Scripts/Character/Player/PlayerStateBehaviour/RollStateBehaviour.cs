@@ -5,6 +5,8 @@ using static PlayerAnimInvoker;
 
 public class RollStateBehaviour : PlayerState
 {
+    private float CatureDirection;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateEnter( animator, stateInfo, layerIndex );
@@ -21,11 +23,9 @@ public class RollStateBehaviour : PlayerState
         controller.ActiveAfterImage();
     }
 
-    private float CatureDirection;
-
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if ( data.PlayerOnGround == GlobalData.GroundState.Flat )
+        if ( data.PlayerOnGround == GlobalData.GroundState.Flat || data.PlayerOnGround == GlobalData.GroundState.OneWay )
         {
             FlatGroundRollMovement();
         }

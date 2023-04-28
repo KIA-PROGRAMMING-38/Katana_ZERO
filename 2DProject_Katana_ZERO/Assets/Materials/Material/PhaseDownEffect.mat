@@ -91,6 +91,7 @@ Material:
     - _Split_Value: 0.2
     - _splitValue: 0.2
     m_Colors:
+    - _Base_Color: {r: 1, g: 0.94119126, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Emission_Color: {r: 1, g: 0.9415611, b: 0.006289184, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

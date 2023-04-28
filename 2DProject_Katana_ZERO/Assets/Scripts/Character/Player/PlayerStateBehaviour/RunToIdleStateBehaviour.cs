@@ -26,7 +26,7 @@ public class RunToIdleStateBehaviour : PlayerState
             ChangeState( animator, PlayerAnimationLiteral.RUN_TO_IDLE, PlayerAnimationLiteral.JUMP );
         }
 
-        if ( rigid.velocity.y < 0 && !( data.PlayerOnGround == GlobalData.GroundState.Slope ) )
+        if ( rigid.velocity.y < 0 && !data.OnGround )
         {
             ChangeState( animator, PlayerAnimationLiteral.RUN_TO_IDLE, PlayerAnimationLiteral.FALL );
         }

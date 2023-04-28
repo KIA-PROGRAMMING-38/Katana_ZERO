@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Util
 {
@@ -24,6 +25,7 @@ namespace Util
             Default,
             Flat,
             Slope,
+            OneWay,
             Empty
         }
 

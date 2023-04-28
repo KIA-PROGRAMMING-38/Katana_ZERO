@@ -141,6 +141,7 @@ namespace LiteralRepository
         public static int s_DiePlayer            = 18;
         public static int s_FlatGround           = 19;
         public static int s_SlopeGround          = 20;
+        public static int s_OneWayGround         = 21;
     }
 
     public static class InputAxisString
