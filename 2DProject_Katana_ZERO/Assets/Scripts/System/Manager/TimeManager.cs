@@ -21,7 +21,6 @@ public class TimeManager : MonoBehaviour
     private IEnumerator _initialCoroutine;
     private IEnumerator _endCoroutine;
 
-
     // InGame Default Value = 8sec;
     [SerializeField]
     [Range(0f, 10f)]
@@ -29,7 +28,6 @@ public class TimeManager : MonoBehaviour
 
     public float PossibleSlowTime;
     public bool IsPressed;
-
 
     private void Awake()
     {
@@ -129,7 +127,6 @@ public class TimeManager : MonoBehaviour
             yield return null;
         }
     }
-
 }
 
 

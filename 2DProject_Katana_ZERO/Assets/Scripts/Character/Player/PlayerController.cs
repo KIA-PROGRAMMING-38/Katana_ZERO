@@ -90,6 +90,14 @@ public class PlayerController : Character
         UseItem();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Burn();
+        }
+    }
+
     /// <summary>
     /// 플레이어가 밟고 잇는 땅의 타입이 Flat인 경우 Movement
     /// </summary>
@@ -197,7 +205,7 @@ public class PlayerController : Character
 
             // Ground의 레이어를 검사하는 Raycast 실행
             belowHit = Physics2D.Raycast( transform.position + offsetVec, Vector2.down, slopeForceRayLength,
-                ( 1 << LayerMaskNumber.s_FlatGround ) | ( 1 << LayerMaskNumber.s_SlopeGround ) );
+                ( 1 << LayerMaskNumber.s_FlatGround ) | ( 1 << LayerMaskNumber.s_SlopeGround ) | ( 1 << LayerMaskNumber.s_OneWayGround ) );
 
             Debug.DrawRay( transform.position + offsetVec, Vector2.down * 2f, Color.red );
 
@@ -221,6 +229,11 @@ public class PlayerController : Character
                     // forwardHit 가 false인 경우, Slope를 내려가는 중
                     IsClimb = forwardHit;
                     Debug.DrawRay( transform.position, transform.right * 2f, Color.red );
+                }
+                else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_OneWayGround )
+                {
+                    // 플레이어가 밟고있는 GroundState == OneWay
+                    _data.PlayerOnGround = GlobalData.GroundState.OneWay;
                 }
             }
             else
@@ -253,7 +266,7 @@ public class PlayerController : Character
     {
         // 바닥의 GroundCheck에 FlatGround 혹은 SlopeGround가 검출될 경우 그라운드 위에 있는 상태
         _data.OnGround = Physics2D.OverlapCircle( _data.GroundCheck.position, _data.GroundCheckRadius,
-            ( 1 << LayerMaskNumber.s_FlatGround ) | ( 1 << LayerMaskNumber.s_SlopeGround ) );
+            ( 1 << LayerMaskNumber.s_FlatGround ) | ( 1 << LayerMaskNumber.s_SlopeGround ) | ( 1 << LayerMaskNumber.s_OneWayGround ) );
     }
 
     /// <summary>
@@ -370,13 +383,18 @@ public class PlayerController : Character
     /// </summary>
     public void Burn()
     {
-        if ( _delayDeathEffectCoroutine != null )
-        {
-            StopCoroutine( _delayDeathEffectCoroutine );
-        }
+        //if ( _delayDeathEffectCoroutine != null )
+        //{
+        //    StopCoroutine( _delayDeathEffectCoroutine );
+        //}
 
-        _delayDeathEffectCoroutine = DelayDeathEffect();
-        StartCoroutine( _delayDeathEffectCoroutine );
+        //_delayDeathEffectCoroutine = DelayDeathEffect();
+        //StartCoroutine( _delayDeathEffectCoroutine );
+
+        _renderer.material = _laser;
+
+        StartCoroutine( DoFadeHelper( 1f, -1f, 7f ) );
+        _anim.enabled = false;
     }
 
     // 레이저 Material 오브젝트 삽입
@@ -387,10 +405,11 @@ public class PlayerController : Character
 
         _effectManager.PlayLaserBurnEffect( transform.root, gameObject.GetComponent<SpriteRenderer>() );
 
-        // _renderer.material = _laser;
-        // StartCoroutine( DoFadeHelper( 1f, -2f, 7f ) );
+        _renderer.material = _laser;
+        StartCoroutine( DoFadeHelper( 1f, -2f, 7f ) );
 
-        gameObject.SetActive( false );
+        Debug.Log( $"faskjdhflkasjdhflkasjdhfk" );
+        //gameObject.SetActive( false );
     }
 
     /// <summary>
