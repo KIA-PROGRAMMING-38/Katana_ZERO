@@ -3,6 +3,7 @@ using UnityEngine;
 public class CommonEnemyDieState : CommonEnemyState
 {
     private bool _isShot = true;
+    Transform captureRotation;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {

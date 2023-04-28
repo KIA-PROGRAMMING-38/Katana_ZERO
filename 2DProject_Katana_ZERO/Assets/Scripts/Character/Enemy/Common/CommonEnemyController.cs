@@ -1,5 +1,7 @@
 using LiteralRepository;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows;
 using Util;
@@ -41,6 +43,13 @@ public class CommonEnemyController : Enemy
 
     public CommonEnemyType ThisEnemyType;
     public GlobalData.GroundState EnemyOnGround;
+
+    private IEnumerator _delayDeathEffectCoroutine;
+    private WaitForSeconds _delayLaserDeathEffectTime;
+    [SerializeField]
+    private EffectManager _effectManager;
+    [SerializeField]
+    public Transform BodyTransform;
 
     public override void Awake()
     {
@@ -159,5 +168,32 @@ public class CommonEnemyController : Enemy
                 EnemyOnGround = GlobalData.GroundState.Empty;
             }
         }
+    }
+
+   
+    /// <summary>
+    /// 에너미가 레이저에 피격될 경우 실행 될 이펙트
+    /// </summary>
+    public void Burn()
+    {
+        if ( _delayDeathEffectCoroutine != null )
+        {
+            StopCoroutine( _delayDeathEffectCoroutine );
+        }
+
+        _delayDeathEffectCoroutine = DelayDeathEffect();
+        StartCoroutine( _delayDeathEffectCoroutine );
+    }
+
+    // 레이저 Material 오브젝트 삽입
+    public Material _laser;
+    private IEnumerator DelayDeathEffect()
+    {
+        yield return _delayLaserDeathEffectTime;
+
+        _effectManager.PlayLaserBurnEffect
+            ( BodyTransform, BodyTransform.gameObject.GetComponent<SpriteRenderer>() );
+
+        gameObject.SetActive( false );
     }
 }
