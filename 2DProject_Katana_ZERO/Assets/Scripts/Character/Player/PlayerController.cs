@@ -77,8 +77,6 @@ public class PlayerController : Character
         _animInvoker = GetComponent<PlayerAnimInvoker>();
         _effectManager = EffectManager.GetComponent<EffectManager>();
         _delayLaserDeathEffectTime = new WaitForSeconds( _delayLaserDeathTime );
-
-        _renderer = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -379,22 +377,17 @@ public class PlayerController : Character
     }
 
     /// <summary>
-    /// 플레이어가 레이저에 피격될 경우 실행될 이펙트
+    /// 플레이어가 레이저에 피격될 경우 실행 될 이펙트
     /// </summary>
     public void Burn()
     {
-        //if ( _delayDeathEffectCoroutine != null )
-        //{
-        //    StopCoroutine( _delayDeathEffectCoroutine );
-        //}
+        if ( _delayDeathEffectCoroutine != null )
+        {
+            StopCoroutine( _delayDeathEffectCoroutine );
+        }
 
-        //_delayDeathEffectCoroutine = DelayDeathEffect();
-        //StartCoroutine( _delayDeathEffectCoroutine );
-
-        _renderer.material = _laser;
-
-        StartCoroutine( DoFadeHelper( 1f, -1f, 7f ) );
-        _anim.enabled = false;
+        _delayDeathEffectCoroutine = DelayDeathEffect();
+        StartCoroutine( _delayDeathEffectCoroutine );
     }
 
     // 레이저 Material 오브젝트 삽입
@@ -405,32 +398,7 @@ public class PlayerController : Character
 
         _effectManager.PlayLaserBurnEffect( transform.root, gameObject.GetComponent<SpriteRenderer>() );
 
-        _renderer.material = _laser;
-        StartCoroutine( DoFadeHelper( 1f, -2f, 7f ) );
-
-        Debug.Log( $"faskjdhflkasjdhflkasjdhfk" );
-        //gameObject.SetActive( false );
-    }
-
-    /// <summary>
-    /// 레이저 사망 이펙트 코루틴 실행
-    /// </summary>
-    private SpriteRenderer _renderer;
-    private float _elapsedFadeTime;
-    private static readonly int SPLIT_VALUE = Shader.PropertyToID( "_SplitValue" );
-    IEnumerator DoFadeHelper( float start, float dest, float time )
-    {
-        _elapsedFadeTime = 0f;
-
-        while ( _elapsedFadeTime <= time )
-        {
-            float newValue = EaseUtil.EaseInOutCubic( start, dest, _elapsedFadeTime / time );
-            _renderer.material.SetFloat( SPLIT_VALUE, newValue );
-
-            _elapsedFadeTime += Time.deltaTime;
-
-            yield return null;
-        }
+        gameObject.SetActive( false );
     }
 }
 

@@ -33,7 +33,7 @@ public class GruntProperty : MonoBehaviour
         _controller.rigid.velocity = Vector2.zero;
         _animator.SetBool( _controller.PrevState, false );
         _animator.SetTrigger( EnemyAnimationHash.s_Die );
-        _controller.ChangeLayer( gameObject.transform, LayerMaskNumber.s_DieEnemy );
+        _controller.ChangeLayer( _controller.BodyTransform, LayerMaskNumber.s_DieEnemy );
         _controller.DrawBlood.TargetObject.Add( gameObject );
         _controller.DrawBlood.StartDrawBlood( _controller.DrawBlood.TargetObject.Count - 1 );
 

@@ -13,7 +13,7 @@ public class LaserScript : MonoBehaviour
 
     private void OnTriggerEnter2D( Collider2D collision )
     {
-        if ( collision.gameObject.layer == LayerMaskNumber.s_EnemyColliderSensor ||
+        if ( collision.gameObject.layer == LayerMaskNumber.s_Enemy ||
             collision.gameObject.layer == LayerMaskNumber.s_Player )
         {
             if ( collision != null )
