@@ -1210,6 +1210,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1154874094058957186, guid: af55885fe908e0640a1ad3f9c010b7e2, type: 3}
+      propertyPath: _velocityPower
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 1154874094080744197, guid: af55885fe908e0640a1ad3f9c010b7e2, type: 3}
       propertyPath: m_Name
       value: EffectManager

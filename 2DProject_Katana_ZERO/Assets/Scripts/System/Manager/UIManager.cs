@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     private Image _gameProgressTimer;
     [SerializeField]
     private GameObject[] _batteryComponents;
+    [SerializeField]
+    private GameObject _gameOverPanel;
 
     private Stack<Image> _alreadyUsedbatterySprite = new Stack<Image>();
     private Stack<Image> _unUsedbatterySprite = new Stack<Image>();
@@ -32,6 +34,14 @@ public class UIManager : MonoBehaviour
 
         _timeManager.AllUsedSlowTime -= UseBattery;
         _timeManager.AllUsedSlowTime += UseBattery;
+
+        GameManager.SetGameOverEffect -= SetActiveGameOverPanel;
+        GameManager.SetGameOverEffect += SetActiveGameOverPanel;
+    }
+
+    private void SetActiveGameOverPanel()
+    {
+        _gameOverPanel.SetActive( true );
     }
   
 
