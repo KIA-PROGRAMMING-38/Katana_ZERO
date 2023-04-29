@@ -31,6 +31,7 @@ public class PlayerController : Character
     private PlayerInput _input;
     private PlayerData _data;
     private PlayerAnimInvoker _animInvoker;
+    private PlayerAudio _audio;
     private Rigidbody2D _rigid;
     private CapsuleCollider2D _capsule;
 
@@ -76,6 +77,7 @@ public class PlayerController : Character
         _rigid = GetComponent<Rigidbody2D>();
         _capsule = GetComponent<CapsuleCollider2D>();
         _animInvoker = GetComponent<PlayerAnimInvoker>();
+        _audio = GetComponent<PlayerAudio>();
         _effectManager = EffectManager.GetComponent<EffectManager>();
         _delayLaserDeathEffectTime = new WaitForSeconds( _delayLaserDeathTime );
     }
@@ -380,6 +382,7 @@ public class PlayerController : Character
             StopCoroutine( _delayDeathEffectCoroutine );
         }
 
+        _audio.PlayEffectSound( 4 );
         _delayDeathEffectCoroutine = DelayDeathEffect();
         StartCoroutine( _delayDeathEffectCoroutine );
     }
