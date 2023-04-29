@@ -11,6 +11,11 @@ public class CommonEnemyAimState : CommonEnemyState
         rigid.velocity = Vector2.zero;
         controller.PrevState = EnemyAnimationHash.s_Aim;
 
+        if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun )
+        {
+            controller.OnEnableGunArms();
+        }
+
         if ( controller.EnemyOnGround == GlobalData.GroundState.Slope )
         {
             rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;

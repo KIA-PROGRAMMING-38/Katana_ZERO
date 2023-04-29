@@ -77,6 +77,8 @@ public class GunProperty : MonoBehaviour
         _controller.CheckedOnDamage += DamagedEffect;
         _controller.ReadyToAttack -= TakeAim;
         _controller.ReadyToAttack += TakeAim;
+        _controller.ReadyToGunSprite -= SetActiveArms;
+        _controller.ReadyToGunSprite += SetActiveArms;
         _controller.RestoreCondition -= TakeDown;
         _controller.RestoreCondition += TakeDown;
     }
@@ -101,9 +103,7 @@ public class GunProperty : MonoBehaviour
 
     private void TakeAim()
     {
-        _arms.gameObject.SetActive( true );
-        _gun.gameObject.SetActive( true );
-
+        SetActiveArms();
         PlayEffectSound(2);
 
         _trackVec =
@@ -119,6 +119,12 @@ public class GunProperty : MonoBehaviour
         bullet.transform.rotation = BulletSpawnPoint.rotation;
 
         _controller.isShot = false;
+    }
+
+    private void SetActiveArms()
+    {
+        _arms.gameObject.SetActive( true );
+        _gun.gameObject.SetActive( true );
     }
 
     private void TakeDown()
