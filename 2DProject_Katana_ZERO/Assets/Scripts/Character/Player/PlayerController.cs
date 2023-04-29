@@ -18,6 +18,7 @@ public class PlayerController : Character
     public GameObject FootParticle;
     public GameObject WallParticle;
 
+
     [SerializeField]
     public DrawBlood DrawBlood;
     [SerializeField]
@@ -88,13 +89,6 @@ public class PlayerController : Character
         UseItem();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Burn();
-        }
-    }
 
     /// <summary>
     /// 플레이어가 밟고 잇는 땅의 타입이 Flat인 경우 Movement

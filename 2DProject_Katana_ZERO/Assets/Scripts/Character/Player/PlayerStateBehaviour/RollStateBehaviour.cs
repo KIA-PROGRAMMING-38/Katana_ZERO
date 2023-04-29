@@ -21,6 +21,8 @@ public class RollStateBehaviour : PlayerState
         controller.gameObject.layer = LayerMaskNumber.s_ImmunityState;
         // Roll 상태에서는 잔상 이펙트 효과 On
         controller.ActiveAfterImage();
+
+        audio.PlayEffectSound( 0 );
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

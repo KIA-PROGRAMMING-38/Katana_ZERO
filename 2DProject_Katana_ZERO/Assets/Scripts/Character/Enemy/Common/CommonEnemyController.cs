@@ -51,6 +51,7 @@ public class CommonEnemyController : Enemy
     [SerializeField]
     public Transform BodyTransform;
 
+
     public override void Awake()
     {
         base.Awake();

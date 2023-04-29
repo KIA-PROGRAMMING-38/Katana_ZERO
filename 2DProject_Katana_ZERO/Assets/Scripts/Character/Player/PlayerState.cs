@@ -4,6 +4,7 @@ public class PlayerState : StateMachineBehaviour
 {
     protected PlayerInput input;
     protected PlayerData data;
+    protected PlayerAudio audio;
     protected PlayerController controller;
     protected PlayerAnimInvoker animInvoker;
     protected Rigidbody2D rigid;
@@ -18,6 +19,7 @@ public class PlayerState : StateMachineBehaviour
         controller = animator.GetComponent<PlayerController>();
         rigid = animator.GetComponent<Rigidbody2D>();
         animInvoker = animator.GetComponent<PlayerAnimInvoker>();
+        audio = animator.GetComponent<PlayerAudio>();
 
         effectManager = controller.EffectManager.GetComponent<EffectManager>();
         footParticle = controller.FootParticle.GetComponent<ParticleSystem>();

@@ -24,6 +24,7 @@ public class AttackStateBehaviour : PlayerState
         controller.CheckedJumpFlip();
         controller.ActiveAfterImage();
 
+        audio.PlayEffectSound( EffectSoundRandomPlay() );
         CurrentPlayerState = PlayerAnimInvoker.PlayerState.Attack;
     }
 
@@ -51,5 +52,12 @@ public class AttackStateBehaviour : PlayerState
 
         rigid.gravityScale = data.DefaultGravityScale;
         rigid.velocity = new Vector2( 0f , -2f );
+    }
+
+    private int EffectSoundRandomPlay()
+    {
+        int randomPick = Random.Range( 1, 4 );
+
+        return randomPick;
     }
 }

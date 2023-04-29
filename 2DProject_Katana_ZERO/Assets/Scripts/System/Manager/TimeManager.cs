@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
@@ -10,6 +11,9 @@ public class TimeManager : MonoBehaviour
     public event Action AllUsedSlowTime;
 
     public float RemainingTime = 100f;
+
+    private AudioSource _audio;
+    private List<AudioClip> _clips = new List<AudioClip>();
 
     [SerializeField]
     private GameObject _slowTimeEffectPanel;
@@ -31,7 +35,28 @@ public class TimeManager : MonoBehaviour
 
     private void Awake()
     {
+        _audio = GetComponent<AudioSource>();
+
+        SetEffectClips();
         PossibleSlowTime = MaxElapsedTime;
+    }
+
+    private void SetEffectClips()
+    {
+        _clips.Add( DataHelper.LoadBGMClipHelper( "Transition_Begin" ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( "Transition_End" ) );
+    }
+
+    private void PlayEffectSound(int index)
+    {
+        _audio.clip = _clips[index];
+        AudioPlay();
+    }
+
+    private void AudioPlay()
+    {
+        _audio.playOnAwake = true;
+        _audio.Play();
     }
 
     private void Update()
@@ -46,6 +71,7 @@ public class TimeManager : MonoBehaviour
         if ( (Input.GetKeyUp( KeyCode.LeftShift ) || PossibleSlowTime <= 0f) && IsPressed )
         {
             EndCoroutine();
+            PlayEffectSound( 1 );
             DeActiveSlowTime?.Invoke();
             IsPressed = false;
         }
@@ -53,6 +79,7 @@ public class TimeManager : MonoBehaviour
         if ( Input.GetKeyDown( KeyCode.LeftShift ) && PossibleSlowTime >= 0f && !IsPressed )
         {
             StartCouroutine();
+            PlayEffectSound( 0 );
             OnActiveSlowTime?.Invoke();
             IsPressed = true;
         } 
@@ -64,6 +91,7 @@ public class TimeManager : MonoBehaviour
             if ( PossibleSlowTime <= 0f )
             {
                 EndCoroutine();
+                PlayEffectSound( 1 );
                 DeActiveSlowTime?.Invoke();
                 AllUsedSlowTime?.Invoke();
                 IsPressed = false;
