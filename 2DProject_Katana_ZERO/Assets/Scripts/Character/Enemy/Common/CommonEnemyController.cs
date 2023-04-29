@@ -10,6 +10,7 @@ public class CommonEnemyController : Enemy
 {
     public event Action<bool> CheckedOnDamage;
     public event Action ReadyToAttack;
+    public event Action ReadyToGunSprite;
     public event Action RestoreCondition;
 
     public DrawBlood DrawBlood;
@@ -113,6 +114,11 @@ public class CommonEnemyController : Enemy
     public void GunRestoreCondition()
     {
         RestoreCondition?.Invoke();
+    }
+
+    public void OnEnableGunArms()
+    {
+        ReadyToGunSprite?.Invoke();
     }
 
     [SerializeField]
