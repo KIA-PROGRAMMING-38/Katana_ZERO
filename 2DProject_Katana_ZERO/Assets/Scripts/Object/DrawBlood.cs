@@ -28,16 +28,21 @@ public class DrawBlood : MonoBehaviour
     public void StartDrawBlood( int index )
     {
         if ( null != _initialCoroutine )
+        {
             StopCoroutine( _initialCoroutine );
+        }
 
+        _indexRepo = index;
         _initialCoroutine = DrawStart();
         StartCoroutine( _initialCoroutine );
-        _indexRepo = index;
     }
 
     public void StopDrawBlood()
     {
-        StopCoroutine( _initialCoroutine );
+        if ( _initialCoroutine != null )
+        {
+            StopCoroutine( _initialCoroutine );
+        }
     }
 
     private IEnumerator DrawStart()

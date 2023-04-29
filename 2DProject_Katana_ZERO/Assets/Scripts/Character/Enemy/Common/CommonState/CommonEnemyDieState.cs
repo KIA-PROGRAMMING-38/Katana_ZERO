@@ -16,10 +16,9 @@ public class CommonEnemyDieState : CommonEnemyState
 
         if ( rigid.velocity == Vector2.zero )
         {
-            controller.DrawBlood.StopDrawBlood();
-
             if ( _isShot )
             {
+                controller.DrawBlood.StopDrawBlood();
                 _isShot = false;
                 controller.ImpactBlood.TargetObject.Add( animator.gameObject);
                 controller.ImpactBlood.ImpactCall( controller.ImpactBlood.TargetObject.Count - 1 );
