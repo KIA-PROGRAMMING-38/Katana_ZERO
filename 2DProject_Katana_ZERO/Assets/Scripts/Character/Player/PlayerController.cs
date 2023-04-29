@@ -32,7 +32,7 @@ public class PlayerController : Character
     private PlayerData _data;
     private PlayerAnimInvoker _animInvoker;
     private Rigidbody2D _rigid;
-    private Animator _anim;
+    private CapsuleCollider2D _capsule;
 
     public Transform CursorPosition;
     public event Action<bool> ExistAroundItem;
@@ -74,7 +74,7 @@ public class PlayerController : Character
         _input = GetComponent<PlayerInput>();
         _data = GetComponent<PlayerData>();
         _rigid = GetComponent<Rigidbody2D>();
-        _anim = GetComponent<Animator>();
+        _capsule = GetComponent<CapsuleCollider2D>();
         _animInvoker = GetComponent<PlayerAnimInvoker>();
         _effectManager = EffectManager.GetComponent<EffectManager>();
         _delayLaserDeathEffectTime = new WaitForSeconds( _delayLaserDeathTime );
@@ -394,5 +394,28 @@ public class PlayerController : Character
 
         gameObject.SetActive( false );
     }
-}
 
+    public void MoveToDownOnOneWay()
+    {
+        if ( _changeLayerCoroutine != null )
+        {
+            StopCoroutine( _changeLayerCoroutine );
+        }
+
+        _changeLayerCoroutine = ChangeLayer();
+        StartCoroutine( _changeLayerCoroutine );
+    }
+
+    private IEnumerator _changeLayerCoroutine;
+
+    private IEnumerator ChangeLayer()
+    {
+        gameObject.layer = LayerMaskNumber.s_PlayerOneWay;
+        _capsule.enabled = false;
+
+        yield return new WaitForSeconds( 0.15f );
+
+        gameObject.layer = LayerMaskNumber.s_Player;
+        _capsule.enabled = true;
+    }
+}

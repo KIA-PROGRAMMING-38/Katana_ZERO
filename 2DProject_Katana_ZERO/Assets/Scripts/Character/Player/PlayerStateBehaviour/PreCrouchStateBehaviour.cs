@@ -11,7 +11,12 @@ public class PreCrouchStateBehaviour : PlayerState
 
         CurrentPlayerState = PlayerAnimInvoker.PlayerState.PreCrouch;
 
-        if ( data.PlayerOnGround == GlobalData.GroundState.Slope )
+        if ( data.PlayerOnGround == GlobalData.GroundState.OneWay)
+        {
+            controller.MoveToDownOnOneWay();
+            ChangeState( animator, PlayerAnimationHash.s_PreCrouch, PlayerAnimationHash.s_Fall );
+        }
+        else if( data.PlayerOnGround == GlobalData.GroundState.Slope )
         {
             rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         }
@@ -25,6 +30,7 @@ public class PreCrouchStateBehaviour : PlayerState
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
+
         rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 }
