@@ -39,6 +39,6 @@ public class JumpStateBehaviour : PlayerState
     {
         base.OnStateExit( animator, stateInfo, layerIndex );
 
-        animator.SetBool( "isJump", false );
+        animator.SetBool( PlayerAnimationHash.s_Jump, false );
     }
 }

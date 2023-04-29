@@ -176,7 +176,6 @@ public class CommonEnemyController : Enemy
             }
         }
     }
-
    
     /// <summary>
     /// 에너미가 레이저에 피격될 경우 실행 될 이펙트

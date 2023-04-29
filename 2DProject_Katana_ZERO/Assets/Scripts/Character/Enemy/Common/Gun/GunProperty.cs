@@ -135,9 +135,9 @@ public class GunProperty : MonoBehaviour
 
     private void SetEffectClips()
     {
-        _clips.Add( DataHelper.LoadBGMClipHelper( "slash" ) );
-        _clips.Add( DataHelper.LoadBGMClipHelper( "Bullet_Die" ) );
-        _clips.Add( DataHelper.LoadBGMClipHelper( "Gun_Fire" ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.SLASH ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.BULLET_DIE ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.GUN_FIRE ) );
     }
 
     private void PlayEffectSound(int index)

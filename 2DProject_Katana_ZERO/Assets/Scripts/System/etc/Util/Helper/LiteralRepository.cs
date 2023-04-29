@@ -169,5 +169,18 @@ namespace LiteralRepository
         public const string Release     = "Release";
         public const string Burn        = "Burn";
     }
+
+    public static class AudioLiteral 
+    {
+        public const string ROLL                = "roll";
+        public const string PLAYER_SLASH1       = "Player_Slash1";
+        public const string PLAYER_SLASH2       = "Player_Slash2";
+        public const string PLAYER_SLASH3       = "Player_Slash3";
+        public const string LASER               = "Laser";
+        public const string SLASH               = "slash";
+        public const string BULLET_DIE          = "Bullet_Die";
+        public const string GUN_FIRE            = "Gun_Fire";
+    }
+
 }
 

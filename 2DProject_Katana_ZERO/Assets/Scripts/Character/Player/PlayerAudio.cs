@@ -1,3 +1,4 @@
+using LiteralRepository;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,11 +17,11 @@ public class PlayerAudio : MonoBehaviour
 
     private void SetEffectClips()
     {
-        _clips.Add( DataHelper.LoadBGMClipHelper( "roll" ) );
-        _clips.Add( DataHelper.LoadBGMClipHelper( "Player_Slash1" ) );
-        _clips.Add( DataHelper.LoadBGMClipHelper( "Player_Slash2" ) );
-        _clips.Add( DataHelper.LoadBGMClipHelper( "Player_Slash3" ) );
-        _clips.Add( DataHelper.LoadBGMClipHelper( "Laser" ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.ROLL ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.PLAYER_SLASH1 ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.PLAYER_SLASH2 ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.PLAYER_SLASH3 ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.LASER ) );
     }
 
     public void PlayEffectSound( int index )
