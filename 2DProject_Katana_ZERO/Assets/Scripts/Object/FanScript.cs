@@ -76,14 +76,13 @@ public class FanScript : MonoBehaviour
     {
         if ( collision.CompareTag( TagLiteral.PLAYER ) )
         {
-            Debug.Log( collision.name );
+            PlayerController controller = GlobalData.PlayerGameObject.GetComponent<PlayerController>();
+            Rigidbody2D rigid = controller.GetComponent<Rigidbody2D>();
+            rigid.velocity = Vector2.zero;
+            Vector2 collisionPoint = new Vector2( collision.transform.position.x + 3f, collision.transform.position.y );
 
-            Rigidbody2D rigid = GlobalData.PlayerGameObject.GetComponent<Rigidbody2D>();
-            Vector2 reflectedDirection = (Vector2)gameObject.transform.position
-                - (Vector2)GlobalData.PlayerTransform.position;
-            Vector2 normal = -reflectedDirection.normalized;
-            
-            rigid.AddForce( normal * 22f, ForceMode2D.Impulse );
+            controller.OnDamaged( collisionPoint );
+
         }
     }
 }

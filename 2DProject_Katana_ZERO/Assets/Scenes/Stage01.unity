@@ -199,10 +199,6 @@ PrefabInstance:
       propertyPath: _linearController
       value: 
       objectReference: {fileID: 1454835109}
-    - target: {fileID: 4858278264701988823, guid: d035748106fdc7546918705f1b9e2235, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6583524171885452725, guid: d035748106fdc7546918705f1b9e2235, type: 3}
       propertyPath: m_Name
       value: Enemy_Gun01
@@ -266,10 +262,6 @@ PrefabInstance:
     - target: {fileID: 6583524171885452729, guid: d035748106fdc7546918705f1b9e2235, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6583524171885452730, guid: d035748106fdc7546918705f1b9e2235, type: 3}
-      propertyPath: _pushedBackPos
-      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d035748106fdc7546918705f1b9e2235, type: 3}
@@ -1099,41 +1091,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4823767915608155834, guid: c5cc4fee9ccb85e4db8b6d5e5d8bbf35, type: 3}
   m_PrefabInstance: {fileID: 1130251659}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1130251661 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4823767915833167727, guid: c5cc4fee9ccb85e4db8b6d5e5d8bbf35, type: 3}
-  m_PrefabInstance: {fileID: 1130251659}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1130251662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1130251661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_MoveRepeatDelay: 0.5
-  m_MoveRepeatRate: 0.1
-  m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_DeselectOnBackgroundClick: 1
-  m_PointerBehavior: 0
-  m_CursorLockBehavior: 0
 --- !u!225 &1130251663 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 4823767915608155832, guid: c5cc4fee9ccb85e4db8b6d5e5d8bbf35, type: 3}
@@ -1253,10 +1210,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1154874094058957186, guid: af55885fe908e0640a1ad3f9c010b7e2, type: 3}
-      propertyPath: _velocityPower
-      value: 55
-      objectReference: {fileID: 0}
     - target: {fileID: 1154874094080744197, guid: af55885fe908e0640a1ad3f9c010b7e2, type: 3}
       propertyPath: m_Name
       value: EffectManager
@@ -1492,18 +1445,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8985177448750116439, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8985177448750116439, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: bb393797502e1e04db7f01edf61c8aa9, type: 3}
-    - target: {fileID: -8985177448750116439, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 95722751254669438, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
       propertyPath: _linearController
       value: 
@@ -1561,14 +1502,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1454835111}
     - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: emptyForce
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: slopeForce
-      value: 17.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
       propertyPath: ImpactBlood
       value: 
       objectReference: {fileID: 1454835110}
@@ -1576,10 +1509,6 @@ PrefabInstance:
       propertyPath: ThisIsPlayer
       value: 
       objectReference: {fileID: 2141163568}
-    - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
-      propertyPath: downVelocityForce
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 6772837828536875305, guid: 96f167ff6008fac4d90e7675ddc4488a, type: 3}
       propertyPath: LinearEffectController
       value: 
@@ -1734,23 +1663,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d035748106fdc7546918705f1b9e2235, type: 3}
---- !u!1 &1877367990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1154874094542764799, guid: af55885fe908e0640a1ad3f9c010b7e2, type: 3}
-  m_PrefabInstance: {fileID: 1454835106}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1877367992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877367990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d88cd8759ac3c154eba77a78e21daf5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2141163565
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1758,10 +1670,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2141163585, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2670706742728334591, guid: 5b744f99a33b22841ba72c16cb9292f1, type: 3}
       propertyPath: m_RootOrder
       value: 5

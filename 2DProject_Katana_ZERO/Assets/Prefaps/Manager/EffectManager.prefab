@@ -501,7 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _linearPrefabs: {fileID: 1315082759383225851, guid: 850a0950944ffd449abc7bcb5d9b10e4, type: 3}
   _distance: 20
-  _velocityPower: 50
+  _velocityPower: 55
 --- !u!1 &1154874094080744197
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +733,7 @@ GameObject:
   - component: {fileID: 1154874094542764796}
   - component: {fileID: 1154874094542764797}
   - component: {fileID: 1636471824709502267}
+  - component: {fileID: 1877367992}
   m_Layer: 0
   m_Name: MouseCursor
   m_TagString: Untagged
@@ -808,6 +809,18 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1636471824709502267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154874094542764799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d88cd8759ac3c154eba77a78e21daf5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1877367992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

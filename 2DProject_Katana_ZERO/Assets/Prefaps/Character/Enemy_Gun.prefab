@@ -784,7 +784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _arms: {fileID: 6583524171589088938}
   _gun: {fileID: 6583524170128713559}
-  _pushedBackPos: 5
+  _pushedBackPos: 7
   TargetTransform: {fileID: 0}
   BulletSpawnPoint: {fileID: 6583524171544433596}
   BulletPrefab: {fileID: 3723697195642242562, guid: f92ee253bfddfc342b38666f074f3589, type: 3}
@@ -815,7 +815,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: bb393797502e1e04db7f01edf61c8aa9, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
