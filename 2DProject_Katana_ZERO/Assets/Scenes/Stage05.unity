@@ -618,34 +618,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6939122379731907754, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: m_Size.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939122379731907754, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: m_Size.y
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939122379731907754, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939122380893682462, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: m_Size.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939122380893682462, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: m_Size.y
-      value: 1.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939122380893682462, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 6939122380893682462, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7384791239445141474, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
       propertyPath: m_Name
       value: Boss Kissyface
@@ -654,10 +626,6 @@ PrefabInstance:
       propertyPath: ThisIsPlayer
       value: 
       objectReference: {fileID: 2129295537}
-    - target: {fileID: 7384791239445141484, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: FacingDirection
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 7384791239445141484, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
       propertyPath: TargetTransform
       value: 
@@ -709,26 +677,6 @@ PrefabInstance:
     - target: {fileID: 7384791239445141485, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7384791239632478565, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7384791240862362306, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: m_SortingOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7384791241190918994, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: _offSetX
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7384791241190918994, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: _throwAxeSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 7384791241190918994, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}
-      propertyPath: _throwRotationSpeed
-      value: 1200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2d902152ccef74ea35305ab99fbd4d, type: 3}

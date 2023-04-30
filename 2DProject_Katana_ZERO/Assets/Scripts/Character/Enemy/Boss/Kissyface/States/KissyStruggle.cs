@@ -5,6 +5,7 @@ using static KissyfaceAnimInvoker;
 public class KissyStruggle : BossStateMachine
 {
     private int _count;
+    private int _recoverCount = 3;
 
     override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )
     {
@@ -32,7 +33,18 @@ public class KissyStruggle : BossStateMachine
 
         if ( _count == 0 )
         {
-            ChangeState( animator, KissyfaceAnimeHash.s_Struggle, KissyfaceAnimeHash.s_Die );
+            --_recoverCount;
+            Debug.Log( _recoverCount );
+
+            if ( _recoverCount == 0 )
+            {
+                ChangeState( animator, KissyfaceAnimeHash.s_Struggle, KissyfaceAnimeHash.s_Die );
+            }
+            else
+            {
+                ChangeState( animator, KissyfaceAnimeHash.s_Struggle, KissyfaceAnimeHash.s_Recover );
+                controller.TargetGameObject.gameObject.SetActive( true );
+            }
         }
     }
 
