@@ -1,4 +1,5 @@
 using LiteralRepository;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class KnifeProperty : MonoBehaviour
@@ -11,6 +12,9 @@ public class KnifeProperty : MonoBehaviour
     [Range(0f,100f)]
     private float _pushedBackPos;
 
+    private AudioSource _audio;
+    private List<AudioClip> _clips = new List<AudioClip>();
+
     private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
@@ -18,6 +22,9 @@ public class KnifeProperty : MonoBehaviour
         _rigid = GetComponent<Rigidbody2D>();
 
         _controller.ThisEnemyType = Enemy.CommonEnemyType.Knife;
+
+        _audio = GetComponent<AudioSource>();
+        SetEffectClips();
     }
 
     private void Start()
@@ -45,8 +52,26 @@ public class KnifeProperty : MonoBehaviour
         }
         else
         {
+            PlayEffectSound( 0 );
             _animator.SetBool( EnemyAnimationHash.s_Attack, false );
             _animator.SetBool( EnemyAnimationHash.s_KnockDown, true );
         }
+    }
+
+    private void SetEffectClips()
+    {
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.BULLET_REFLECT ) );
+    }
+
+    public void PlayEffectSound( int index )
+    {
+        _audio.clip = _clips[index];
+        AudioPlay();
+    }
+
+    private void AudioPlay()
+    {
+        _audio.playOnAwake = true;
+        _audio.Play();
     }
 }

@@ -177,9 +177,11 @@ namespace LiteralRepository
         public const string PLAYER_SLASH2       = "Player_Slash2";
         public const string PLAYER_SLASH3       = "Player_Slash3";
         public const string LASER               = "Laser";
+        public const string PLAYER_DIE          = "player_die";
         public const string SLASH               = "slash";
         public const string BULLET_DIE          = "Bullet_Die";
         public const string GUN_FIRE            = "Gun_Fire";
+        public const string BULLET_REFLECT      = "Bullet_Reflect";
     }
 
 }

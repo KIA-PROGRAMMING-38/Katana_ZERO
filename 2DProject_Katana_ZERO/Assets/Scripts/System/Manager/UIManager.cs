@@ -94,4 +94,10 @@ public class UIManager : MonoBehaviour
         _unUsedbatterySprite.Push( currentBatteryComponent );
         _elapsedTime = _defaultMod;
     }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.SetGameOverEffect -= SetActiveGameOverPanel;
+        _timeManager.AllUsedSlowTime -= UseBattery;
+    }
 }

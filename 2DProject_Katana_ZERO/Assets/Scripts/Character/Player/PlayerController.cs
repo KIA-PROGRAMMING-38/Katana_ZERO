@@ -17,6 +17,7 @@ public class PlayerController : Character
 
     public GameObject FootParticle;
     public GameObject WallParticle;
+    public GameObject DamageSensor;
 
 
     [SerializeField]
@@ -356,6 +357,7 @@ public class PlayerController : Character
         Vector2 normal = -reflectedDirection.normalized;
 
         _rigid.AddForce( normal * _pushedBackPos, ForceMode2D.Impulse );
+        _audio.PlayEffectSound( 5 );
 
         _animInvoker.SetAnimationTrigger( PlayerAnimationLiteral.ONDAMAGED );
         DrawBlood.TargetObject.Add( gameObject );

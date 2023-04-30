@@ -6,6 +6,7 @@ using static PlayerAnimInvoker;
 public class RollStateBehaviour : PlayerState
 {
     private float CatureDirection;
+    private CapsuleCollider2D _capsule;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -19,6 +20,10 @@ public class RollStateBehaviour : PlayerState
         footParticle.Play();
         // Roll 상태에서는 공격받지 않는 상태여야함. 무적 레이어 전환
         controller.gameObject.layer = LayerMaskNumber.s_ImmunityState;
+
+
+        _capsule = controller.DamageSensor.GetComponent<CapsuleCollider2D>();
+        _capsule.enabled = false;
         // Roll 상태에서는 잔상 이펙트 효과 On
         controller.ActiveAfterImage();
 
@@ -52,6 +57,7 @@ public class RollStateBehaviour : PlayerState
         rigid.velocity = Vector2.zero;
         footParticle.Stop();
         controller.gameObject.layer = LayerMaskNumber.s_Player;
+        _capsule.enabled = true;
     }
 
     /// <summary>
