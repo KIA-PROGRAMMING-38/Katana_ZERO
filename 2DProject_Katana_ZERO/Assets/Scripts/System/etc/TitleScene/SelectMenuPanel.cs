@@ -9,8 +9,12 @@ public class SelectMenuPanel : MonoBehaviour
     // 코드에서 사용할 인덱스 선언
     private int selectedIndex;
 
+    private AudioSource _audio;
+
     private void Awake()
     {
+        _audio = GetComponent<AudioSource>();
+
         // 초기화
         MoveCursorPosition();
     }
@@ -23,6 +27,7 @@ public class SelectMenuPanel : MonoBehaviour
             {
                 --selectedIndex;
                 MoveCursorPosition();
+                SelectMenuSoundPlay();
             }
         }
         else if ( Input.GetKeyDown( KeyCode.DownArrow ) ) 
@@ -31,7 +36,14 @@ public class SelectMenuPanel : MonoBehaviour
             {
                 ++selectedIndex; 
                 MoveCursorPosition();
+                SelectMenuSoundPlay();
             }
+        }
+
+        if ( selectedIndex == 0 && Input.GetKeyDown(KeyCode.Return ) )
+        {
+            SelectMenuSoundPlay();
+            GameManager.Instance.MoveToNextScene();
         }
     }
 
@@ -42,5 +54,11 @@ public class SelectMenuPanel : MonoBehaviour
     {
         _cursorPanel.transform.SetParent( _menus[selectedIndex].transform, false );
         _cursorPanel.transform.localPosition = Vector3.zero;
+    }
+
+    private void SelectMenuSoundPlay()
+    {
+        _audio.playOnAwake = true;
+        _audio.Play();
     }
 }

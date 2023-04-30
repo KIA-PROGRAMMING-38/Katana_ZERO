@@ -91,7 +91,6 @@ public class PlayerController : Character
         UseItem();
     }
 
-
     /// <summary>
     /// 플레이어가 밟고 잇는 땅의 타입이 Flat인 경우 Movement
     /// </summary>
@@ -416,7 +415,7 @@ public class PlayerController : Character
         gameObject.layer = LayerMaskNumber.s_PlayerOneWay;
         _capsule.enabled = false;
 
-        yield return new WaitForSeconds( 0.15f );
+        yield return new WaitForSeconds( 0.3f );
 
         gameObject.layer = LayerMaskNumber.s_Player;
         _capsule.enabled = true;

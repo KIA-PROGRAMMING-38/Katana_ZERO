@@ -2,29 +2,68 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static event Action SetGameOverEffect;
+    public event Action SetGameOverEffect;
+    private int _currentStageIndex;
+    private bool _isGameOver;
 
     private AudioSource _audio;
-    private List<AudioClip> _bgmClips;
+    public static List<AudioClip> _bgmClips;
+    public static bool IsFirstStage = true;
 
-    private void Awake()
+    protected override void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        base.Awake();
 
-        _audio = GetComponent<AudioSource>();
+        Instance._audio = GetComponent<AudioSource>();
         _bgmClips = new List<AudioClip>();
-
         SetBGMClips();
-        PlayStageBGM( 0 );
+
+        // MoveToNextScene();
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Instance.MoveToNextScene();
+        }
+    }
+
+    public void MoveToNextScene()
+    {
+        // Instance._audio.Stop();
+
+        ++Instance._currentStageIndex;
+        SceneManager.LoadScene( Instance._currentStageIndex );
+
+        if ( Instance._currentStageIndex == 1  && IsFirstStage )
+        {
+            IsFirstStage = false;
+            Instance.PlayStageBGM( 0 );
+        }
+    }
+
+    private void Update()
+    {
+        if ( Instance._isGameOver )
+        {
+            if ( Input.GetMouseButtonDown( 0 ) )
+            {
+                Instance._isGameOver = false;
+                // SceneManager.LoadScene(_currentStageIndex);
+            }
+        }
     }
 
     private void PlayStageBGM(int index)
     {
-        _audio.clip = _bgmClips[index];
+        Instance._audio.clip = _bgmClips[index];
         AudioPlay();
     }
 
@@ -36,12 +75,13 @@ public class GameManager : MonoBehaviour
 
     private void AudioPlay()
     {
-        _audio.playOnAwake = true;
-        _audio.Play();
+        Instance._audio.playOnAwake = true;
+        Instance._audio.Play();
     }
 
     public static void GetGameOverState()
     {
-        SetGameOverEffect?.Invoke();
+        Instance.SetGameOverEffect?.Invoke();
+        Instance._isGameOver = true;
     }
 }

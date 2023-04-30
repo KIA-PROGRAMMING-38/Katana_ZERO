@@ -15,7 +15,7 @@ namespace Util
         public static Vector2 MouseWorldPos => _mouseWorldPos;
         private static Vector2 _mouseWorldPos;
 
-        private static Camera _mainCamera;
+        private Camera _mainCamera;
 
         // 각 캐릭터가 밟고있을 땅의 상태
         // 밟고있는 땅이 Flat인지, Slope인지에 따라 이동 벡터가 변경됨
@@ -29,13 +29,9 @@ namespace Util
             Empty
         }
 
-        private void Awake()
+        private void FixedUpdate()
         {
             _mainCamera = Camera.main;
-        }
-
-        private void Update()
-        {
             _mouseScreenPos = Input.mousePosition;
             _mouseWorldPos = _mainCamera.ScreenToWorldPoint( _mouseScreenPos );
         }

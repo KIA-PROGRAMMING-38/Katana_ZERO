@@ -62,8 +62,8 @@ public class CommonEnemyController : Enemy
 
     private void Start()
     {
-        GameManager.SetGameOverEffect -= SetIdleState;
-        GameManager.SetGameOverEffect += SetIdleState;
+        GameManager.Instance.SetGameOverEffect -= SetIdleState;
+        GameManager.Instance.SetGameOverEffect += SetIdleState;
     }
 
     private void FixedUpdate()
@@ -78,7 +78,7 @@ public class CommonEnemyController : Enemy
 
     private void CheckedFlip()
     {
-        if ( FlipIsRight && rigid.velocity.x < 0f )
+        if ( FlipIsRight && rigid.velocity.x < 0f && EnemyOnGround != GlobalData.GroundState.OneWay )
         {
             Flip();
         }
