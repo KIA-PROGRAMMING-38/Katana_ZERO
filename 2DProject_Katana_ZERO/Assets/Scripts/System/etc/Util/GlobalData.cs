@@ -43,6 +43,13 @@ namespace Util
             return Mathf.Atan2( direction.y, direction.x ) * Mathf.Rad2Deg;
         }
 
+        public static float GetAngleBetweenEnemyToPlayer(Vector2 position)
+        {
+            Vector2 direction = (Vector2)PlayerTransform.position - position;
+
+            return Mathf.Atan2( direction.y, direction.x ) * Mathf.Rad2Deg;
+        }
+
         public static Vector2 GetDirectionBetweenTargetToMouse(Vector2 position)
         {
             return _mouseWorldPos - position;

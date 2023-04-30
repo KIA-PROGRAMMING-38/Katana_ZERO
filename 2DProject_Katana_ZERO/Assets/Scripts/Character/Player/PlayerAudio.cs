@@ -22,6 +22,7 @@ public class PlayerAudio : MonoBehaviour
         _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.PLAYER_SLASH2 ) );
         _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.PLAYER_SLASH3 ) );
         _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.LASER ) );
+        _clips.Add( DataHelper.LoadBGMClipHelper( AudioLiteral.PLAYER_DIE ) );
     }
 
     public void PlayEffectSound( int index )

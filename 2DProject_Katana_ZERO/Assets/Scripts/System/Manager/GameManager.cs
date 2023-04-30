@@ -23,8 +23,6 @@ public class GameManager : Singleton<GameManager>
         Instance._audio = GetComponent<AudioSource>();
         _bgmClips = new List<AudioClip>();
         SetBGMClips();
-
-        // MoveToNextScene();
     }
 
     private void FixedUpdate()
@@ -37,8 +35,6 @@ public class GameManager : Singleton<GameManager>
 
     public void MoveToNextScene()
     {
-        // Instance._audio.Stop();
-
         ++Instance._currentStageIndex;
         SceneManager.LoadScene( Instance._currentStageIndex );
 
@@ -46,6 +42,11 @@ public class GameManager : Singleton<GameManager>
         {
             IsFirstStage = false;
             Instance.PlayStageBGM( 0 );
+        }
+
+        if ( Instance._currentStageIndex == 5 )
+        {
+            Instance.PlayStageBGM( 1 );
         }
     }
 
@@ -56,7 +57,7 @@ public class GameManager : Singleton<GameManager>
             if ( Input.GetMouseButtonDown( 0 ) )
             {
                 Instance._isGameOver = false;
-                // SceneManager.LoadScene(_currentStageIndex);
+                SceneManager.LoadScene( _currentStageIndex);
             }
         }
     }

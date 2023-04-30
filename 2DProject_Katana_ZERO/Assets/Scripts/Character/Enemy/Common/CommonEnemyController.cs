@@ -53,6 +53,7 @@ public class CommonEnemyController : Enemy
     public Transform BodyTransform;
 
 
+
     public override void Awake()
     {
         base.Awake();
@@ -202,4 +203,11 @@ public class CommonEnemyController : Enemy
 
         gameObject.SetActive( false );
     }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.SetGameOverEffect -= SetIdleState;
+    }
+
+
 }

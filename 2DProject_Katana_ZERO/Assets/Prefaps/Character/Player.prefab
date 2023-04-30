@@ -9909,7 +9909,7 @@ MonoBehaviour:
   HoldAWallForce: 0.95
   WallFlipHorizontalForce: 17
   WallFlipVerticalForce: 17
-  RollHorizontalForce: 20
+  RollHorizontalForce: 25
   AttackForce: 20
   AttackAnimElapsedTime: 0.7
   AfterAttackVelocity: -1
@@ -9940,11 +9940,12 @@ MonoBehaviour:
   EffectManager: {fileID: 0}
   FootParticle: {fileID: 2670706742618818147}
   WallParticle: {fileID: 2670706742777127545}
+  DamageSensor: {fileID: 2670706741875083710}
   DrawBlood: {fileID: 0}
   ImpactBlood: {fileID: 0}
   _delayLaserDeathTime: 0.1
   CursorPosition: {fileID: 0}
-  _pushedBackPos: 10
+  _pushedBackPos: 14
   slopeForce: 3.8
   emptyForce: -4.5
   downVelocityForce: -3

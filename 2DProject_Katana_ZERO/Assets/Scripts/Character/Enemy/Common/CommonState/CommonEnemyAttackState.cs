@@ -34,7 +34,8 @@ public class CommonEnemyAttackState : CommonEnemyState
             ChangeState( animator, EnemyAnimationHash.s_Attack, EnemyAnimationHash.s_Run );
         }
 
-        if ( elapsedTime >= controller.attackCooltime )
+        if ( controller.ThisEnemyType == Enemy.CommonEnemyType.Gun &&
+            elapsedTime >= controller.attackCooltime )
         {
             ChangeState( animator, EnemyAnimationHash.s_Attack, EnemyAnimationHash.s_Aim );
         }
