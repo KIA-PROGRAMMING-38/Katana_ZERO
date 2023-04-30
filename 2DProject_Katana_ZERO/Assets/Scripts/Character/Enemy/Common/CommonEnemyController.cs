@@ -8,6 +8,8 @@ using Util;
 
 public class CommonEnemyController : Enemy
 {
+    public static event Action SetCurrentEnemyCount;
+
     public event Action<bool> CheckedOnDamage;
     public event Action ReadyToAttack;
     public event Action ReadyToGunSprite;
@@ -63,6 +65,8 @@ public class CommonEnemyController : Enemy
 
     private void Start()
     {
+        SetCurrentEnemyCount?.Invoke();
+
         GameManager.Instance.SetGameOverEffect -= SetIdleState;
         GameManager.Instance.SetGameOverEffect += SetIdleState;
     }

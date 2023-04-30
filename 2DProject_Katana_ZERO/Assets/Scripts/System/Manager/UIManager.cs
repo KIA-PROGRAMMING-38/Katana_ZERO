@@ -13,6 +13,10 @@ public class UIManager : MonoBehaviour
     private GameObject[] _batteryComponents;
     [SerializeField]
     private GameObject _gameOverPanel;
+    [SerializeField]
+    private GameObject _gameClearPanel;
+    [SerializeField]
+    private GameObject _gamePausePanel;
 
     private Stack<Image> _alreadyUsedbatterySprite = new Stack<Image>();
     private Stack<Image> _unUsedbatterySprite = new Stack<Image>();
@@ -37,13 +41,35 @@ public class UIManager : MonoBehaviour
 
         GameManager.Instance.SetGameOverEffect -= SetActiveGameOverPanel;
         GameManager.Instance.SetGameOverEffect += SetActiveGameOverPanel;
+        GameManager.Instance.SetGameClearEffect -= SetActiveGameClearPanel;
+        GameManager.Instance.SetGameClearEffect += SetActiveGameClearPanel;
     }
 
     private void SetActiveGameOverPanel()
     {
         _gameOverPanel.SetActive( true );
     }
-  
+
+    private void SetActiveGameClearPanel()
+    {
+        _gameClearPanel.SetActive( true );
+    }
+
+    private bool _isPauseBoolean;
+    private void SetActivePausePanel()
+    {
+        _isPauseBoolean = !_isPauseBoolean;
+        _gamePausePanel.SetActive( _isPauseBoolean );
+
+        if ( _isPauseBoolean )
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+    }
 
     private void Update()
     {
@@ -51,6 +77,11 @@ public class UIManager : MonoBehaviour
 
         float remainingNormalize = _timeManager.RemainingTime / 100f;
         _gameProgressTimer.fillAmount = remainingNormalize;
+
+        if ( Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetActivePausePanel();
+        }
 
         if ( _timeManager.IsPressed )
         {
@@ -98,6 +129,7 @@ public class UIManager : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.Instance.SetGameOverEffect -= SetActiveGameOverPanel;
+        GameManager.Instance.SetGameClearEffect -= SetActiveGameClearPanel;
         _timeManager.AllUsedSlowTime -= UseBattery;
     }
 }

@@ -1,9 +1,12 @@
 using LiteralRepository;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class KnifeProperty : MonoBehaviour
 {
+    public static event Action KnifeEnemyDieInvoke;
+
     private Animator _animator;
     private CommonEnemyController _controller;
     private Rigidbody2D _rigid;
@@ -37,6 +40,8 @@ public class KnifeProperty : MonoBehaviour
     {
         if ( onDamageable )
         {
+            KnifeEnemyDieInvoke?.Invoke();
+
             _controller.rigid.velocity = Vector2.zero;
             _controller.BodyAnimator.SetBool( _controller.PrevState, false );
             _controller.BodyAnimator.SetTrigger( EnemyAnimationHash.s_Die );

@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
 using Util;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : Character
 {
@@ -125,7 +124,7 @@ public class PlayerController : Character
         }
     }
 
- 
+
 
     /// <summary>
     /// 플레이어 점프
@@ -193,49 +192,46 @@ public class PlayerController : Character
     /// </summary>
     private void GroundStateCheck()
     {
-        if ( _rigid.velocity.x != 0 )
+        offsetVec = new Vector3( offsetX * _data.FacingDirection, 0f, 0f );
+
+        // Ground의 레이어를 검사하는 Raycast 실행
+        belowHit = Physics2D.Raycast( transform.position + offsetVec, Vector2.down, slopeForceRayLength,
+            ( 1 << LayerMaskNumber.s_FlatGround ) | ( 1 << LayerMaskNumber.s_SlopeGround ) | ( 1 << LayerMaskNumber.s_OneWayGround ) );
+
+        Debug.DrawRay( transform.position + offsetVec, Vector2.down * 2f, Color.red );
+
+        if ( belowHit.transform != null )
         {
-            offsetVec = new Vector3( offsetX * _data.FacingDirection, 0f, 0f );
-
-            // Ground의 레이어를 검사하는 Raycast 실행
-            belowHit = Physics2D.Raycast( transform.position + offsetVec, Vector2.down, slopeForceRayLength,
-                ( 1 << LayerMaskNumber.s_FlatGround ) | ( 1 << LayerMaskNumber.s_SlopeGround ) | ( 1 << LayerMaskNumber.s_OneWayGround ) );
-
-            Debug.DrawRay( transform.position + offsetVec, Vector2.down * 2f, Color.red );
-
-            if ( belowHit.transform != null )
+            // 검출된 레이어가 Flat인 경우
+            if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_FlatGround )
             {
-                // 검출된 레이어가 Flat인 경우
-                if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_FlatGround )
-                {
-                    // 플레이어가 밟고있는 GroundState == Flat
-                    _data.PlayerOnGround = GlobalData.GroundState.Flat;
-                }
-                // 검출된 레이어가 Slope인 경우
-                else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_SlopeGround )
-                {
-                    // 플레이어가 밟고있는 GroundState == Slope
-                    _data.PlayerOnGround = GlobalData.GroundState.Slope;
-                    forwardHit = Physics2D.Raycast
-                        ( transform.position, transform.right, slopeForceRayLength, 1 << LayerMaskNumber.s_SlopeGround );
-
-                    // forwardHit 가 true인 경우, Slope를 올라가는 중
-                    // forwardHit 가 false인 경우, Slope를 내려가는 중
-                    IsClimb = forwardHit;
-                    Debug.DrawRay( transform.position, transform.right * 2f, Color.red );
-                }
-                else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_OneWayGround )
-                {
-                    // 플레이어가 밟고있는 GroundState == OneWay
-                    _data.PlayerOnGround = GlobalData.GroundState.OneWay;
-                }
+                // 플레이어가 밟고있는 GroundState == Flat
+                _data.PlayerOnGround = GlobalData.GroundState.Flat;
             }
-            else
+            // 검출된 레이어가 Slope인 경우
+            else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_SlopeGround )
             {
-                _data.PlayerOnGround = GlobalData.GroundState.Empty;
+                // 플레이어가 밟고있는 GroundState == Slope
+                _data.PlayerOnGround = GlobalData.GroundState.Slope;
+                forwardHit = Physics2D.Raycast
+                    ( transform.position, transform.right, slopeForceRayLength, 1 << LayerMaskNumber.s_SlopeGround );
+
+                // forwardHit 가 true인 경우, Slope를 올라가는 중
+                // forwardHit 가 false인 경우, Slope를 내려가는 중
+                IsClimb = forwardHit;
+                Debug.DrawRay( transform.position, transform.right * 2f, Color.red );
+            }
+            else if ( belowHit.transform.gameObject.layer == LayerMaskNumber.s_OneWayGround )
+            {
+                // 플레이어가 밟고있는 GroundState == OneWay
+                _data.PlayerOnGround = GlobalData.GroundState.OneWay;
             }
         }
-        else if ( Mathf.Abs( _input.PrimitiveMoveVec.x ) > 0.01f && !_data.OnGround )
+        else
+        {
+            _data.PlayerOnGround = GlobalData.GroundState.Empty;
+        }
+        if ( Mathf.Abs( _input.PrimitiveMoveVec.x ) > 0.01f && !_data.OnGround )
         {
             // 값이 입력되고 있지만, 땅이 아닐경우 플레이어는 공중에 뜬 상태
             _data.PlayerOnGround = GlobalData.GroundState.Empty;
@@ -383,6 +379,7 @@ public class PlayerController : Character
             StopCoroutine( _delayDeathEffectCoroutine );
         }
 
+        GameManager.GetGameOverState();
         _audio.PlayEffectSound( 4 );
         _delayDeathEffectCoroutine = DelayDeathEffect();
         StartCoroutine( _delayDeathEffectCoroutine );
