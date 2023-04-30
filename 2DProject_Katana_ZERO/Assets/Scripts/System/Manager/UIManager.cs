@@ -35,8 +35,8 @@ public class UIManager : MonoBehaviour
         _timeManager.AllUsedSlowTime -= UseBattery;
         _timeManager.AllUsedSlowTime += UseBattery;
 
-        GameManager.SetGameOverEffect -= SetActiveGameOverPanel;
-        GameManager.SetGameOverEffect += SetActiveGameOverPanel;
+        GameManager.Instance.SetGameOverEffect -= SetActiveGameOverPanel;
+        GameManager.Instance.SetGameOverEffect += SetActiveGameOverPanel;
     }
 
     private void SetActiveGameOverPanel()
