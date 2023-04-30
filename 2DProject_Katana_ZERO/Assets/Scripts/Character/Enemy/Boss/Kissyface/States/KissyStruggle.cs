@@ -28,13 +28,11 @@ public class KissyStruggle : BossStateMachine
         if ( Input.GetMouseButtonDown( 0 ) )
         {
             --_count;
-            Debug.Log( $"남은 클릭횟수 : {_count}" );
         }
 
         if ( _count == 0 )
         {
             --_recoverCount;
-            Debug.Log( _recoverCount );
 
             if ( _recoverCount == 0 )
             {

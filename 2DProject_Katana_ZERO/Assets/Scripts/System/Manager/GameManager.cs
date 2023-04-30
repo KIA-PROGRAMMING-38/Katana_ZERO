@@ -9,8 +9,11 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public event Action SetGameOverEffect;
+    public event Action SetGameClearEffect;
+
     private int _currentStageIndex;
     private bool _isGameOver;
+    public bool IsGameClear;
 
     private AudioSource _audio;
     public static List<AudioClip> _bgmClips;
@@ -27,9 +30,15 @@ public class GameManager : Singleton<GameManager>
 
     private void FixedUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if ( IsGameClear )
         {
-            Instance.MoveToNextScene();
+            SetGameClearEffect?.Invoke();
+
+            if ( Input.GetMouseButtonDown( 0 ) )
+            {
+                IsGameClear = false;
+                Instance.MoveToNextScene();
+            }
         }
     }
 

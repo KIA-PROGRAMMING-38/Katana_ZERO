@@ -28,6 +28,8 @@ public class GunProperty : MonoBehaviour
     private AudioSource _audio;
     private List<AudioClip> _clips = new List<AudioClip>();
 
+    public static event Action GunEnemyDieInvoke;
+
     private void Awake()
     {
         _animator = GetComponentInChildren<Animator>();
@@ -85,6 +87,8 @@ public class GunProperty : MonoBehaviour
 
     private void DamagedEffect( bool onDamageable )
     {
+        GunEnemyDieInvoke?.Invoke();
+
         _controller.rigid.velocity = Vector2.zero;
         _animator.SetBool( _controller.PrevState, false );
         _animator.SetTrigger( EnemyAnimationHash.s_Die );

@@ -14,10 +14,7 @@ public class CommonEnemyIdleState : CommonEnemyState
         _waitSec = Random.Range
             ( controller.idleMinSec, controller.idleMaxSec );
 
-        if ( controller.EnemyOnGround == GlobalData.GroundState.Slope )
-        {
-            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
-        }
+        rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
     }
 
     override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex )

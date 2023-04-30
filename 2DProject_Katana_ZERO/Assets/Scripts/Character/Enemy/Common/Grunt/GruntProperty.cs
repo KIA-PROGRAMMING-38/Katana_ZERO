@@ -1,4 +1,5 @@
 using LiteralRepository;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class GruntProperty : MonoBehaviour
     private Animator _animator;
     private CommonEnemyController _controller;
     private Rigidbody2D _rigid;
+
+    public static event Action GruntEnemyDieInvoke;
 
     [SerializeField]
     [Range( 0f, 100f )]
@@ -30,6 +33,8 @@ public class GruntProperty : MonoBehaviour
 
     private void DamagedEffect( bool onDamageable )
     {
+        GruntEnemyDieInvoke?.Invoke();
+
         _controller.rigid.velocity = Vector2.zero;
         _animator.SetBool( _controller.PrevState, false );
         _animator.SetTrigger( EnemyAnimationHash.s_Die );
